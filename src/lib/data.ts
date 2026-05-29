@@ -129,11 +129,12 @@ export async function getCurationsForMovie(
 // 취향 기반 "오늘 볼 영화" 후보 — 장르·연대·러닝타임·평점 필터로 추리고,
 // 가중평점 상위 풀에서 셔플해 N편 반환. (탐색/재추첨용)
 export type PickFilter = {
-  genres?: string[]; // 한글 장르명 (OR)
+  genres?: string[]; // 한글 장르명 (OR) — 분위기 매핑 포함
   decade?: string; // 1950s..2020s
   maxRuntime?: number; // 분
   minRating?: number; // tmdb_rating
   seed?: number; // 재추첨 시드
+  excludeTmdbIds?: number[]; // 본 영화 제외
 };
 export async function pickMovies(
   filter: PickFilter,
@@ -160,10 +161,15 @@ export async function pickMovies(
   if (filter.maxRuntime) q = q.lte("runtime", filter.maxRuntime).gt("runtime", 0);
   if (filter.minRating) q = q.gte("tmdb_rating", filter.minRating);
 
-  // 가중평점 상위 120편을 풀로 가져와 시드 셔플 → count 편
+  // 본 영화 제외 (PostgREST not.in)
+  if (filter.excludeTmdbIds && filter.excludeTmdbIds.length > 0) {
+    q = q.not("tmdb_id", "in", `(${filter.excludeTmdbIds.join(",")})`);
+  }
+
+  // 가중평점 상위 150편을 풀로 가져와 시드 셔플 → count 편
   const { data } = await q
     .order("weighted_rating", { ascending: false, nullsFirst: false })
-    .limit(120);
+    .limit(150);
   const pool = (data as MovieRow[]) ?? [];
   if (pool.length === 0) return [];
 

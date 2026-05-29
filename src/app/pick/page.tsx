@@ -1,8 +1,9 @@
 import Link from "next/link";
-import MoviePoster from "@/components/MoviePoster";
-import StarRating from "@/components/StarRating";
 import { pickMovies, type PickFilter } from "@/lib/data";
 import { getApprovedReviews } from "@/lib/data";
+import { MOODS, moodGenres } from "@/lib/moods";
+import PickShare from "@/components/PickShare";
+import WatchedToggle from "@/components/WatchedToggle";
 import type { CriticReview } from "@/types";
 
 export const dynamic = "force-dynamic";
@@ -36,21 +37,29 @@ export default async function PickPage({
 }) {
   const sp = await searchParams;
   const selectedGenres = (sp.g ?? "").split(",").filter(Boolean);
+  const mood = sp.mood ?? "";
   const decade = sp.decade ?? "";
   const maxRuntime = sp.runtime ? Number(sp.runtime) : undefined;
   const minRating = sp.rating ? Number(sp.rating) : undefined;
   const seed = sp.seed ? Number(sp.seed) : 1;
   const submitted = "go" in sp;
+  // 본 영화 제외 목록 (클라이언트가 ?seen= 으로 동기화)
+  const seen = (sp.seen ?? "")
+    .split(",")
+    .map((x) => Number(x))
+    .filter((n) => Number.isFinite(n) && n > 0);
 
   // 현재 상태를 유지하며 파라미터 토글하는 URL 빌더
   const build = (patch: Record<string, string | undefined>) => {
     const cur: Record<string, string | undefined> = {
       g: selectedGenres.join(",") || undefined,
+      mood: mood || undefined,
       decade: decade || undefined,
       runtime: sp.runtime,
       rating: sp.rating,
       go: submitted ? "1" : undefined,
       seed: sp.seed,
+      seen: sp.seen,
       ...patch,
     };
     const p = new URLSearchParams();
@@ -69,12 +78,17 @@ export default async function PickPage({
   let picks: Awaited<ReturnType<typeof pickMovies>> = [];
   const reviewsByMovie: Record<string, CriticReview[]> = {};
   if (submitted) {
+    // 분위기 → 장르로 환산해 선택 장르와 합집합
+    const effGenres = Array.from(
+      new Set([...selectedGenres, ...moodGenres(mood)]),
+    );
     const filter: PickFilter = {
-      genres: selectedGenres,
+      genres: effGenres,
       decade,
       maxRuntime,
       minRating,
       seed,
+      excludeTmdbIds: seen,
     };
     picks = await pickMovies(filter, 3);
     // 각 추천작의 대표 평론 1개 (있으면)
@@ -99,6 +113,17 @@ export default async function PickPage({
 
       {/* 취향 선택 */}
       <div className="space-y-6 rounded-md border border-bone/10 bg-ink-900/50 p-6">
+        <FilterGroup label="분위기">
+          {MOODS.map((m) => (
+            <Chip
+              key={m.key}
+              href={build({ mood: mood === m.key ? undefined : m.key })}
+              active={mood === m.key}
+            >
+              {m.emoji} {m.label}
+            </Chip>
+          ))}
+        </FilterGroup>
         <FilterGroup label="장르 (복수 선택)">
           {GENRES.map((g) => (
             <Chip key={g} href={toggleGenre(g)} active={selectedGenres.includes(g)}>
@@ -152,6 +177,7 @@ export default async function PickPage({
               다시 뽑기 ↻
             </Link>
           )}
+          {submitted && <PickShare />}
           <Link href="/pick" className="link-underline text-sm text-faint">
             초기화
           </Link>
@@ -162,9 +188,13 @@ export default async function PickPage({
       {submitted &&
         (picks.length > 0 ? (
           <section className="animate-fade-up">
-            <div className="mb-5 border-b border-bone/10 pb-3">
-              <p className="kicker">Today's Picks</p>
-              <h2 className="headline mt-2 text-2xl">당신을 위한 {picks.length}편</h2>
+            <div className="mb-5 flex items-end justify-between border-b border-bone/10 pb-3">
+              <div>
+                <p className="kicker">Today&apos;s Picks</p>
+                <h2 className="headline mt-2 text-2xl">
+                  당신을 위한 {picks.length}편
+                </h2>
+              </div>
             </div>
             <div className="space-y-6">
               {picks.map((m) => {
@@ -226,6 +256,9 @@ export default async function PickPage({
                           {m.overview}
                         </p>
                       ) : null}
+                      <div className="mt-2">
+                        <WatchedToggle tmdbId={m.tmdb_id} title={m.title} />
+                      </div>
                     </div>
                   </div>
                 );
