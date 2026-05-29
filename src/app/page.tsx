@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
+import SectionHeader from "@/components/SectionHeader";
 import { getCurations } from "@/lib/data";
 import { getRecommendation } from "@/lib/recommend";
 import { getDailyBoxOffice, koficConfigured } from "@/lib/kofic";
@@ -10,8 +11,8 @@ export const dynamic = "force-dynamic";
 
 const SOURCE_LABEL: Record<string, string> = {
   editor: "에디터 추천",
-  "auto-db": "평점·수상 기반 자동 추천",
-  "auto-tmdb": "평점 기반 자동 추천",
+  "auto-db": "평점·수상 기반 추천",
+  "auto-tmdb": "평점 기반 추천",
 };
 
 export default async function HomePage() {
@@ -23,65 +24,73 @@ export default async function HomePage() {
   const needsSetup = !tmdbConfigured() || !isSupabaseConfigured();
 
   return (
-    <div className="space-y-16">
-      {/* Hero */}
-      <section className="space-y-6">
-        <p className="kicker">CINEPHILE ARCHIVE</p>
-        <h1 className="headline max-w-3xl text-4xl leading-tight sm:text-5xl">
-          한 편의 영화를, 정보와 평점과 평론으로
+    <div className="space-y-20">
+      {/* ── Hero ───────────────────────────── */}
+      <section className="animate-fade-up">
+        <p className="kicker">Cinephile Archive</p>
+        <h1 className="headline mt-5 max-w-4xl text-balance text-4xl leading-[1.1] sm:text-6xl">
+          한 편의 영화를,
           <br />
-          한 화면에 정리하다.
+          <span className="italic text-accent-soft">정보와 평점과 평론</span>으로
+          <br />한 화면에 정리하다.
         </h1>
-        <p className="max-w-xl text-muted">
-          단순한 검색이 아니라 큐레이션과 비평의 아카이브. 포스터·수상·평론가의
-          한줄평까지.
+        <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted">
+          단순한 검색이 아니라 큐레이션과 비평의 아카이브. 포스터부터 수상 이력,
+          평론가의 한줄평까지 — 한 작품의 모든 맥락을 모읍니다.
         </p>
-        <div className="max-w-2xl pt-2">
+        <div className="mt-8 max-w-2xl">
           <SearchBar />
         </div>
       </section>
 
       {needsSetup && <SetupNotice />}
 
-      {/* 오늘의 추천 영화 */}
-      <section>
-        <SectionTitle
-          kicker="TODAY'S PICK"
-          title="오늘의 추천 영화"
-          href={null}
-        />
+      {/* ── 오늘의 추천 영화 ───────────────────────────── */}
+      <section className="animate-fade-up">
+        <SectionHeader kicker="Today's Pick" title="오늘의 추천 영화" />
         {pick ? (
           <Link
             href={`/movies/${pick.tmdbId}`}
-            className="group mt-4 grid gap-6 rounded-sm border border-bone/10 bg-ink-900 p-6 sm:grid-cols-[160px_1fr]"
+            className="card card-hover group grid overflow-hidden sm:grid-cols-[200px_1fr]"
           >
-            <div className="aspect-[2/3] overflow-hidden rounded-sm bg-ink-800">
-              {pick.posterUrl && (
+            <div className="relative aspect-[2/3] overflow-hidden bg-ink-800 sm:aspect-auto">
+              {pick.posterUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={pick.posterUrl}
                   alt={pick.title}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition duration-[700ms] ease-smooth group-hover:scale-[1.04]"
                 />
+              ) : (
+                <div className="flex h-full min-h-[260px] items-center justify-center text-muted">
+                  포스터 없음
+                </div>
               )}
             </div>
-            <div className="space-y-3">
-              <span className="inline-block rounded-sm border border-accent/40 px-2 py-0.5 text-[0.65rem] uppercase tracking-wider text-accent">
-                {SOURCE_LABEL[pick.source] ?? "추천"}
-              </span>
-              <h3 className="headline text-2xl">
+            <div className="flex flex-col justify-center gap-4 p-6 sm:p-8">
+              <span className="badge w-fit">{SOURCE_LABEL[pick.source] ?? "추천"}</span>
+              <h3 className="headline text-3xl leading-tight">
                 {pick.title}
                 {pick.year ? (
                   <span className="text-muted"> ({pick.year})</span>
                 ) : null}
               </h3>
               {pick.director && (
-                <p className="text-sm text-muted">감독 · {pick.director}</p>
+                <p className="text-sm text-muted">
+                  감독 <span className="text-bone">{pick.director}</span>
+                </p>
               )}
-              <p className="text-sm text-accent/90">{pick.reason}</p>
-              <p className="line-clamp-3 text-sm text-bone/80">
-                {pick.overview}
+              <p className="border-l-2 border-accent/50 pl-3 text-sm italic text-accent-soft">
+                {pick.reason}
               </p>
+              {pick.overview && (
+                <p className="line-clamp-3 max-w-prose text-pretty leading-relaxed text-bone/75">
+                  {pick.overview}
+                </p>
+              )}
+              <span className="link-underline mt-1 w-fit text-sm text-muted">
+                상세 보기 →
+              </span>
             </div>
           </Link>
         ) : (
@@ -89,26 +98,24 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* KOFIC 박스오피스 */}
+      {/* ── KOFIC 박스오피스 ───────────────────────────── */}
       {koficConfigured() && boxOffice.length > 0 && (
-        <section>
-          <SectionTitle
-            kicker="KOREAN BOX OFFICE · KOFIC"
-            title="박스오피스"
-            href={null}
-          />
-          <ol className="mt-4 divide-y divide-bone/10">
+        <section className="animate-fade-up">
+          <SectionHeader kicker="Korean Box Office · KOFIC" title="박스오피스" />
+          <ol className="grid gap-x-10 sm:grid-cols-2">
             {boxOffice.map((b) => (
               <li key={b.rank}>
                 <Link
                   href={`/search?q=${encodeURIComponent(b.movieNm)}`}
-                  className="flex items-baseline gap-4 py-3 hover:bg-ink-900"
+                  className="group flex items-center gap-4 border-b border-bone/10 py-4 transition-colors hover:border-accent/30"
                 >
-                  <span className="headline w-8 shrink-0 text-xl text-accent">
+                  <span className="headline w-8 shrink-0 text-2xl text-accent/80 transition-colors group-hover:text-accent">
                     {b.rank}
                   </span>
-                  <span className="flex-1 truncate">{b.movieNm}</span>
-                  <span className="shrink-0 text-xs text-muted">
+                  <span className="flex-1 truncate text-bone transition-colors group-hover:text-accent-soft">
+                    {b.movieNm}
+                  </span>
+                  <span className="shrink-0 text-xs tabular-nums text-muted">
                     누적 {Number(b.audiAcc).toLocaleString()}명
                   </span>
                 </Link>
@@ -118,63 +125,45 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* 큐레이션 */}
-      <section id="curations">
-        <SectionTitle kicker="CURATIONS" title="씨네필 큐레이션" href={null} />
+      {/* ── 큐레이션 ───────────────────────────── */}
+      <section id="curations" className="scroll-mt-24 animate-fade-up">
+        <SectionHeader kicker="Curations" title="씨네필 큐레이션" />
         {curations.length > 0 ? (
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {curations.map((c) => (
               <Link
                 key={c.id}
                 href={`/curations/${c.slug}`}
-                className="group rounded-sm border border-bone/10 bg-ink-900 p-5 transition hover:border-accent/40"
+                className="card card-hover group flex flex-col p-6"
               >
-                <h3 className="headline text-xl group-hover:text-accent">
+                <p className="kicker text-faint transition-colors group-hover:text-accent">
+                  Collection
+                </p>
+                <h3 className="headline mt-3 text-xl text-bone transition-colors group-hover:text-accent-soft">
                   {c.title}
                 </h3>
                 {c.description && (
-                  <p className="mt-2 line-clamp-2 text-sm text-muted">
+                  <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted">
                     {c.description}
                   </p>
                 )}
+                <span className="mt-4 text-xs text-faint transition-colors group-hover:text-muted">
+                  살펴보기 →
+                </span>
               </Link>
             ))}
           </div>
         ) : (
-          <EmptyState text="큐레이션 리스트가 아직 없습니다. (예: 입문 고전 / 칸 수상작 / 이동진 추천작 / 90년대 홍콩영화 / A24)" />
+          <EmptyState text="큐레이션 리스트가 아직 없습니다. 예: 입문 고전 · 칸 수상작 · 이동진 추천작 · 90년대 홍콩영화 · A24" />
         )}
       </section>
     </div>
   );
 }
 
-function SectionTitle({
-  kicker,
-  title,
-  href,
-}: {
-  kicker: string;
-  title: string;
-  href: string | null;
-}) {
-  return (
-    <div className="flex items-baseline justify-between border-b border-bone/10 pb-3">
-      <div>
-        <p className="kicker">{kicker}</p>
-        <h2 className="headline mt-1 text-2xl">{title}</h2>
-      </div>
-      {href && (
-        <Link href={href} className="text-sm text-muted hover:text-bone">
-          전체 보기 →
-        </Link>
-      )}
-    </div>
-  );
-}
-
 function EmptyState({ text }: { text: string }) {
   return (
-    <p className="mt-4 rounded-sm border border-dashed border-bone/15 p-6 text-sm text-muted">
+    <p className="rounded-md border border-dashed border-bone/15 bg-ink-900/40 p-8 text-center text-sm leading-relaxed text-muted">
       {text}
     </p>
   );
@@ -182,14 +171,31 @@ function EmptyState({ text }: { text: string }) {
 
 function SetupNotice() {
   return (
-    <section className="rounded-sm border border-accent/30 bg-accent/5 p-5 text-sm">
-      <p className="font-medium text-accent">설정 필요</p>
-      <p className="mt-2 text-bone/80">
-        <code>.env.local</code> 에 TMDb / Supabase 키를 채우면 실제 데이터가
-        표시됩니다. <code>.env.local.example</code> 와{" "}
-        <code>supabase/schema.sql</code> 를 참고하세요. TMDb 가 설정되면 검색·상세
-        페이지가, Supabase 가 설정되면 추천·큐레이션·평론이 동작합니다.
-      </p>
+    <section className="animate-fade-in rounded-md border border-accent/30 bg-accent/[0.06] p-6">
+      <div className="flex items-start gap-3">
+        <span
+          className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/20 text-xs text-accent"
+          aria-hidden
+        >
+          !
+        </span>
+        <div className="text-sm">
+          <p className="font-medium text-accent">설정이 필요합니다</p>
+          <p className="mt-2 leading-relaxed text-bone/80">
+            <code className="rounded bg-ink-800 px-1.5 py-0.5 text-xs">.env.local</code>{" "}
+            에 TMDb / Supabase 키를 채우면 실제 데이터가 표시됩니다.{" "}
+            <code className="rounded bg-ink-800 px-1.5 py-0.5 text-xs">
+              .env.local.example
+            </code>{" "}
+            와{" "}
+            <code className="rounded bg-ink-800 px-1.5 py-0.5 text-xs">
+              supabase/schema.sql
+            </code>{" "}
+            을 참고하세요. TMDb 설정 시 검색·상세가, Supabase 설정 시
+            추천·큐레이션·평론이 동작합니다.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }
