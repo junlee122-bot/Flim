@@ -199,26 +199,33 @@ export default async function MovieDetailPage({
         <Section title="출연진" kicker="Cast">
           <ul className="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-5">
             {detail.castDetailed.map((c) => (
-              <li key={`${c.name}-${c.character ?? ""}`} className="text-center">
-                <div className="mx-auto aspect-square w-full overflow-hidden rounded-full bg-ink-800 ring-1 ring-bone/10">
-                  {c.profileUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={c.profileUrl}
-                      alt={c.name}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-2xl text-faint">
-                      {c.name.slice(0, 1)}
-                    </div>
+              <li key={`${c.id}-${c.character ?? ""}`}>
+                <Link
+                  href={`/people/${c.id}`}
+                  className="group block text-center"
+                >
+                  <div className="mx-auto aspect-square w-full overflow-hidden rounded-full bg-ink-800 ring-1 ring-bone/10 transition duration-300 ease-smooth group-hover:ring-accent/50">
+                    {c.profileUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={c.profileUrl}
+                        alt={c.name}
+                        className="h-full w-full object-cover transition duration-500 ease-smooth group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-2xl text-faint">
+                        {c.name.slice(0, 1)}
+                      </div>
+                    )}
+                  </div>
+                  <p className="mt-2 truncate text-sm text-bone transition-colors group-hover:text-accent-soft">
+                    {c.name}
+                  </p>
+                  {c.character && (
+                    <p className="truncate text-xs text-muted">{c.character}</p>
                   )}
-                </div>
-                <p className="mt-2 truncate text-sm text-bone">{c.name}</p>
-                {c.character && (
-                  <p className="truncate text-xs text-muted">{c.character}</p>
-                )}
+                </Link>
               </li>
             ))}
           </ul>

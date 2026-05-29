@@ -49,7 +49,12 @@ type TmdbMovie = {
   imdb_id?: string;
   production_countries?: { iso_3166_1: string; name: string }[];
   credits?: {
-    cast?: { name: string; character?: string; profile_path?: string | null }[];
+    cast?: {
+      id: number;
+      name: string;
+      character?: string;
+      profile_path?: string | null;
+    }[];
     crew?: { name: string; job: string }[];
   };
   images?: { backdrops?: { file_path: string }[] };
@@ -102,6 +107,7 @@ export async function getMovieDetail(
   const cast = (m.credits?.cast ?? []).slice(0, 8).map((c) => c.name);
   // 사진·배역까지 포함한 출연진(상위 10명)
   const castDetailed = (m.credits?.cast ?? []).slice(0, 10).map((c) => ({
+    id: c.id,
     name: c.name,
     character: c.character ?? null,
     profileUrl: c.profile_path ? `${IMG}/w185${c.profile_path}` : null,
