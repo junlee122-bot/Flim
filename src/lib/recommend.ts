@@ -32,6 +32,7 @@ function rowToRec(
 ): Recommendation {
   return {
     tmdbId: row.tmdb_id,
+    backdropUrl: row.backdrop_path,
     title: row.title,
     year: row.release_year,
     director: row.director,
@@ -117,6 +118,7 @@ export async function getRecommendation(): Promise<Recommendation | null> {
       const detail = await getMovieDetail(chosen.tmdbId);
       return {
         tmdbId: chosen.tmdbId,
+        backdropUrl: detail?.backdropUrl ?? null,
         title: chosen.title,
         year: chosen.year,
         director: detail?.director ?? null,

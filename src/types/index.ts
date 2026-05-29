@@ -100,6 +100,7 @@ export type ReviewCandidate = {
 // 오늘의 추천 영화 (에디터 지정 / 평점·수상 기반 자동)
 export type Recommendation = {
   tmdbId: number;
+  backdropUrl?: string | null;
   title: string;
   year: number | null;
   director: string | null;
