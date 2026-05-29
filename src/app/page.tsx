@@ -1,11 +1,13 @@
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 import SectionHeader from "@/components/SectionHeader";
+import CurationCard from "@/components/CurationCard";
 import { getCurations } from "@/lib/data";
 import { getRecommendation } from "@/lib/recommend";
 import { getDailyBoxOffice, koficConfigured } from "@/lib/kofic";
 import { tmdbConfigured } from "@/lib/tmdb";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
+import { groupCurations } from "@/lib/categories";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +24,7 @@ export default async function HomePage() {
     getDailyBoxOffice(),
   ]);
   const needsSetup = !tmdbConfigured() || !isSupabaseConfigured();
+  const grouped = groupCurations(curations);
 
   return (
     <div className="space-y-20">
@@ -125,32 +128,39 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── 큐레이션 ───────────────────────────── */}
+      {/* ── 큐레이션 (카테고리별 미리보기) ───────────────────── */}
       <section id="curations" className="scroll-mt-24 animate-fade-up">
-        <SectionHeader kicker="Curations" title="씨네필 큐레이션" />
-        {curations.length > 0 ? (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {curations.map((c) => (
-              <Link
-                key={c.id}
-                href={`/curations/${c.slug}`}
-                className="card card-hover group flex flex-col p-6"
-              >
-                <p className="kicker text-faint transition-colors group-hover:text-accent">
-                  Collection
-                </p>
-                <h3 className="headline mt-3 text-xl text-bone transition-colors group-hover:text-accent-soft">
-                  {c.title}
-                </h3>
-                {c.description && (
-                  <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted">
-                    {c.description}
-                  </p>
-                )}
-                <span className="mt-4 text-xs text-faint transition-colors group-hover:text-muted">
-                  살펴보기 →
-                </span>
-              </Link>
+        <SectionHeader
+          kicker="Curations"
+          title="씨네필 큐레이션"
+          href="/curations"
+          hrefLabel={`전체 ${curations.length}개 보기`}
+        />
+        {grouped.length > 0 ? (
+          <div className="space-y-12">
+            {grouped.map((g) => (
+              <div key={g.key}>
+                <div className="mb-4 flex items-baseline justify-between">
+                  <h3 className="headline text-lg text-bone">
+                    <span className="kicker mr-3 align-middle">{g.kicker}</span>
+                    {g.label}
+                    <span className="ml-2 text-sm text-faint">
+                      {g.items.length}
+                    </span>
+                  </h3>
+                  <Link
+                    href={`/curations?cat=${g.key}`}
+                    className="link-underline shrink-0 text-xs text-muted"
+                  >
+                    더 보기 →
+                  </Link>
+                </div>
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {g.items.slice(0, 3).map((c) => (
+                    <CurationCard key={c.id} curation={c} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         ) : (

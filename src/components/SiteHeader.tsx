@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const NAV = [
   { href: "/search", label: "검색" },
-  { href: "/#curations", label: "큐레이션" },
+  { href: "/curations", label: "큐레이션" },
   { href: "/admin", label: "관리자" },
 ];
 
@@ -30,12 +30,8 @@ export default function SiteHeader() {
 
         <nav className="flex items-center gap-7 text-sm">
           {NAV.map((item) => {
-            const active =
-              item.href === "/search"
-                ? pathname.startsWith("/search")
-                : item.href === "/admin"
-                  ? pathname.startsWith("/admin")
-                  : false;
+            const base = item.href.split("#")[0];
+            const active = base !== "/" && pathname.startsWith(base);
             return (
               <Link
                 key={item.href}
