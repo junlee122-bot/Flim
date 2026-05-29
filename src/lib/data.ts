@@ -284,6 +284,40 @@ export async function browseMovies(opts: {
   return { movies: (data as MovieRow[]) ?? [], total: count ?? 0 };
 }
 
+// 특정 장르(들) 영화 — 가중평점순, 페이지네이션. (애니메이션 등 장르 허브용)
+export async function getMoviesByGenre(opts: {
+  genres: string[]; // OR
+  page?: number;
+  pageSize?: number;
+  minVotes?: number;
+}): Promise<{ movies: MovieRow[]; total: number }> {
+  const sb = await getSupabaseServer();
+  if (!sb || opts.genres.length === 0) return { movies: [], total: 0 };
+  const page = Math.max(1, opts.page ?? 1);
+  const size = opts.pageSize ?? 36;
+  const fromIdx = (page - 1) * size;
+  const { data, count } = await sb
+    .from("movies")
+    .select("*", { count: "exact" })
+    .overlaps("genres", opts.genres)
+    .gte("vote_count", opts.minVotes ?? 100)
+    .not("poster_path", "is", null)
+    .order("weighted_rating", { ascending: false, nullsFirst: false })
+    .range(fromIdx, fromIdx + size - 1);
+  return { movies: (data as MovieRow[]) ?? [], total: count ?? 0 };
+}
+
+// 지정한 slug 들의 큐레이션(+포스터) 만 추려서 반환. (장르 허브의 추천 컬렉션)
+export async function getCurationsBySlugs(
+  slugs: string[],
+): Promise<CurationWithPosters[]> {
+  const all = await getCurationsWithPosters();
+  const order = new Map(slugs.map((s, i) => [s, i]));
+  return all
+    .filter((c) => order.has(c.slug))
+    .sort((a, b) => (order.get(a.slug)! - order.get(b.slug)!));
+}
+
 // tmdb_id → 로컬 movie 행 (읽기 전용, 없으면 null)
 export async function getMovieRowByTmdbId(
   tmdbId: number,
