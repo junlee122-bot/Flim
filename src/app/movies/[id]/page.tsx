@@ -14,6 +14,7 @@ import {
   getCurationsForMovie,
 } from "@/lib/data";
 import StarRating from "@/components/StarRating";
+import StarInput from "@/components/StarInput";
 import CriticAutoSearch from "@/components/CriticAutoSearch";
 import MoviePoster from "@/components/MoviePoster";
 import type { Award, CriticReview } from "@/types";
@@ -165,6 +166,16 @@ export default async function MovieDetailPage({
                 label="Rotten Tomatoes"
                 value={external.rottenTomatoes}
                 pendingNote="추후 연동 예정"
+              />
+            </div>
+
+            {/* 내 별점 */}
+            <div className="pt-1">
+              <StarInput
+                tmdbId={detail.tmdbId}
+                title={detail.title}
+                posterUrl={detail.posterUrl}
+                year={detail.year}
               />
             </div>
           </div>

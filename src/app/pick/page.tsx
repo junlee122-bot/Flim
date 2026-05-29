@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { pickMovies, type PickFilter } from "@/lib/data";
 import { getApprovedReviews } from "@/lib/data";
@@ -7,6 +8,49 @@ import WatchedToggle from "@/components/WatchedToggle";
 import type { CriticReview } from "@/types";
 
 export const dynamic = "force-dynamic";
+
+// 동적 OG 이미지 — 취향/추천작을 카드로
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | undefined>>;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+  const moodLabel = MOODS.find((m) => m.key === sp.mood)?.label ?? "";
+  const genres = (sp.g ?? "").split(",").filter(Boolean);
+  const og = new URLSearchParams();
+  if (moodLabel) og.set("mood", moodLabel);
+  if (genres.length) og.set("genres", genres.join(","));
+
+  if ("go" in sp) {
+    const effGenres = Array.from(new Set([...genres, ...moodGenres(sp.mood)]));
+    const seen = (sp.seen ?? "").split(",").map(Number).filter((n) => n > 0);
+    const picks = await pickMovies(
+      {
+        genres: effGenres,
+        decade: sp.decade ?? "",
+        maxRuntime: sp.runtime ? Number(sp.runtime) : undefined,
+        minRating: sp.rating ? Number(sp.rating) : undefined,
+        seed: sp.seed ? Number(sp.seed) : 1,
+        excludeTmdbIds: seen,
+      },
+      3,
+    );
+    if (picks.length) og.set("titles", picks.map((m) => m.title).join("|"));
+  }
+
+  const ogUrl = `/api/og?${og.toString()}`;
+  const title = moodLabel ? `오늘 볼 영화 · ${moodLabel}` : "오늘, 뭐 볼까?";
+  return {
+    title,
+    openGraph: {
+      title: `FLIM — ${title}`,
+      description: "취향으로 고르는 오늘의 영화",
+      images: [{ url: ogUrl, width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image", images: [ogUrl] },
+  };
+}
 
 const GENRES = [
   "액션","드라마","코미디","스릴러","로맨스","SF","공포","애니메이션",

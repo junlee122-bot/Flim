@@ -2,20 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-
-const KEY = "flim_watched";
-
-function readWatched(): number[] {
-  if (typeof window === "undefined") return [];
-  try {
-    return JSON.parse(localStorage.getItem(KEY) || "[]");
-  } catch {
-    return [];
-  }
-}
-function writeWatched(ids: number[]) {
-  localStorage.setItem(KEY, JSON.stringify(ids));
-}
+import { getWatched as readWatched, setWatched as writeWatched } from "@/lib/userdata";
 
 // "본 영화" 표시 토글. localStorage 에 저장하고, /pick 의 ?seen= 을 갱신해
 // 서버가 다음 추천에서 제외하도록 한다.
