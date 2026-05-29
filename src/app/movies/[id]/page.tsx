@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getMovieDetail, tmdbConfigured } from "@/lib/tmdb";
+import { findPersonId, getMovieDetail, tmdbConfigured } from "@/lib/tmdb";
 import { getExternalRatings } from "@/lib/omdb";
 import {
   getKoficMovieInfo,
@@ -43,15 +43,17 @@ export default async function MovieDetailPage({
   // 로컬 movie 행 보장(평론/수상 연결) → 없으면 DB 미설정 상태
   const row = await ensureMovieRow(tmdbId, detail);
   const isKorean = isLikelyKoreanFilm(detail.country, detail.originalTitle);
-  const [external, awards, reviews, kofic, inCurations] = await Promise.all([
-    getExternalRatings(detail.imdbId),
-    row ? getAwards(row.id) : Promise.resolve<Award[]>([]),
-    row ? getApprovedReviews(row.id) : Promise.resolve<CriticReview[]>([]),
-    isKorean && koficConfigured()
-      ? getKoficMovieInfo(detail.originalTitle || detail.title, detail.year)
-      : Promise.resolve(null),
-    row ? getCurationsForMovie(row.id) : Promise.resolve([]),
-  ]);
+  const [external, awards, reviews, kofic, inCurations, directorId] =
+    await Promise.all([
+      getExternalRatings(detail.imdbId),
+      row ? getAwards(row.id) : Promise.resolve<Award[]>([]),
+      row ? getApprovedReviews(row.id) : Promise.resolve<CriticReview[]>([]),
+      isKorean && koficConfigured()
+        ? getKoficMovieInfo(detail.originalTitle || detail.title, detail.year)
+        : Promise.resolve(null),
+      row ? getCurationsForMovie(row.id) : Promise.resolve([]),
+      detail.director ? findPersonId(detail.director) : Promise.resolve(null),
+    ]);
 
   return (
     <article className="space-y-16">
@@ -113,7 +115,11 @@ export default async function MovieDetailPage({
             )}
 
             <dl className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-2.5 text-sm">
-              <Info label="감독" value={detail.director} />
+              <Info
+                label="감독"
+                value={detail.director}
+                href={directorId ? `/people/${directorId}` : undefined}
+              />
               <Info label="국가" value={detail.country} />
               <Info
                 label="러닝타임"
@@ -346,15 +352,25 @@ function Info({
   label,
   value,
   wide,
+  href,
 }: {
   label: string;
   value: string | null;
   wide?: boolean;
+  href?: string;
 }) {
   return (
     <div className={wide ? "col-span-2 sm:col-span-3" : ""}>
       <dt className="text-xs uppercase tracking-wider text-faint">{label}</dt>
-      <dd className="mt-0.5 text-bone">{value ?? "—"}</dd>
+      <dd className="mt-0.5 text-bone">
+        {value && href ? (
+          <Link href={href} className="link-underline hover:text-accent-soft">
+            {value}
+          </Link>
+        ) : (
+          (value ?? "—")
+        )}
+      </dd>
     </div>
   );
 }

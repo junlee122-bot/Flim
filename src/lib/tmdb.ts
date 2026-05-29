@@ -145,9 +145,7 @@ export async function getMovieDetail(
 
 // 추천/큐레이션 시드용: 인기/높은 평점 영화
 export async function getPopularMovies(): Promise<MovieSummary[]> {
-  const data = await tmdb<{ results: TmdbMovie[] }>(
-    `/movie/top_rated?page=1`,
-  );
+  const data = await tmdb<{ results: TmdbMovie[] }>(`/movie/top_rated?page=1`);
   if (!data?.results) return [];
   return data.results.slice(0, 12).map((m) => ({
     tmdbId: m.id,
@@ -159,4 +157,156 @@ export async function getPopularMovies(): Promise<MovieSummary[]> {
     genres: [],
     posterUrl: posterUrl(m.poster_path),
   }));
+}
+
+// TMDb 장르 ID 맵 (검색 필터용)
+export const TMDB_GENRES: { id: number; name: string }[] = [
+  { id: 28, name: "액션" },
+  { id: 12, name: "모험" },
+  { id: 16, name: "애니메이션" },
+  { id: 35, name: "코미디" },
+  { id: 80, name: "범죄" },
+  { id: 99, name: "다큐멘터리" },
+  { id: 18, name: "드라마" },
+  { id: 10751, name: "가족" },
+  { id: 14, name: "판타지" },
+  { id: 36, name: "역사" },
+  { id: 27, name: "공포" },
+  { id: 10402, name: "음악" },
+  { id: 9648, name: "미스터리" },
+  { id: 10749, name: "로맨스" },
+  { id: 878, name: "SF" },
+  { id: 53, name: "스릴러" },
+  { id: 10752, name: "전쟁" },
+  { id: 37, name: "서부" },
+];
+
+export const DECADES = [
+  { key: "2020s", label: "2020년대", gte: "2020-01-01", lte: "2029-12-31" },
+  { key: "2010s", label: "2010년대", gte: "2010-01-01", lte: "2019-12-31" },
+  { key: "2000s", label: "2000년대", gte: "2000-01-01", lte: "2009-12-31" },
+  { key: "1990s", label: "1990년대", gte: "1990-01-01", lte: "1999-12-31" },
+  { key: "1980s", label: "1980년대", gte: "1980-01-01", lte: "1989-12-31" },
+  { key: "1970s", label: "1970년대", gte: "1970-01-01", lte: "1979-12-31" },
+  { key: "1960s", label: "1960년대", gte: "1960-01-01", lte: "1969-12-31" },
+  { key: "older", label: "그 이전", gte: "1900-01-01", lte: "1959-12-31" },
+];
+
+// 장르/연대 필터로 영화 탐색 (discover, 평점순)
+export async function discoverMovies(opts: {
+  genre?: number;
+  decade?: string;
+  sort?: string;
+}): Promise<MovieSummary[]> {
+  const dec = DECADES.find((d) => d.key === opts.decade);
+  const params = [
+    `sort_by=${opts.sort || "vote_average.desc"}`,
+    "vote_count.gte=200",
+    "include_adult=false",
+  ];
+  if (opts.genre) params.push(`with_genres=${opts.genre}`);
+  if (dec) {
+    params.push(`primary_release_date.gte=${dec.gte}`);
+    params.push(`primary_release_date.lte=${dec.lte}`);
+  }
+  const data = await tmdb<{ results: TmdbMovie[] }>(
+    `/discover/movie?${params.join("&")}`,
+  );
+  if (!data?.results) return [];
+  return data.results.slice(0, 24).map((m) => ({
+    tmdbId: m.id,
+    title: m.title,
+    originalTitle: m.original_title,
+    year: yearOf(m.release_date),
+    director: null,
+    country: null,
+    genres: [],
+    posterUrl: posterUrl(m.poster_path),
+  }));
+}
+
+// ── 인물(감독/배우) 상세 ──────────────────────────────
+export type PersonDetail = {
+  id: number;
+  name: string;
+  biography: string;
+  knownFor: string | null; // Acting | Directing ...
+  profileUrl: string | null;
+  birthday: string | null;
+  placeOfBirth: string | null;
+  filmography: MovieSummary[]; // 대표작 (감독작 우선, 없으면 출연작)
+  role: "director" | "actor";
+};
+
+type TmdbPerson = {
+  id: number;
+  name: string;
+  biography?: string;
+  known_for_department?: string;
+  profile_path?: string | null;
+  birthday?: string | null;
+  place_of_birth?: string | null;
+  movie_credits?: {
+    cast?: (TmdbMovie & { vote_count?: number })[];
+    crew?: (TmdbMovie & { job?: string; vote_count?: number })[];
+  };
+};
+
+export async function getPersonDetail(
+  personId: number,
+): Promise<PersonDetail | null> {
+  const p = await tmdb<TmdbPerson>(
+    `/person/${personId}?append_to_response=movie_credits`,
+  );
+  if (!p) return null;
+
+  const directed = (p.movie_credits?.crew ?? []).filter(
+    (c) => c.job === "Director",
+  );
+  const isDirector =
+    p.known_for_department === "Directing" || directed.length >= 3;
+  const role: "director" | "actor" = isDirector ? "director" : "actor";
+
+  const pool = (isDirector ? directed : (p.movie_credits?.cast ?? [])).filter(
+    (m) => m.poster_path,
+  );
+  // 중복 제거 + 투표수→평점 순 상위 18
+  const seen = new Set<number>();
+  const uniq = pool.filter((m) => (seen.has(m.id) ? false : seen.add(m.id)));
+  uniq.sort((a, b) => (b.vote_count ?? 0) - (a.vote_count ?? 0));
+  const top = uniq.slice(0, 24).sort((a, b) => {
+    const ya = yearOf(a.release_date) ?? 0;
+    const yb = yearOf(b.release_date) ?? 0;
+    return yb - ya; // 최신순
+  });
+
+  return {
+    id: p.id,
+    name: p.name,
+    biography: p.biography ?? "",
+    knownFor: p.known_for_department ?? null,
+    profileUrl: p.profile_path ? `${IMG}/w300${p.profile_path}` : null,
+    birthday: p.birthday ?? null,
+    placeOfBirth: p.place_of_birth ?? null,
+    role,
+    filmography: top.slice(0, 18).map((m) => ({
+      tmdbId: m.id,
+      title: m.title,
+      originalTitle: m.original_title,
+      year: yearOf(m.release_date),
+      director: null,
+      country: null,
+      genres: [],
+      posterUrl: posterUrl(m.poster_path),
+    })),
+  };
+}
+
+// 영화 상세에서 감독 이름 → person id 찾기 (링크용)
+export async function findPersonId(name: string): Promise<number | null> {
+  if (!name.trim()) return null;
+  const d = await tmdb<{ results: { id: number }[] }>(
+    `/search/person?query=${encodeURIComponent(name)}`,
+  );
+  return d?.results?.[0]?.id ?? null;
 }
