@@ -5,6 +5,7 @@ import type {
   Award,
   CriticReview,
   Curation,
+  CurationWithPosters,
   MovieDetail,
   MovieRow,
 } from "@/types";
@@ -24,6 +25,47 @@ export async function getCurations(): Promise<Curation[]> {
     .eq("is_published", true)
     .order("sort_order", { ascending: true });
   return (data as Curation[]) ?? [];
+}
+
+// 큐레이션 목록 + 각 큐레이션의 대표 포스터(최대 4장) + 총 편수.
+// 한 번의 조인 쿼리로 가져온 뒤 메모리에서 묶는다.
+export async function getCurationsWithPosters(): Promise<CurationWithPosters[]> {
+  const sb = await getSupabaseServer();
+  if (!sb) return [];
+  const { data } = await sb
+    .from("curations")
+    .select(
+      "id, slug, title, description, cover_image, sort_order, curation_movies(position, movies(poster_path))",
+    )
+    .eq("is_published", true)
+    .order("sort_order", { ascending: true });
+
+  type Row = Curation & {
+    curation_movies: {
+      position: number | null;
+      movies: { poster_path: string | null } | null;
+    }[];
+  };
+
+  return ((data as unknown as Row[]) ?? []).map((c) => {
+    const links = [...(c.curation_movies ?? [])].sort(
+      (a, b) => (a.position ?? 0) - (b.position ?? 0),
+    );
+    const posters = links
+      .map((l) => l.movies?.poster_path)
+      .filter((p): p is string => Boolean(p))
+      .slice(0, 4);
+    return {
+      id: c.id,
+      slug: c.slug,
+      title: c.title,
+      description: c.description,
+      cover_image: c.cover_image,
+      sort_order: c.sort_order,
+      posters,
+      count: c.curation_movies?.length ?? 0,
+    };
+  });
 }
 
 export async function getCurationBySlug(

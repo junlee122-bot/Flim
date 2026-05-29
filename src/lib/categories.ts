@@ -59,15 +59,17 @@ export function categoryOf(slug: string): CategoryKey {
   return "director";
 }
 
-export type GroupedCurations = {
+export type GroupedCurations<T extends { slug: string } = Curation> = {
   key: CategoryKey;
   label: string;
   kicker: string;
-  items: Curation[];
+  items: T[];
 }[];
 
-export function groupCurations(curations: Curation[]): GroupedCurations {
-  const buckets = new Map<CategoryKey, Curation[]>();
+export function groupCurations<T extends { slug: string }>(
+  curations: T[],
+): GroupedCurations<T> {
+  const buckets = new Map<CategoryKey, T[]>();
   for (const c of curations) {
     const k = categoryOf(c.slug);
     if (!buckets.has(k)) buckets.set(k, []);

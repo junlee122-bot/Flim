@@ -77,7 +77,13 @@ export type Curation = {
   description: string | null;
   cover_image: string | null;
   sort_order: number;
-  is_published: boolean;
+  is_published?: boolean;
+};
+
+// 큐레이션 + 대표 포스터 몇 장 (카드 모자이크용)
+export type CurationWithPosters = Curation & {
+  posters: string[];
+  count: number;
 };
 
 // 자동검색 후보 (DB 저장 전 미리보기용)

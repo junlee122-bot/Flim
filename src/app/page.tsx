@@ -2,7 +2,7 @@ import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 import SectionHeader from "@/components/SectionHeader";
 import CurationCard from "@/components/CurationCard";
-import { getCurations } from "@/lib/data";
+import { getCurationsWithPosters } from "@/lib/data";
 import { getRecommendation } from "@/lib/recommend";
 import { getDailyBoxOffice, koficConfigured } from "@/lib/kofic";
 import { tmdbConfigured } from "@/lib/tmdb";
@@ -20,7 +20,7 @@ const SOURCE_LABEL: Record<string, string> = {
 export default async function HomePage() {
   const [pick, curations, boxOffice] = await Promise.all([
     getRecommendation(),
-    getCurations(),
+    getCurationsWithPosters(),
     getDailyBoxOffice(),
   ]);
   const needsSetup = !tmdbConfigured() || !isSupabaseConfigured();

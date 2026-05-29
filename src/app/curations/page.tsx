@@ -1,6 +1,6 @@
 import Link from "next/link";
 import CurationCard from "@/components/CurationCard";
-import { getCurations } from "@/lib/data";
+import { getCurationsWithPosters } from "@/lib/data";
 import {
   CATEGORY_META,
   categoryOf,
@@ -25,7 +25,7 @@ export default async function CurationsIndexPage({
   searchParams: Promise<{ cat?: string }>;
 }) {
   const { cat = "all" } = await searchParams;
-  const curations = await getCurations();
+  const curations = await getCurationsWithPosters();
   const grouped = groupCurations(curations);
 
   const activeCat = TABS.some((t) => t.key === cat) ? cat : "all";
