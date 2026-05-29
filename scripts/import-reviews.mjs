@@ -56,6 +56,10 @@ const REVIEWS = [
   { tmdb: 630, critic: "이동진", source: "왓챠피디아", rating: 4.5,
     quote: "'악마의 씨' 50주년, 오컬트 무비 대표작 목록에 또 한 편이 추가됐다.",
     url: "https://pedia.watcha.com/comments/W4zQrdqRZp2w1" },
+  // 2차: 왓챠피디아에서 "이동진 평론가" 명시로 교차확인된 추가분
+  { tmdb: 77, critic: "이동진", source: "왓챠피디아", rating: 4.5,
+    quote: "홀린 듯 사로잡히게 되는 구조의 마력.",
+    url: "https://pedia.watcha.com/ko-KR/comments/W9bEBPdvnxMpZ" },
 ];
 
 async function tmdb(path) {
