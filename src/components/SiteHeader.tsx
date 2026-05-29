@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 const NAV = [
   { href: "/search", label: "검색" },
+  { href: "/browse", label: "카탈로그" },
   { href: "/curations", label: "큐레이션" },
   { href: "/admin", label: "관리자" },
 ];

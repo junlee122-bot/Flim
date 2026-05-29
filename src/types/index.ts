@@ -44,8 +44,15 @@ export type MovieDetail = MovieSummary & {
   trailerKey: string | null;
   runtime: number | null;
   overview: string;
+  tagline: string | null;
+  status: string | null;
+  budget: number | null;
+  revenue: number | null;
+  languages: string[];
+  productionCompanies: string[];
   backdropUrl: string | null;
   stills: string[];
+  similar: MovieSummary[];
   tmdbRating: number | null;
 };
 

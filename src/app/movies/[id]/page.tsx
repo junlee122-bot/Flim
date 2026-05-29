@@ -15,6 +15,7 @@ import {
 } from "@/lib/data";
 import StarRating from "@/components/StarRating";
 import CriticAutoSearch from "@/components/CriticAutoSearch";
+import MoviePoster from "@/components/MoviePoster";
 import type { Award, CriticReview } from "@/types";
 
 export const dynamic = "force-dynamic";
@@ -101,6 +102,11 @@ export default async function MovieDetailPage({
                   {detail.originalTitle}
                 </p>
               )}
+              {detail.tagline && (
+                <p className="mt-3 max-w-xl text-pretty font-serif text-base italic text-accent-soft">
+                  “{detail.tagline}”
+                </p>
+              )}
             </div>
 
             {/* 장르 칩 */}
@@ -126,6 +132,20 @@ export default async function MovieDetailPage({
                 value={detail.runtime ? `${detail.runtime}분` : null}
               />
               {kofic?.openDt && <Info label="국내개봉" value={kofic.openDt} />}
+              <Info
+                label="언어"
+                value={detail.languages.slice(0, 3).join(", ") || null}
+              />
+              <Info
+                label="제작사"
+                value={detail.productionCompanies.slice(0, 2).join(", ") || null}
+              />
+              {detail.budget && (
+                <Info label="제작비" value={`$${detail.budget.toLocaleString()}`} />
+              )}
+              {detail.revenue && (
+                <Info label="흥행수익" value={`$${detail.revenue.toLocaleString()}`} />
+              )}
               <Info
                 label="출연"
                 value={detail.cast.slice(0, 4).join(", ") || null}
@@ -334,6 +354,24 @@ export default async function MovieDetailPage({
           <CriticAutoSearch tmdbId={tmdbId} title={detail.title} />
         </div>
       </Section>
+
+      {/* ── 비슷한 영화 ───────────────────────────── */}
+      {detail.similar.length > 0 && (
+        <Section title="비슷한 영화" kicker="You Might Also Like">
+          <div className="grid grid-cols-3 gap-x-5 gap-y-8 sm:grid-cols-6">
+            {detail.similar.map((m) => (
+              <MoviePoster
+                key={m.tmdbId}
+                tmdbId={m.tmdbId}
+                title={m.title}
+                originalTitle={m.originalTitle}
+                year={m.year}
+                posterUrl={m.posterUrl}
+              />
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* ── 이 영화가 속한 큐레이션 ───────────────────── */}
       {inCurations.length > 0 && (

@@ -66,6 +66,13 @@ type TmdbMovie = {
       official?: boolean;
     }[];
   };
+  tagline?: string;
+  status?: string;
+  budget?: number;
+  revenue?: number;
+  spoken_languages?: { english_name?: string; name?: string }[];
+  production_companies?: { name: string }[];
+  similar?: { results?: TmdbMovie[] };
 };
 
 function yearOf(date?: string): number | null {
@@ -98,7 +105,7 @@ export async function getMovieDetail(
   tmdbId: number,
 ): Promise<MovieDetail | null> {
   const m = await tmdb<TmdbMovie>(
-    `/movie/${tmdbId}?append_to_response=credits,images,videos&include_image_language=ko,en,null&include_video_language=ko,en`,
+    `/movie/${tmdbId}?append_to_response=credits,images,videos,similar&include_image_language=ko,en,null&include_video_language=ko,en`,
   );
   if (!m) return null;
 
@@ -128,6 +135,21 @@ export async function getMovieDetail(
     .map((b) => posterUrl(b.file_path, "w780")!)
     .filter(Boolean);
 
+  // 비슷한 영화 (포스터 있는 것 6편)
+  const similar = (m.similar?.results ?? [])
+    .filter((s) => s.poster_path)
+    .slice(0, 6)
+    .map((s) => ({
+      tmdbId: s.id,
+      title: s.title,
+      originalTitle: s.original_title,
+      year: yearOf(s.release_date),
+      director: null,
+      country: null,
+      genres: [],
+      posterUrl: posterUrl(s.poster_path),
+    }));
+
   return {
     tmdbId: m.id,
     imdbId: m.imdb_id ?? null,
@@ -142,9 +164,18 @@ export async function getMovieDetail(
     genres: (m.genres ?? []).map((g) => g.name),
     runtime: m.runtime ?? null,
     overview: m.overview ?? "",
+    tagline: m.tagline?.trim() || null,
+    status: m.status ?? null,
+    budget: m.budget && m.budget > 0 ? m.budget : null,
+    revenue: m.revenue && m.revenue > 0 ? m.revenue : null,
+    languages: (m.spoken_languages ?? [])
+      .map((l) => l.name || l.english_name)
+      .filter((x): x is string => Boolean(x)),
+    productionCompanies: (m.production_companies ?? []).map((c) => c.name),
     posterUrl: posterUrl(m.poster_path),
     backdropUrl: posterUrl(m.backdrop_path, "w1280"),
     stills,
+    similar,
     tmdbRating: m.vote_average ? Math.round(m.vote_average * 10) / 10 : null,
   };
 }

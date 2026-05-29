@@ -193,6 +193,32 @@ export async function ensureMovieRow(
   return (inserted as MovieRow) ?? null;
 }
 
+// 전체 카탈로그 둘러보기 — 적재된 movies 를 정렬/페이지네이션.
+export type BrowseSort = "rating" | "year" | "title";
+export async function browseMovies(opts: {
+  sort?: BrowseSort;
+  page?: number;
+  pageSize?: number;
+}): Promise<{ movies: MovieRow[]; total: number }> {
+  const sb = await getSupabaseServer();
+  if (!sb) return { movies: [], total: 0 };
+  const page = Math.max(1, opts.page ?? 1);
+  const size = opts.pageSize ?? 36;
+  const fromIdx = (page - 1) * size;
+  const toIdx = fromIdx + size - 1;
+
+  let query = sb.from("movies").select("*", { count: "exact" });
+  if (opts.sort === "year") {
+    query = query.order("release_year", { ascending: false, nullsFirst: false });
+  } else if (opts.sort === "title") {
+    query = query.order("title", { ascending: true });
+  } else {
+    query = query.order("tmdb_rating", { ascending: false, nullsFirst: false });
+  }
+  const { data, count } = await query.range(fromIdx, toIdx);
+  return { movies: (data as MovieRow[]) ?? [], total: count ?? 0 };
+}
+
 // tmdb_id → 로컬 movie 행 (읽기 전용, 없으면 null)
 export async function getMovieRowByTmdbId(
   tmdbId: number,
