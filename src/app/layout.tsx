@@ -32,15 +32,15 @@ const serifKr = Nanum_Myeongjo({
 export const metadata: Metadata = {
   metadataBase: new URL("https://flim-murex.vercel.app"),
   title: {
-    default: "FLIM — 씨네필 영화 큐레이션 아카이브",
+    default: "FLIM · 씨네필의 영화 서재",
     template: "%s · FLIM",
   },
   description:
-    "한 작품의 정보·평점·수상·평론을 한 화면에 정리하는 씨네필 큐레이션/비평 아카이브",
+    "한 작품의 정보·평점·수상·평론을 한 화면에. 취향으로 고르는 영화, 평론가의 별점, 씨네필 큐레이션 아카이브.",
   openGraph: {
-    title: "FLIM — 씨네필 영화 큐레이션 아카이브",
+    title: "FLIM · 씨네필의 영화 서재",
     description:
-      "한 작품의 정보·평점·수상·평론을 한 화면에. 큐레이션과 비평의 아카이브.",
+      "한 작품의 정보·평점·수상·평론을 한 화면에. 취향으로 고르고, 평론으로 음미하는 영화 아카이브.",
     type: "website",
   },
 };

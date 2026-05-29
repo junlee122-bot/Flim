@@ -21,6 +21,9 @@
     font-family: theme("fontFamily.sans");
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* 한글이 단어/어절 중간에서 끊기지 않도록 (예: "이어/찾기" 방지) */
+    word-break: keep-all;
+    overflow-wrap: break-word;
     /* 은은한 필름 그레인 + 상단 비네팅으로 종이/잡지 질감 */
     background-image:
       radial-gradient(
@@ -73,6 +76,7 @@
     font-family: theme("fontFamily.display");
     letter-spacing: -0.015em;
     font-weight: 400;
+    word-break: keep-all; /* 헤드라인 한글 어절 보존 */
   }
 
   .kicker {
@@ -135,9 +139,15 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+    word-break: keep-all;
   }
   .text-pretty {
     text-wrap: pretty;
+    word-break: keep-all;
+  }
+  .break-keep {
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   /* 카드 위에 얹는 하단 그라데이션 (포스터 캡션용) */
   .poster-veil {
