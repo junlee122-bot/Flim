@@ -3,6 +3,7 @@ import { Fraunces, Inter, Nanum_Myeongjo } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import UserDataProvider from "@/components/UserDataProvider";
 
 // 디스플레이 세리프(라틴) — 잡지 헤드라인 톤
 const display = Fraunces({
@@ -55,11 +56,13 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} ${serifKr.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-ink-950 text-bone">
-        <SiteHeader />
-        <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-12 sm:px-8 sm:py-16">
-          {children}
-        </main>
-        <SiteFooter />
+        <UserDataProvider>
+          <SiteHeader />
+          <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-12 sm:px-8 sm:py-16">
+            {children}
+          </main>
+          <SiteFooter />
+        </UserDataProvider>
       </body>
     </html>
   );

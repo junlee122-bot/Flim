@@ -1,84 +1,85 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import StarRating from "@/components/StarRating";
-import {
-  getRatings,
-  getWatched,
-  setWatched,
-  removeRating,
-  type RatedMovie,
-} from "@/lib/userdata";
+import { useUserData } from "@/components/UserDataProvider";
 
 export default function MyPage() {
-  const [rated, setRated] = useState<RatedMovie[]>([]);
-  const [watchedCount, setWatchedCount] = useState(0);
-  const [mounted, setMounted] = useState(false);
+  const { ready, user, ratings, watched, unrate, signIn, signOut } = useUserData();
+  const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
 
-  function refresh() {
-    const r = Object.values(getRatings()).sort((a, b) => b.at - a.at);
-    setRated(r);
-    setWatchedCount(getWatched().length);
-  }
-  useEffect(() => {
-    refresh();
-    setMounted(true);
-  }, []);
+  const rated = Object.values(ratings).sort((a, b) => b.at - a.at);
+  const avg = rated.length ? rated.reduce((s, m) => s + m.rating, 0) / rated.length : 0;
 
-  function unrate(tmdbId: number) {
-    removeRating(tmdbId);
-    refresh();
-  }
-  function clearWatched() {
-    if (confirm("'봤어요' 목록을 모두 비울까요?")) {
-      setWatched([]);
-      refresh();
-    }
+  async function onSignIn(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setSending(true);
+    setMsg(null);
+    const r = await signIn(email.trim());
+    setSending(false);
+    setMsg(r === "ok" ? "로그인 링크를 이메일로 보냈어요. 메일함을 확인하세요." : r);
   }
 
-  const avg =
-    rated.length > 0
-      ? rated.reduce((s, m) => s + m.rating, 0) / rated.length
-      : 0;
-
-  if (!mounted)
-    return (
-      <div className="py-20 text-center text-muted">불러오는 중…</div>
-    );
+  if (!ready) return <div className="py-20 text-center text-muted">불러오는 중…</div>;
 
   return (
     <div className="space-y-10">
       <header className="animate-fade-up border-b border-bone/10 pb-6">
         <p className="kicker">My Page</p>
-        <h1 className="headline mt-2 text-4xl leading-tight sm:text-5xl">
-          마이 페이지
-        </h1>
-        <p className="mt-4 text-pretty leading-relaxed text-muted">
-          내가 매긴 별점과 본 영화 기록입니다. 이 브라우저에만 저장됩니다.
-        </p>
+        <h1 className="headline mt-2 text-4xl leading-tight sm:text-5xl">마이 페이지</h1>
+
+        {/* 계정 상태 */}
+        <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+          {user ? (
+            <>
+              <span className="text-muted">
+                <span className="text-bone">{user.email}</span> 로 로그인됨 ·{" "}
+                <span className="text-accent">기기 간 동기화 켜짐</span>
+              </span>
+              <button onClick={signOut} className="text-faint underline hover:text-bone">
+                로그아웃
+              </button>
+            </>
+          ) : (
+            <span className="text-muted">
+              이 브라우저에만 저장 중 · 로그인하면 기기 간 동기화됩니다.
+            </span>
+          )}
+        </div>
+
+        {/* 로그인 폼 */}
+        {!user && (
+          <form onSubmit={onSignIn} className="mt-4 flex max-w-md flex-wrap gap-2">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="이메일로 로그인 링크 받기"
+              className="field flex-1"
+            />
+            <button className="btn btn-accent" disabled={sending}>
+              {sending ? "전송 중…" : "링크 받기"}
+            </button>
+          </form>
+        )}
+        {msg && <p className="mt-2 text-sm text-accent-soft">{msg}</p>}
+
         <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm">
           <span className="text-muted">
-            별점 매긴 영화{" "}
-            <span className="tabular-nums text-accent">{rated.length}</span>편
+            별점 <span className="tabular-nums text-accent">{rated.length}</span>편
           </span>
           {rated.length > 0 && (
             <span className="text-muted">
-              평균 별점{" "}
-              <span className="tabular-nums text-accent">{avg.toFixed(2)}</span>
+              평균 <span className="tabular-nums text-accent">{avg.toFixed(2)}</span>
             </span>
           )}
           <span className="text-muted">
-            봤어요 표시{" "}
-            <span className="tabular-nums text-accent">{watchedCount}</span>편
-            {watchedCount > 0 && (
-              <button
-                onClick={clearWatched}
-                className="ml-2 text-xs text-faint underline hover:text-bone"
-              >
-                비우기
-              </button>
-            )}
+            봤어요 <span className="tabular-nums text-accent">{watched.length}</span>편
           </span>
         </div>
       </header>
