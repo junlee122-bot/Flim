@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV = [
+  { href: "/pick", label: "뭐 볼까" },
   { href: "/search", label: "검색" },
   { href: "/browse", label: "카탈로그" },
   { href: "/curations", label: "큐레이션" },

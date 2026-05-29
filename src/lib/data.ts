@@ -126,6 +126,57 @@ export async function getCurationsForMovie(
     .map((c) => ({ slug: c.slug, title: c.title }));
 }
 
+// 취향 기반 "오늘 볼 영화" 후보 — 장르·연대·러닝타임·평점 필터로 추리고,
+// 가중평점 상위 풀에서 셔플해 N편 반환. (탐색/재추첨용)
+export type PickFilter = {
+  genres?: string[]; // 한글 장르명 (OR)
+  decade?: string; // 1950s..2020s
+  maxRuntime?: number; // 분
+  minRating?: number; // tmdb_rating
+  seed?: number; // 재추첨 시드
+};
+export async function pickMovies(
+  filter: PickFilter,
+  count = 3,
+): Promise<MovieRow[]> {
+  const sb = await getSupabaseServer();
+  if (!sb) return [];
+  let q = sb
+    .from("movies")
+    .select("*")
+    .gte("vote_count", 200)
+    .not("poster_path", "is", null);
+
+  if (filter.genres && filter.genres.length > 0) {
+    q = q.overlaps("genres", filter.genres);
+  }
+  if (filter.decade) {
+    const dec = parseInt(filter.decade, 10);
+    if (Number.isFinite(dec)) {
+      if (filter.decade === "older") q = q.lte("release_year", 1959);
+      else q = q.gte("release_year", dec).lte("release_year", dec + 9);
+    }
+  }
+  if (filter.maxRuntime) q = q.lte("runtime", filter.maxRuntime).gt("runtime", 0);
+  if (filter.minRating) q = q.gte("tmdb_rating", filter.minRating);
+
+  // 가중평점 상위 120편을 풀로 가져와 시드 셔플 → count 편
+  const { data } = await q
+    .order("weighted_rating", { ascending: false, nullsFirst: false })
+    .limit(120);
+  const pool = (data as MovieRow[]) ?? [];
+  if (pool.length === 0) return [];
+
+  // 시드 기반 셔플 (같은 시드=같은 결과, 재추첨 시 시드 변경)
+  let s = (filter.seed ?? 1) * 9301 + 49297;
+  const rng = () => {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
+  };
+  const shuffled = [...pool].sort(() => rng() - 0.5);
+  return shuffled.slice(0, count);
+}
+
 // 승인된 평론만 (상세 페이지 공개용)
 export async function getApprovedReviews(
   movieDbId: string,
