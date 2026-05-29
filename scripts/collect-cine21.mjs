@@ -71,17 +71,21 @@ function parseExperts(html) {
 }
 
 async function main() {
-  // 평점순 상위 영화
+  // 대상 영화 — 정렬/필터를 env 로 조정 (씨네21 별점 적중률 높은 대상 선택용)
+  //   ORDER: popularity.desc | weighted_rating.desc (기본 popularity)
+  //   YEAR_GTE: 개봉연도 하한 (기본 2003 — 씨네21 전문가별점 시작 무렵)
+  const ORDER = process.env.ORDER || "popularity.desc";
+  const YEAR_GTE = Number(process.env.YEAR_GTE || 2003);
   const movies = [];
   let from = 0;
   while (movies.length < LIMIT * 2) {
-    const res = await fetch(`${SB_URL}/rest/v1/movies?select=id,tmdb_id,title,vote_count&vote_count=gte.500&order=weighted_rating.desc`,
+    const res = await fetch(`${SB_URL}/rest/v1/movies?select=id,tmdb_id,title,vote_count,release_year&vote_count=gte.300&release_year=gte.${YEAR_GTE}&order=${ORDER}`,
       { headers: { ...sb, Range: `${from}-${from + 199}`, "Range-Unit": "items" } });
     const b = await res.json(); if (!Array.isArray(b) || !b.length) break;
     movies.push(...b); if (b.length < 200) break; from += 200;
   }
   const todo = movies.slice(0, LIMIT);
-  console.error(`대상 ${todo.length}편, 평론가 [${CRITICS.join(", ")}]\n`);
+  console.error(`대상 ${todo.length}편 (order=${ORDER}, year>=${YEAR_GTE}), 평론가 [${CRITICS.join(", ")}]\n`);
 
   let saved = 0, hitMovies = 0;
   for (const mv of todo) {
