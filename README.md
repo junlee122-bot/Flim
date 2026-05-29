@@ -3,11 +3,13 @@
 한 작품의 **정보·평점·수상·평론**을 한 화면에 정리하는 큐레이션/비평 아카이브.
 단순 검색이 아니라 Letterboxd · Criterion · MUBI · 영화 잡지의 감성을 지향합니다.
 
+**Production:** https://flim-eight.vercel.app
+
 ## 기술 스택
 
-- Next.js 15 (App Router) · TypeScript · Tailwind CSS
+- Next.js (App Router) · TypeScript · Tailwind CSS
 - Supabase (Postgres + RLS)
-- TMDb API (메타데이터) · OMDb API (외부 평점)
+- TMDb API (메타데이터) · OMDb API (외부 평점) · KOFIC API (한국영화/박스오피스)
 - 배포: Vercel
 
 ## MVP 기능
@@ -26,7 +28,7 @@
    ```
 2. 환경변수: `.env.local.example` → `.env.local` 로 복사 후 채우기
    - `TMDB_API_KEY` 또는 `TMDB_ACCESS_TOKEN` (필수)
-   - `OMDB_API_KEY` (외부 평점)
+   - `OMDB_API_KEY` (외부 평점), `KOFIC_API_KEY` (한국영화)
    - `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
    - `SEARCH_PROVIDER` (`brave`|`google`|`serpapi`) + 해당 API 키
    - `ADMIN_SECRET` (관리자 로그인)
@@ -61,6 +63,8 @@
 ## 배포
 
 Vercel 배포는 [`DEPLOY.md`](./DEPLOY.md) 참고. (환경변수 목록 포함)
+
+라이브 사이트에 실제 데이터가 나오게 하려면 Vercel 프로젝트 설정에 환경변수(TMDb·Supabase·OMDb·KOFIC·검색·ADMIN_SECRET)를 추가하면 됩니다.
 
 ## 확장 포인트
 
