@@ -5,7 +5,13 @@ import type { Curation } from "@/types";
 //   cinema-* → 국가/지역
 //   decade-* → 연대
 //   그 외 (감독 slug, 테마)  → 감독·테마
-export type CategoryKey = "director" | "genre" | "country" | "decade" | "theme";
+export type CategoryKey =
+  | "director"
+  | "actor"
+  | "genre"
+  | "country"
+  | "decade"
+  | "theme";
 
 export const CATEGORY_META: Record<
   CategoryKey,
@@ -13,9 +19,10 @@ export const CATEGORY_META: Record<
 > = {
   theme: { label: "테마 컬렉션", kicker: "Themes", order: 0 },
   director: { label: "감독전", kicker: "Auteurs", order: 1 },
-  genre: { label: "장르", kicker: "Genres", order: 2 },
-  country: { label: "나라별 영화", kicker: "World Cinema", order: 3 },
-  decade: { label: "연대별", kicker: "Decades", order: 4 },
+  actor: { label: "배우전", kicker: "Stars", order: 2 },
+  genre: { label: "장르", kicker: "Genres", order: 3 },
+  country: { label: "나라별 영화", kicker: "World Cinema", order: 4 },
+  decade: { label: "연대별", kicker: "Decades", order: 5 },
 };
 
 // 테마(감독전이 아닌 손수 만든 컬렉션) slug 화이트리스트
@@ -52,6 +59,7 @@ const THEME_SLUGS = new Set([
 ]);
 
 export function categoryOf(slug: string): CategoryKey {
+  if (slug.startsWith("actor-")) return "actor";
   if (slug.startsWith("genre-")) return "genre";
   if (slug.startsWith("cinema-")) return "country";
   if (slug.startsWith("decade-")) return "decade";

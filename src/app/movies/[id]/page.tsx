@@ -166,6 +166,53 @@ export default async function MovieDetailPage({
         </Section>
       )}
 
+      {/* ── 예고편 ───────────────────────────── */}
+      {detail.trailerKey && (
+        <Section title="예고편" kicker="Trailer">
+          <div className="aspect-video w-full max-w-3xl overflow-hidden rounded-md ring-1 ring-bone/10">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${detail.trailerKey}`}
+              title={`${detail.title} 예고편`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+              className="h-full w-full"
+            />
+          </div>
+        </Section>
+      )}
+
+      {/* ── 출연진 ───────────────────────────── */}
+      {detail.castDetailed.length > 0 && (
+        <Section title="출연진" kicker="Cast">
+          <ul className="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-5">
+            {detail.castDetailed.map((c) => (
+              <li key={`${c.name}-${c.character ?? ""}`} className="text-center">
+                <div className="mx-auto aspect-square w-full overflow-hidden rounded-full bg-ink-800 ring-1 ring-bone/10">
+                  {c.profileUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={c.profileUrl}
+                      alt={c.name}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center text-2xl text-faint">
+                      {c.name.slice(0, 1)}
+                    </div>
+                  )}
+                </div>
+                <p className="mt-2 truncate text-sm text-bone">{c.name}</p>
+                {c.character && (
+                  <p className="truncate text-xs text-muted">{c.character}</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
       {/* ── 스틸컷 ───────────────────────────── */}
       {detail.stills.length > 0 && (
         <Section title="스틸컷" kicker="Stills">

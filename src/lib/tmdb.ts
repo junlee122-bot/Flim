@@ -49,10 +49,18 @@ type TmdbMovie = {
   imdb_id?: string;
   production_countries?: { iso_3166_1: string; name: string }[];
   credits?: {
-    cast?: { name: string }[];
+    cast?: { name: string; character?: string; profile_path?: string | null }[];
     crew?: { name: string; job: string }[];
   };
   images?: { backdrops?: { file_path: string }[] };
+  videos?: {
+    results?: {
+      key: string;
+      site: string;
+      type: string;
+      official?: boolean;
+    }[];
+  };
 };
 
 function yearOf(date?: string): number | null {
@@ -85,13 +93,29 @@ export async function getMovieDetail(
   tmdbId: number,
 ): Promise<MovieDetail | null> {
   const m = await tmdb<TmdbMovie>(
-    `/movie/${tmdbId}?append_to_response=credits,images&include_image_language=ko,en,null`,
+    `/movie/${tmdbId}?append_to_response=credits,images,videos&include_image_language=ko,en,null&include_video_language=ko,en`,
   );
   if (!m) return null;
 
   const director =
     m.credits?.crew?.find((c) => c.job === "Director")?.name ?? null;
   const cast = (m.credits?.cast ?? []).slice(0, 8).map((c) => c.name);
+  // 사진·배역까지 포함한 출연진(상위 10명)
+  const castDetailed = (m.credits?.cast ?? []).slice(0, 10).map((c) => ({
+    name: c.name,
+    character: c.character ?? null,
+    profileUrl: c.profile_path ? `${IMG}/w185${c.profile_path}` : null,
+  }));
+  // YouTube 예고편 키 (공식 Trailer 우선)
+  const ytVideos = (m.videos?.results ?? []).filter(
+    (v) => v.site === "YouTube",
+  );
+  const trailer =
+    ytVideos.find((v) => v.type === "Trailer" && v.official) ??
+    ytVideos.find((v) => v.type === "Trailer") ??
+    ytVideos.find((v) => v.type === "Teaser") ??
+    null;
+  const trailerKey = trailer?.key ?? null;
   const country = m.production_countries?.[0]?.name ?? null;
   const stills = (m.images?.backdrops ?? [])
     .slice(0, 6)
@@ -107,6 +131,8 @@ export async function getMovieDetail(
     director,
     country,
     cast,
+    castDetailed,
+    trailerKey,
     genres: (m.genres ?? []).map((g) => g.name),
     runtime: m.runtime ?? null,
     overview: m.overview ?? "",

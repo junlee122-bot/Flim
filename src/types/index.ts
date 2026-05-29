@@ -30,9 +30,17 @@ export type MovieSummary = {
   posterUrl: string | null;
 };
 
+export type CastMember = {
+  name: string;
+  character: string | null;
+  profileUrl: string | null;
+};
+
 export type MovieDetail = MovieSummary & {
   imdbId: string | null;
   cast: string[];
+  castDetailed: CastMember[];
+  trailerKey: string | null;
   runtime: number | null;
   overview: string;
   backdropUrl: string | null;
