@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #0a0a0b;
+  color: #e8e4da;
+}
+
+body {
+  font-family: var(--font-sans, "Inter", system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 절제된 아카이브 타이포 */
+.headline {
+  font-family: Georgia, "Nanum Myeongjo", "Times New Roman", serif;
+  letter-spacing: -0.01em;
+}
+
+.kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9a958a;
+}
+
+.hairline {
+  border-color: rgba(232, 228, 218, 0.12);
+}
+
+a {
+  color: inherit;
+}
