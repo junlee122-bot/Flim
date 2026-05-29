@@ -69,23 +69,30 @@ export default async function HomePage() {
           </div>
         )}
 
-        <p className="kicker">Cinephile Archive</p>
-        <h1 className="headline mt-5 max-w-4xl text-balance text-4xl leading-[1.1] sm:text-6xl">
-          한 편의 영화를,
+        <p className="kicker">씨네필의 영화 서재</p>
+        <h1 className="headline mt-5 max-w-4xl text-balance text-4xl leading-[1.12] sm:text-6xl">
+          오늘 볼 영화,
           <br />
-          <span className="italic text-accent-soft">정보와 평점과 평론</span>으로
-          <br />한 화면에 정리하다.
+          <span className="italic text-accent-soft">평론과 함께</span> 고르다.
         </h1>
         <p className="mt-6 max-w-xl text-pretty leading-relaxed text-bone/70">
-          단순한 검색이 아니라 큐레이션과 비평의 아카이브. 포스터부터 수상 이력,
-          평론가의 한줄평까지 — 한 작품의 모든 맥락을 모읍니다.
+          정보·평점·수상·평론을 한 화면에. 취향으로 오늘의 한 편을 고르고,
+          평론가의 별점과 한줄평으로 음미하세요.
         </p>
         <div className="mt-8 max-w-2xl">
           <SearchBar />
         </div>
-        <p className="mt-4 text-xs text-faint">
-          {curations.length}개 컬렉션 · 검색은 TMDb 전체에서
-        </p>
+        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+          <Link href="/pick" className="btn btn-accent px-4 py-2 text-sm">
+            오늘 뭐 볼까?
+          </Link>
+          <Link href="/curations" className="link-underline text-muted">
+            큐레이션 둘러보기 →
+          </Link>
+          <span className="text-xs text-faint">
+            영화 {curations.length}개 컬렉션 · TMDb 전체 검색
+          </span>
+        </div>
       </section>
 
       {needsSetup && <SetupNotice />}
