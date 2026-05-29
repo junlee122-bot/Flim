@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import MoviePoster from "@/components/MoviePoster";
 import { getCurationBySlug } from "@/lib/data";
+import { CATEGORY_META, categoryOf } from "@/lib/categories";
 
 export const dynamic = "force-dynamic";
 
@@ -14,22 +15,35 @@ export default async function CurationPage({
   const result = await getCurationBySlug(slug);
   if (!result) notFound();
   const { curation, movies } = result;
+  const cat = CATEGORY_META[categoryOf(curation.slug)];
+
+  // 헤더 백드롭: 담긴 영화 중 백드롭이 있는 첫 작품
+  const backdrop = movies.find((m) => m.backdrop_path)?.backdrop_path ?? null;
 
   return (
     <div className="space-y-12">
-      <header className="animate-fade-up border-b border-bone/10 pb-8">
-        <Link
-          href="/#curations"
-          className="link-underline text-xs text-muted"
-        >
+      <header className="relative -mx-5 -mt-12 overflow-hidden px-5 pb-8 pt-16 sm:-mx-8 sm:px-8 sm:pt-20">
+        {backdrop && (
+          <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={backdrop}
+              alt=""
+              className="h-full w-full object-cover object-top opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/85 to-ink-950/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/40 to-transparent" />
+          </div>
+        )}
+        <Link href="/curations" className="link-underline text-xs text-muted">
           ← 큐레이션
         </Link>
-        <p className="kicker mt-5">Collection</p>
+        <p className="kicker mt-5">{cat.kicker}</p>
         <h1 className="headline mt-3 text-balance text-4xl leading-tight sm:text-5xl">
           {curation.title}
         </h1>
         {curation.description && (
-          <p className="mt-5 max-w-prose text-pretty leading-relaxed text-muted">
+          <p className="mt-5 max-w-prose text-pretty leading-relaxed text-bone/70">
             {curation.description}
           </p>
         )}

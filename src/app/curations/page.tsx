@@ -15,6 +15,7 @@ const TABS: { key: CategoryKey | "all"; label: string }[] = [
   { key: "theme", label: CATEGORY_META.theme.label },
   { key: "director", label: CATEGORY_META.director.label },
   { key: "actor", label: CATEGORY_META.actor.label },
+  { key: "craft", label: CATEGORY_META.craft.label },
   { key: "genre", label: CATEGORY_META.genre.label },
   { key: "country", label: CATEGORY_META.country.label },
   { key: "decade", label: CATEGORY_META.decade.label },

@@ -7,7 +7,12 @@ import {
   isLikelyKoreanFilm,
   koficConfigured,
 } from "@/lib/kofic";
-import { ensureMovieRow, getApprovedReviews, getAwards } from "@/lib/data";
+import {
+  ensureMovieRow,
+  getApprovedReviews,
+  getAwards,
+  getCurationsForMovie,
+} from "@/lib/data";
 import StarRating from "@/components/StarRating";
 import CriticAutoSearch from "@/components/CriticAutoSearch";
 import type { Award, CriticReview } from "@/types";
@@ -38,13 +43,14 @@ export default async function MovieDetailPage({
   // 로컬 movie 행 보장(평론/수상 연결) → 없으면 DB 미설정 상태
   const row = await ensureMovieRow(tmdbId, detail);
   const isKorean = isLikelyKoreanFilm(detail.country, detail.originalTitle);
-  const [external, awards, reviews, kofic] = await Promise.all([
+  const [external, awards, reviews, kofic, inCurations] = await Promise.all([
     getExternalRatings(detail.imdbId),
     row ? getAwards(row.id) : Promise.resolve<Award[]>([]),
     row ? getApprovedReviews(row.id) : Promise.resolve<CriticReview[]>([]),
     isKorean && koficConfigured()
       ? getKoficMovieInfo(detail.originalTitle || detail.title, detail.year)
       : Promise.resolve(null),
+    row ? getCurationsForMovie(row.id) : Promise.resolve([]),
   ]);
 
   return (
@@ -315,6 +321,23 @@ export default async function MovieDetailPage({
           <CriticAutoSearch tmdbId={tmdbId} title={detail.title} />
         </div>
       </Section>
+
+      {/* ── 이 영화가 속한 큐레이션 ───────────────────── */}
+      {inCurations.length > 0 && (
+        <Section title="이 영화가 속한 큐레이션" kicker="In Collections">
+          <div className="flex flex-wrap gap-2.5">
+            {inCurations.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/curations/${c.slug}`}
+                className="rounded-full border border-bone/15 px-4 py-2 text-sm text-muted transition hover:border-accent/50 hover:bg-accent/10 hover:text-accent"
+              >
+                {c.title}
+              </Link>
+            ))}
+          </div>
+        </Section>
+      )}
     </article>
   );
 }

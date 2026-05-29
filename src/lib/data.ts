@@ -104,6 +104,28 @@ export async function getDailyPick(): Promise<MovieRow | null> {
   return row?.movies ?? null;
 }
 
+// 이 영화(로컬 movie 행)가 속한 큐레이션 목록 (상세 페이지 탐색용)
+export async function getCurationsForMovie(
+  movieDbId: string,
+): Promise<Pick<Curation, "slug" | "title">[]> {
+  const sb = await getSupabaseServer();
+  if (!sb) return [];
+  const { data } = await sb
+    .from("curation_movies")
+    .select("curations(slug, title, is_published)")
+    .eq("movie_id", movieDbId);
+  const rows =
+    (data as unknown as {
+      curations: { slug: string; title: string; is_published: boolean } | null;
+    }[]) ?? [];
+  return rows
+    .map((r) => r.curations)
+    .filter((c): c is { slug: string; title: string; is_published: boolean } =>
+      Boolean(c && c.is_published !== false),
+    )
+    .map((c) => ({ slug: c.slug, title: c.title }));
+}
+
 // 승인된 평론만 (상세 페이지 공개용)
 export async function getApprovedReviews(
   movieDbId: string,
