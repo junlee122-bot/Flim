@@ -218,7 +218,7 @@ export async function browseMovies(opts: {
     // 평점순: 투표수가 충분한 작품만 대상으로(투표 적은데 평점만 높은 노이즈 제거)
     // → 평점 동률은 투표수로 보조 정렬해 신뢰도 높은 작품을 위로.
     query = query
-      .gte("vote_count", 300)
+      .gte("vote_count", 1000)
       .order("tmdb_rating", { ascending: false, nullsFirst: false })
       .order("vote_count", { ascending: false });
   }
