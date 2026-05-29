@@ -58,6 +58,8 @@ function toRow(m) {
     backdrop_path: m.backdrop_path ? `${IMG}/w1280${m.backdrop_path}` : null,
     genres: (m.genre_ids ?? []).map((g) => GENRE_NAME[g]).filter(Boolean),
     tmdb_rating: m.vote_average ? Math.round(m.vote_average * 10) / 10 : null,
+    vote_count: m.vote_count ?? 0,
+    popularity: m.popularity ?? 0,
   };
 }
 

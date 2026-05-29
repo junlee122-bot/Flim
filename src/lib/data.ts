@@ -194,7 +194,7 @@ export async function ensureMovieRow(
 }
 
 // 전체 카탈로그 둘러보기 — 적재된 movies 를 정렬/페이지네이션.
-export type BrowseSort = "rating" | "year" | "title";
+export type BrowseSort = "rating" | "popular" | "year" | "title";
 export async function browseMovies(opts: {
   sort?: BrowseSort;
   page?: number;
@@ -212,8 +212,15 @@ export async function browseMovies(opts: {
     query = query.order("release_year", { ascending: false, nullsFirst: false });
   } else if (opts.sort === "title") {
     query = query.order("title", { ascending: true });
+  } else if (opts.sort === "popular") {
+    query = query.order("popularity", { ascending: false, nullsFirst: false });
   } else {
-    query = query.order("tmdb_rating", { ascending: false, nullsFirst: false });
+    // 평점순: 투표수가 충분한 작품만 대상으로(투표 적은데 평점만 높은 노이즈 제거)
+    // → 평점 동률은 투표수로 보조 정렬해 신뢰도 높은 작품을 위로.
+    query = query
+      .gte("vote_count", 300)
+      .order("tmdb_rating", { ascending: false, nullsFirst: false })
+      .order("vote_count", { ascending: false });
   }
   const { data, count } = await query.range(fromIdx, toIdx);
   return { movies: (data as MovieRow[]) ?? [], total: count ?? 0 };

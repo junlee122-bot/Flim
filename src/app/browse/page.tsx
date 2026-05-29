@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 const PAGE_SIZE = 36;
 const SORTS: { key: BrowseSort; label: string }[] = [
   { key: "rating", label: "평점순" },
+  { key: "popular", label: "인기순" },
   { key: "year", label: "최신순" },
   { key: "title", label: "제목순" },
 ];

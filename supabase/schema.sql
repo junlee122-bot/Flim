@@ -25,6 +25,8 @@ create table if not exists public.movies (
   backdrop_path   text,
   genres          text[] default '{}',
   tmdb_rating     numeric(3,1),
+  vote_count      integer default 0,
+  popularity      numeric default 0,
   created_at      timestamptz default now(),
   updated_at      timestamptz default now()
 );
