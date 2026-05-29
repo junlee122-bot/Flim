@@ -1,6 +1,11 @@
 import { notFound } from "next/navigation";
 import { getMovieDetail, tmdbConfigured } from "@/lib/tmdb";
 import { getExternalRatings } from "@/lib/omdb";
+import {
+  getKoficMovieInfo,
+  isLikelyKoreanFilm,
+  koficConfigured,
+} from "@/lib/kofic";
 import { ensureMovieRow, getApprovedReviews, getAwards } from "@/lib/data";
 import StarRating from "@/components/StarRating";
 import CriticAutoSearch from "@/components/CriticAutoSearch";
@@ -31,10 +36,14 @@ export default async function MovieDetailPage({
 
   // 로컬 movie 행 보장(평론/수상 연결) → 없으면 DB 미설정 상태
   const row = await ensureMovieRow(tmdbId, detail);
-  const [external, awards, reviews] = await Promise.all([
+  const isKorean = isLikelyKoreanFilm(detail.country, detail.originalTitle);
+  const [external, awards, reviews, kofic] = await Promise.all([
     getExternalRatings(detail.imdbId),
     row ? getAwards(row.id) : Promise.resolve<Award[]>([]),
     row ? getApprovedReviews(row.id) : Promise.resolve<CriticReview[]>([]),
+    isKorean && koficConfigured()
+      ? getKoficMovieInfo(detail.originalTitle || detail.title, detail.year)
+      : Promise.resolve(null),
   ]);
 
   return (
@@ -79,10 +88,7 @@ export default async function MovieDetailPage({
             <dl className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:max-w-lg">
               <Info label="감독" value={detail.director} />
               <Info label="국가" value={detail.country} />
-              <Info
-                label="장르"
-                value={detail.genres.join(", ") || null}
-              />
+              <Info label="장르" value={detail.genres.join(", ") || null} />
               <Info
                 label="러닝타임"
                 value={detail.runtime ? `${detail.runtime}분` : null}
@@ -91,6 +97,7 @@ export default async function MovieDetailPage({
                 label="출연"
                 value={detail.cast.slice(0, 4).join(", ") || null}
               />
+              {kofic?.openDt && <Info label="국내개봉" value={kofic.openDt} />}
             </dl>
 
             {/* 평점 */}
@@ -117,6 +124,24 @@ export default async function MovieDetailPage({
           <p className="max-w-3xl leading-relaxed text-bone/85">
             {detail.overview}
           </p>
+        </Section>
+      )}
+
+      {/* KOFIC 한국영화 보강 */}
+      {kofic && (
+        <Section title="국내 정보 (KOFIC)" kicker="KOREAN FILM DATA">
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:max-w-lg">
+            <Info label="개봉일" value={kofic.openDt} />
+            <Info
+              label="상영시간"
+              value={kofic.showTm ? `${kofic.showTm}분` : null}
+            />
+            <Info label="관람등급" value={kofic.watchGradeNm} />
+            <Info label="제작상태" value={kofic.prdtStatNm} />
+            <Info label="국적" value={kofic.nations.join(", ") || null} />
+            <Info label="장르" value={kofic.genres.join(", ") || null} />
+            <Info label="배급/제작" value={kofic.companyNm} />
+          </dl>
         </Section>
       )}
 
@@ -169,10 +194,7 @@ export default async function MovieDetailPage({
         {reviews.length > 0 ? (
           <ul className="space-y-5">
             {reviews.map((r) => (
-              <li
-                key={r.id}
-                className="border-l-2 border-accent/40 pl-4"
-              >
+              <li key={r.id} className="border-l-2 border-accent/40 pl-4">
                 <div className="flex flex-wrap items-center gap-x-3 text-sm">
                   <span className="font-medium">{r.critic_name}</span>
                   {r.source_name && (
@@ -237,9 +259,7 @@ function RatingChip({
     <div className="rounded-sm border border-bone/15 px-3 py-2 text-center">
       <p className="kicker">{label}</p>
       <p className="mt-1 text-sm">
-        {value ?? (
-          <span className="text-muted">{pendingNote ?? "—"}</span>
-        )}
+        {value ?? <span className="text-muted">{pendingNote ?? "—"}</span>}
       </p>
     </div>
   );

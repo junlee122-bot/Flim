@@ -1,14 +1,25 @@
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
-import MoviePoster from "@/components/MoviePoster";
-import { getCurations, getDailyPick } from "@/lib/data";
+import { getCurations } from "@/lib/data";
+import { getRecommendation } from "@/lib/recommend";
+import { getDailyBoxOffice, koficConfigured } from "@/lib/kofic";
 import { tmdbConfigured } from "@/lib/tmdb";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
+const SOURCE_LABEL: Record<string, string> = {
+  editor: "에디터 추천",
+  "auto-db": "평점·수상 기반 자동 추천",
+  "auto-tmdb": "평점 기반 자동 추천",
+};
+
 export default async function HomePage() {
-  const [pick, curations] = await Promise.all([getDailyPick(), getCurations()]);
+  const [pick, curations, boxOffice] = await Promise.all([
+    getRecommendation(),
+    getCurations(),
+    getDailyBoxOffice(),
+  ]);
   const needsSetup = !tmdbConfigured() || !isSupabaseConfigured();
 
   return (
@@ -41,38 +52,71 @@ export default async function HomePage() {
         />
         {pick ? (
           <Link
-            href={`/movies/${pick.tmdb_id}`}
+            href={`/movies/${pick.tmdbId}`}
             className="group mt-4 grid gap-6 rounded-sm border border-bone/10 bg-ink-900 p-6 sm:grid-cols-[160px_1fr]"
           >
             <div className="aspect-[2/3] overflow-hidden rounded-sm bg-ink-800">
-              {pick.poster_path && (
+              {pick.posterUrl && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={pick.poster_path}
+                  src={pick.posterUrl}
                   alt={pick.title}
                   className="h-full w-full object-cover"
                 />
               )}
             </div>
             <div className="space-y-3">
+              <span className="inline-block rounded-sm border border-accent/40 px-2 py-0.5 text-[0.65rem] uppercase tracking-wider text-accent">
+                {SOURCE_LABEL[pick.source] ?? "추천"}
+              </span>
               <h3 className="headline text-2xl">
                 {pick.title}
-                {pick.release_year ? (
-                  <span className="text-muted"> ({pick.release_year})</span>
+                {pick.year ? (
+                  <span className="text-muted"> ({pick.year})</span>
                 ) : null}
               </h3>
               {pick.director && (
                 <p className="text-sm text-muted">감독 · {pick.director}</p>
               )}
-              <p className="line-clamp-4 text-sm text-bone/80">
+              <p className="text-sm text-accent/90">{pick.reason}</p>
+              <p className="line-clamp-3 text-sm text-bone/80">
                 {pick.overview}
               </p>
             </div>
           </Link>
         ) : (
-          <EmptyState text="아직 오늘의 추천작이 지정되지 않았습니다. 관리자 페이지에서 추천작을 지정하세요." />
+          <EmptyState text="아직 추천할 작품이 없습니다. TMDb 키를 설정하거나 관리자 페이지에서 영화를 추가하세요." />
         )}
       </section>
+
+      {/* KOFIC 박스오피스 */}
+      {koficConfigured() && boxOffice.length > 0 && (
+        <section>
+          <SectionTitle
+            kicker="KOREAN BOX OFFICE · KOFIC"
+            title="박스오피스"
+            href={null}
+          />
+          <ol className="mt-4 divide-y divide-bone/10">
+            {boxOffice.map((b) => (
+              <li key={b.rank}>
+                <Link
+                  href={`/search?q=${encodeURIComponent(b.movieNm)}`}
+                  className="flex items-baseline gap-4 py-3 hover:bg-ink-900"
+                >
+                  <span className="headline w-8 shrink-0 text-xl text-accent">
+                    {b.rank}
+                  </span>
+                  <span className="flex-1 truncate">{b.movieNm}</span>
+                  <span className="shrink-0 text-xs text-muted">
+                    누적 {Number(b.audiAcc).toLocaleString()}명
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
 
       {/* 큐레이션 */}
       <section id="curations">

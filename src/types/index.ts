@@ -90,3 +90,38 @@ export type ReviewCandidate = {
   summary: string | null;
   confidenceScore: number;
 };
+
+// 오늘의 추천 영화 (에디터 지정 / 평점·수상 기반 자동)
+export type Recommendation = {
+  tmdbId: number;
+  title: string;
+  year: number | null;
+  director: string | null;
+  posterUrl: string | null;
+  overview: string;
+  reason: string;
+  source: "editor" | "auto-db" | "auto-tmdb";
+};
+
+// KOFIC 박스오피스 항목
+export type BoxOfficeItem = {
+  rank: number;
+  movieNm: string;
+  openDt: string;
+  audiAcc: string; // 누적 관객수
+  rankInten: string; // 전일 대비 등락
+  audiCnt: string; // 당일 관객수
+};
+
+// KOFIC 영화 상세 보강 정보
+export type KoficInfo = {
+  movieNm: string;
+  openDt: string | null;
+  showTm: string | null; // 상영시간(분)
+  prdtStatNm: string | null; // 제작상태
+  watchGradeNm: string | null; // 관람등급
+  nations: string[];
+  genres: string[];
+  companyNm: string | null; // 배급/제작사
+};
+
