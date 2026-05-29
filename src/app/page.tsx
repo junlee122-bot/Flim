@@ -35,11 +35,24 @@ export default async function HomePage() {
     <div className="space-y-20">
       {/* ── Hero ───────────────────────────── */}
       <section className="relative -mx-5 -mt-12 overflow-hidden px-5 pb-4 pt-20 sm:-mx-8 sm:px-8 sm:pt-28">
-        {/* 포스터 월 배경 */}
+        {/* 포스터 월 배경 — 우측에 비대칭 배치, 좌측 텍스트는 보호 */}
         {heroPosters.length >= 6 && (
           <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-            <div className="absolute inset-0 grid grid-cols-6 gap-1 opacity-[0.18] sm:grid-cols-9">
-              {heroPosters.map((p, i) => (
+            <div className="absolute inset-y-0 right-0 hidden w-[62%] grid-cols-5 gap-1.5 opacity-50 lg:grid">
+              {heroPosters.slice(0, 15).map((p, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={i}
+                  src={p}
+                  alt=""
+                  className="aspect-[2/3] h-full w-full rounded-sm object-cover"
+                  loading="eager"
+                />
+              ))}
+            </div>
+            {/* 모바일/태블릿: 전폭 은은한 월 */}
+            <div className="absolute inset-0 grid grid-cols-6 gap-1 opacity-25 lg:hidden">
+              {heroPosters.slice(0, 12).map((p, i) => (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   key={i}
@@ -50,8 +63,9 @@ export default async function HomePage() {
                 />
               ))}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-ink-950/70 via-ink-950/90 to-ink-950" />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/40 to-ink-950/70" />
+            {/* 좌→우 페이드: 텍스트 영역 보호 */}
+            <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/60" />
           </div>
         )}
 
