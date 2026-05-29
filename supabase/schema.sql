@@ -27,6 +27,11 @@ create table if not exists public.movies (
   tmdb_rating     numeric(3,1),
   vote_count      integer default 0,
   popularity      numeric default 0,
+  -- 베이지안 가중평점 (m=3000, C=6.5): 투표 적을수록 평균으로 보정
+  weighted_rating numeric generated always as (
+    (vote_count::numeric / (vote_count + 3000)) * coalesce(tmdb_rating, 0)
+    + (3000::numeric / (vote_count + 3000)) * 6.5
+  ) stored,
   created_at      timestamptz default now(),
   updated_at      timestamptz default now()
 );

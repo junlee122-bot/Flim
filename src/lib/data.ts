@@ -215,11 +215,12 @@ export async function browseMovies(opts: {
   } else if (opts.sort === "popular") {
     query = query.order("popularity", { ascending: false, nullsFirst: false });
   } else {
-    // 평점순: 투표수가 충분한 작품만 대상으로(투표 적은데 평점만 높은 노이즈 제거)
-    // → 평점 동률은 투표수로 보조 정렬해 신뢰도 높은 작품을 위로.
+    // 평점순: 베이지안 가중평점(weighted_rating) 으로 정렬 — 투표가 적을수록
+    // 전체 평균 쪽으로 보정되어, 소수 표로 평점만 높은 마이너작이 위로 오지 않는다.
+    // 최소한의 신뢰도 게이트(투표 100+)도 함께 적용.
     query = query
-      .gte("vote_count", 1000)
-      .order("tmdb_rating", { ascending: false, nullsFirst: false })
+      .gte("vote_count", 100)
+      .order("weighted_rating", { ascending: false, nullsFirst: false })
       .order("vote_count", { ascending: false });
   }
   const { data, count } = await query.range(fromIdx, toIdx);
