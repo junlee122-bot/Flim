@@ -3,7 +3,7 @@
 한 작품의 **정보·평점·수상·평론**을 한 화면에 정리하는 큐레이션/비평 아카이브.
 단순 검색이 아니라 Letterboxd · Criterion · MUBI · 영화 잡지의 감성을 지향합니다.
 
-**Production:** https://flim-eight.vercel.app
+**Production:** https://flim-murex.vercel.app
 
 ## 기술 스택
 
