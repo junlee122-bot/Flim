@@ -29,6 +29,9 @@ export const CATEGORY_META: Record<
 
 // 테마(감독전이 아닌 손수 만든 컬렉션) slug 화이트리스트
 const THEME_SLUGS = new Set([
+  "near-perfect",
+  "lee-dong-jin-perfect",
+  "critics-perfect",
   "intro-classics",
   "cannes-palme-dor",
   "a24",

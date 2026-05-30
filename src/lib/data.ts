@@ -257,6 +257,7 @@ export async function browseMovies(opts: {
   sort?: BrowseSort;
   page?: number;
   pageSize?: number;
+  minRating?: number; // tmdb_rating 하한 (별점 기준 필터)
 }): Promise<{ movies: MovieRow[]; total: number }> {
   const sb = await getSupabaseServer();
   if (!sb) return { movies: [], total: 0 };
@@ -266,6 +267,10 @@ export async function browseMovies(opts: {
   const toIdx = fromIdx + size - 1;
 
   let query = sb.from("movies").select("*", { count: "exact" });
+  // 별점 기준 필터 (적용 시 신뢰도 위해 투표수 게이트도 함께)
+  if (opts.minRating) {
+    query = query.gte("tmdb_rating", opts.minRating).gte("vote_count", 300);
+  }
   if (opts.sort === "year") {
     query = query.order("release_year", { ascending: false, nullsFirst: false });
   } else if (opts.sort === "title") {
