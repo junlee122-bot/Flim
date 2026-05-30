@@ -188,7 +188,7 @@ export default async function MovieDetailPage({
 
       {/* ── 줄거리 ───────────────────────────── */}
       {detail.overview && (
-        <Section title="줄거리" kicker="Synopsis">
+        <Section title="줄거리" kicker="Synopsis" id="synopsis">
           <p className="max-w-prose text-pretty text-lg leading-relaxed text-bone/85">
             {detail.overview}
           </p>
@@ -238,7 +238,7 @@ export default async function MovieDetailPage({
 
       {/* ── 출연진 ───────────────────────────── */}
       {detail.castDetailed.length > 0 && (
-        <Section title="출연진" kicker="Cast">
+        <Section title="출연진" kicker="Cast" id="cast">
           <ul className="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-5">
             {detail.castDetailed.map((c) => (
               <li key={`${c.id}-${c.character ?? ""}`}>
@@ -293,7 +293,7 @@ export default async function MovieDetailPage({
       )}
 
       {/* ── 수상 경력 ───────────────────────────── */}
-      <Section title="수상 경력" kicker="Awards">
+      <Section title="수상 경력" kicker="Awards" id="awards">
         {awards.length > 0 ? (
           <ul className="space-y-0">
             {awards.map((a) => (
@@ -326,7 +326,7 @@ export default async function MovieDetailPage({
       </Section>
 
       {/* ── 평론가 코멘트 ───────────────────────────── */}
-      <Section title="평론가 코멘트" kicker="Critics">
+      <Section title="평론가 코멘트" kicker="Critics" id="critics">
         {reviews.length > 0 ? (
           <ul className="space-y-8">
             {reviews.map((r) => (
@@ -473,14 +473,16 @@ function RatingChip({
 function Section({
   title,
   kicker,
+  id,
   children,
 }: {
   title: string;
   kicker: string;
+  id?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="animate-fade-up">
+    <section id={id} className="animate-fade-up scroll-mt-24">
       <div className="mb-5 border-b border-bone/10 pb-3">
         <p className="kicker">{kicker}</p>
         <h2 className="headline mt-2 text-2xl">{title}</h2>

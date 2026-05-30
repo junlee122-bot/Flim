@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FadeImg from "./FadeImg";
 
 type Props = {
   tmdbId: number;
@@ -23,12 +24,10 @@ export default function MoviePoster({
     <Link href={`/movies/${tmdbId}`} className="group block">
       <div className="relative aspect-[2/3] overflow-hidden rounded-md bg-ink-800 ring-1 ring-bone/10 transition duration-300 ease-smooth group-hover:ring-accent/40">
         {posterUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <FadeImg
             src={posterUrl}
-            alt={title}
+            alt={`${title} 포스터`}
             className="h-full w-full object-cover transition duration-[700ms] ease-smooth group-hover:scale-[1.06]"
-            loading="lazy"
           />
         ) : (
           <div className="flex h-full items-center justify-center p-4 text-center">

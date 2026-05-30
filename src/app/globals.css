@@ -158,6 +158,14 @@
       transparent 70%
     );
   }
+  /* 이미지 점진적 표시 — 로드 완료 시 부드럽게 나타남(깜빡임 감소) */
+  .img-fade {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .img-fade[data-loaded="true"] {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
