@@ -3,6 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import MoviePoster from "@/components/MoviePoster";
 import {
   searchMovies,
+  searchTv,
   discoverMovies,
   tmdbConfigured,
   TMDB_GENRES,
@@ -22,9 +23,12 @@ export default async function SearchPage({
 
   // 텍스트 검색이 있으면 검색 우선, 없고 필터가 있으면 discover
   let results: Awaited<ReturnType<typeof searchMovies>> = [];
-  if (q) results = await searchMovies(q);
-  else if (hasFilter)
+  let tvResults: Awaited<ReturnType<typeof searchTv>> = [];
+  if (q) {
+    [results, tvResults] = await Promise.all([searchMovies(q), searchTv(q)]);
+  } else if (hasFilter) {
     results = await discoverMovies({ genre: genreId, decade });
+  }
 
   // 필터 칩의 현재 상태를 유지하며 토글하는 URL 빌더
   const buildHref = (patch: Record<string, string | undefined>) => {
@@ -112,7 +116,7 @@ export default async function SearchPage({
             />
           ))}
         </div>
-      ) : q && tmdbConfigured() ? (
+      ) : q && results.length === 0 && tvResults.length === 0 && tmdbConfigured() ? (
         <div className="rounded-md border border-dashed border-bone/15 bg-ink-900/40 p-12 text-center">
           <p className="headline text-xl text-muted">검색 결과가 없습니다</p>
           <p className="mt-2 text-sm text-faint">
@@ -126,6 +130,33 @@ export default async function SearchPage({
           </p>
         </div>
       ) : null}
+
+      {/* TV 시리즈 결과 */}
+      {q && tvResults.length > 0 && (
+        <section className="space-y-4">
+          <div className="flex items-baseline gap-3 border-b border-bone/10 pb-2">
+            <h2 className="headline text-xl">TV 시리즈</h2>
+            <span className="text-sm tabular-nums text-accent">{tvResults.length}</span>
+          </div>
+          <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+            {tvResults.map((t) => (
+              <Link key={t.tmdbId} href={`/series/${t.tmdbId}`} className="group block">
+                <div className="aspect-[2/3] overflow-hidden rounded-md bg-ink-800 ring-1 ring-bone/10 transition group-hover:ring-accent/40">
+                  {t.posterUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={t.posterUrl} alt={t.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center p-3 text-center text-xs text-muted">{t.name}</div>
+                  )}
+                </div>
+                <p className="mt-2.5 truncate text-sm text-bone group-hover:text-accent-soft">
+                  {t.name}{t.year ? <span className="text-muted"> ({t.year})</span> : null}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

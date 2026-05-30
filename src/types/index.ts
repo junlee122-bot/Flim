@@ -1,5 +1,43 @@
 // 도메인 타입 정의
 
+export type SeriesRow = {
+  id: string;
+  tmdb_id: number;
+  name: string;
+  original_name: string | null;
+  first_air_year: number | null;
+  overview: string | null;
+  poster_path: string | null;
+  backdrop_path: string | null;
+  genres: string[] | null;
+  country: string | null;
+  tmdb_rating: number | null;
+  number_of_seasons: number | null;
+};
+
+export type SeriesDetail = {
+  tmdbId: number;
+  name: string;
+  originalName: string;
+  year: number | null;
+  lastYear: number | null;
+  creators: string[];
+  cast: { id: number; name: string; character: string | null; profileUrl: string | null }[];
+  genres: string[];
+  country: string | null;
+  seasons: number | null;
+  episodes: number | null;
+  overview: string;
+  tagline: string | null;
+  posterUrl: string | null;
+  backdropUrl: string | null;
+  stills: string[];
+  trailerKey: string | null;
+  tmdbRating: number | null;
+  networks: string[];
+  similar: { tmdbId: number; name: string; year: number | null; posterUrl: string | null }[];
+};
+
 export type MovieRow = {
   id: string;
   tmdb_id: number;

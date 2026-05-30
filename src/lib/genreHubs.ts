@@ -10,7 +10,7 @@ export type GenreHub = {
   description: string;
   genres: string[];
   curations: string[];
-  subFilters?: { key: string; label: string; lang?: string }[];
+  subFilters?: { key: string; label: string; lang?: string; genres?: string[] }[];
 };
 
 export const GENRE_HUBS: GenreHub[] = [
@@ -50,6 +50,11 @@ export const GENRE_HUBS: GenreHub[] = [
       "고전 괴기에서 동시대 작가주의 호러까지. 불안과 전율의 미학.",
     genres: ["공포"],
     curations: ["genre-horror", "horror-70s-80s", "studio-a24-recent", "japan-horror", "ari-aster"],
+    subFilters: [
+      { key: "kr", label: "한국", lang: "ko" },
+      { key: "jp", label: "일본", lang: "ja" },
+      { key: "us", label: "서양", lang: "en" },
+    ],
   },
   {
     slug: "documentary",
@@ -68,6 +73,11 @@ export const GENRE_HUBS: GenreHub[] = [
     description: "범죄와 미스터리, 심리의 칼날. 장르의 쾌감이 정점에 이를 때.",
     genres: ["스릴러", "미스터리"],
     curations: ["genre-thriller", "genre-mystery", "genre-crime", "thriller-2000s", "korea-thriller", "fincher"],
+    subFilters: [
+      { key: "crime", label: "범죄", genres: ["범죄"] },
+      { key: "mystery", label: "미스터리", genres: ["미스터리"] },
+      { key: "action", label: "액션", genres: ["액션"] },
+    ],
   },
   {
     slug: "romance",
@@ -77,6 +87,69 @@ export const GENRE_HUBS: GenreHub[] = [
     description: "설렘과 이별, 애틋함까지. 마음을 움직이는 멜로의 명작들.",
     genres: ["로맨스"],
     curations: ["genre-romance", "romance-classics", "india-romance"],
+  },
+  {
+    slug: "action",
+    label: "액션",
+    kicker: "Action",
+    title: "순수한 운동 에너지, 액션",
+    description: "총격과 추격, 육탄전. 스크린을 가르는 운동의 쾌감.",
+    genres: ["액션"],
+    curations: ["genre-action", "heist", "leone", "refn"],
+  },
+  {
+    slug: "comedy",
+    label: "코미디",
+    kicker: "Comedy",
+    title: "웃음 뒤에 남는 것",
+    description: "유쾌한 소동부터 씁쓸한 풍자까지. 희극이 도달한 깊이.",
+    genres: ["코미디"],
+    curations: ["genre-comedy", "coen-brothers", "wes-anderson"],
+  },
+  {
+    slug: "war",
+    label: "전쟁",
+    kicker: "War",
+    title: "전장의 참혹과 인간",
+    description: "포화 속의 휴머니즘. 반전(反戰)의 기록이 된 걸작들.",
+    genres: ["전쟁"],
+    curations: ["genre-war", "war-classics"],
+  },
+  {
+    slug: "western",
+    label: "서부극",
+    kicker: "Western",
+    title: "황야와 총잡이, 미국이라는 신화",
+    description: "석양의 결투에서 수정주의 웨스턴까지. 장르의 원형.",
+    genres: ["서부"],
+    curations: ["genre-western", "leone"],
+  },
+  {
+    slug: "crime",
+    label: "범죄",
+    kicker: "Crime",
+    title: "범죄와 그 그림자",
+    description: "느와르와 갱스터, 케이퍼. 어둠을 응시하는 장르.",
+    genres: ["범죄"],
+    curations: ["genre-crime", "heist", "korea-crime", "france-crime", "scorsese", "coen-brothers"],
+  },
+  {
+    slug: "fantasy",
+    label: "판타지",
+    kicker: "Fantasy",
+    title: "현실 너머의 세계",
+    description: "신화와 마법, 또 다른 세계로의 초대.",
+    genres: ["판타지"],
+    curations: ["genre-fantasy", "del-toro"],
+  },
+  {
+    slug: "drama",
+    label: "드라마",
+    kicker: "Drama",
+    title: "삶을 가장 진하게",
+    description: "인간과 삶을 응시하는 가장 넓고 깊은 장르.",
+    genres: ["드라마"],
+    curations: ["genre-drama", "lee-chang-dong", "kore-eda", "bergman"],
   },
 ];
 

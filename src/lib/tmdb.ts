@@ -1,4 +1,4 @@
-import type { MovieSummary, MovieDetail } from "@/types";
+import type { MovieSummary, MovieDetail, SeriesDetail } from "@/types";
 
 const BASE = "https://api.themoviedb.org/3";
 const IMG = "https://image.tmdb.org/t/p";
@@ -346,4 +346,82 @@ export async function findPersonId(name: string): Promise<number | null> {
     `/search/person?query=${encodeURIComponent(name)}`,
   );
   return d?.results?.[0]?.id ?? null;
+}
+
+// ── TV 시리즈 ──────────────────────────────────────────
+type TmdbTv = {
+  id: number;
+  name: string;
+  original_name: string;
+  first_air_date?: string;
+  last_air_date?: string;
+  poster_path: string | null;
+  backdrop_path: string | null;
+  overview: string;
+  vote_average?: number;
+  vote_count?: number;
+  genres?: { name: string }[];
+  genre_ids?: number[];
+  origin_country?: string[];
+  number_of_seasons?: number;
+  number_of_episodes?: number;
+  tagline?: string;
+  created_by?: { name: string }[];
+  networks?: { name: string }[];
+  credits?: { cast?: { id: number; name: string; character?: string; profile_path?: string | null }[] };
+  images?: { backdrops?: { file_path: string }[] };
+  videos?: { results?: { key: string; site: string; type: string; official?: boolean }[] };
+  similar?: { results?: TmdbTv[] };
+};
+
+export async function searchTv(query: string) {
+  if (!query.trim()) return [];
+  const data = await tmdb<{ results: TmdbTv[] }>(
+    `/search/tv?query=${encodeURIComponent(query)}&include_adult=false`,
+  );
+  return (data?.results ?? []).slice(0, 20).map((t) => ({
+    tmdbId: t.id,
+    name: t.name,
+    year: yearOf(t.first_air_date),
+    posterUrl: posterUrl(t.poster_path),
+  }));
+}
+
+export async function getSeriesDetail(tmdbId: number): Promise<SeriesDetail | null> {
+  const t = await tmdb<TmdbTv>(
+    `/tv/${tmdbId}?append_to_response=credits,images,videos,similar&include_image_language=ko,en,null&include_video_language=ko,en`,
+  );
+  if (!t) return null;
+  const yt = (t.videos?.results ?? []).filter((v) => v.site === "YouTube");
+  const trailer =
+    yt.find((v) => v.type === "Trailer" && v.official) ??
+    yt.find((v) => v.type === "Trailer") ??
+    yt.find((v) => v.type === "Teaser") ?? null;
+  return {
+    tmdbId: t.id,
+    name: t.name,
+    originalName: t.original_name,
+    year: yearOf(t.first_air_date),
+    lastYear: yearOf(t.last_air_date),
+    creators: (t.created_by ?? []).map((c) => c.name),
+    cast: (t.credits?.cast ?? []).slice(0, 10).map((c) => ({
+      id: c.id, name: c.name, character: c.character ?? null,
+      profileUrl: c.profile_path ? `${IMG}/w185${c.profile_path}` : null,
+    })),
+    genres: (t.genres ?? []).map((g) => g.name),
+    country: t.origin_country?.[0] ?? null,
+    seasons: t.number_of_seasons ?? null,
+    episodes: t.number_of_episodes ?? null,
+    overview: t.overview ?? "",
+    tagline: t.tagline?.trim() || null,
+    posterUrl: posterUrl(t.poster_path),
+    backdropUrl: posterUrl(t.backdrop_path, "w1280"),
+    stills: (t.images?.backdrops ?? []).slice(0, 6).map((b) => posterUrl(b.file_path, "w780")!).filter(Boolean),
+    trailerKey: trailer?.key ?? null,
+    tmdbRating: t.vote_average ? Math.round(t.vote_average * 10) / 10 : null,
+    networks: (t.networks ?? []).map((n) => n.name),
+    similar: (t.similar?.results ?? []).filter((s) => s.poster_path).slice(0, 6).map((s) => ({
+      tmdbId: s.id, name: s.name, year: yearOf(s.first_air_date), posterUrl: posterUrl(s.poster_path),
+    })),
+  };
 }

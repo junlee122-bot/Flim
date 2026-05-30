@@ -47,6 +47,7 @@ export default async function GenreHubPage({
       pageSize: PAGE_SIZE,
       minVotes: 100,
       lang: sub?.lang,
+      extraGenres: sub?.genres,
     }),
     getCurationsBySlugs(hub.curations),
   ]);

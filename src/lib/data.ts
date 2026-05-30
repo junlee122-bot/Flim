@@ -8,6 +8,7 @@ import type {
   CurationWithPosters,
   MovieDetail,
   MovieRow,
+  SeriesRow,
 } from "@/types";
 
 // =============================================================
@@ -284,13 +285,37 @@ export async function browseMovies(opts: {
   return { movies: (data as MovieRow[]) ?? [], total: count ?? 0 };
 }
 
+// ── TV 시리즈 ──────────────────────────────────────────
+// 적재된 series 목록 (정렬/페이지네이션). 장르 필터 옵션.
+export async function browseSeries(opts: {
+  page?: number;
+  pageSize?: number;
+  genre?: string;
+  sort?: "rating" | "popular";
+}): Promise<{ series: SeriesRow[]; total: number }> {
+  const sb = await getSupabaseServer();
+  if (!sb) return { series: [], total: 0 };
+  const page = Math.max(1, opts.page ?? 1);
+  const size = opts.pageSize ?? 30;
+  const fromIdx = (page - 1) * size;
+  let q = sb.from("series").select("*", { count: "exact" }).not("poster_path", "is", null);
+  if (opts.genre) q = q.overlaps("genres", [opts.genre]);
+  q =
+    opts.sort === "popular"
+      ? q.order("popularity", { ascending: false, nullsFirst: false })
+      : q.order("weighted_rating", { ascending: false, nullsFirst: false });
+  const { data, count } = await q.range(fromIdx, fromIdx + size - 1);
+  return { series: (data as SeriesRow[]) ?? [], total: count ?? 0 };
+}
+
 // 특정 장르(들) 영화 — 가중평점순, 페이지네이션. (애니메이션 등 장르 허브용)
 export async function getMoviesByGenre(opts: {
   genres: string[]; // OR
   page?: number;
   pageSize?: number;
   minVotes?: number;
-  lang?: string; // 원어 필터 (ja/en ...) — movies 에 original_language 없으니 country 근사
+  lang?: string; // 원어 필터 (ja/ko/en) — movies 에 original_language 없으니 country 근사
+  extraGenres?: string[]; // 추가로 반드시 겹쳐야 하는 장르 (하위 장르 필터)
 }): Promise<{ movies: MovieRow[]; total: number }> {
   const sb = await getSupabaseServer();
   if (!sb || opts.genres.length === 0) return { movies: [], total: 0 };
@@ -303,8 +328,11 @@ export async function getMoviesByGenre(opts: {
     .overlaps("genres", opts.genres)
     .gte("vote_count", opts.minVotes ?? 100)
     .not("poster_path", "is", null);
-  // 언어 근사: 일본=일본 국가, 서양=일본/한국/중국 제외
+  if (opts.extraGenres && opts.extraGenres.length > 0)
+    q = q.overlaps("genres", opts.extraGenres);
+  // 언어 근사: 한국/일본=국가 일치, 서양=동아시아 제외
   if (opts.lang === "ja") q = q.eq("country", "일본");
+  else if (opts.lang === "ko") q = q.eq("country", "대한민국");
   else if (opts.lang === "en")
     q = q.not("country", "in", "(일본,대한민국,중국,홍콩,대만)");
   const { data, count } = await q
