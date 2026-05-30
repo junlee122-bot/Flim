@@ -86,8 +86,11 @@ export default async function HomePage() {
           <Link href="/pick" className="btn btn-accent px-4 py-2 text-sm">
             오늘 뭐 볼까?
           </Link>
+          <Link href="/now" className="link-underline text-muted">
+            최신·추천작 →
+          </Link>
           <Link href="/curations" className="link-underline text-muted">
-            큐레이션 둘러보기 →
+            큐레이션 →
           </Link>
           <span className="text-xs text-faint">
             영화 {curations.length}개 컬렉션 · TMDb 전체 검색

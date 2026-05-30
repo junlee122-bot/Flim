@@ -201,6 +201,39 @@ export async function getPopularMovies(): Promise<MovieSummary[]> {
   }));
 }
 
+// ── 최신/실시간 목록 (TMDb, 한국 KR 기준) ──────────────────
+function mapList(arr?: TmdbMovie[]): MovieSummary[] {
+  return (arr ?? [])
+    .filter((m) => m.poster_path)
+    .map((m) => ({
+      tmdbId: m.id,
+      title: m.title,
+      originalTitle: m.original_title,
+      year: yearOf(m.release_date),
+      director: null,
+      country: null,
+      genres: [],
+      posterUrl: posterUrl(m.poster_path),
+    }));
+}
+
+// 종류: now_playing(상영중) | popular(인기) | upcoming(개봉예정) | trending(요즘 뜨는)
+export async function getMovieList(
+  kind: "now_playing" | "popular" | "upcoming" | "trending",
+  page = 1,
+): Promise<{ items: MovieSummary[]; totalPages: number }> {
+  const path =
+    kind === "trending"
+      ? `/trending/movie/week?page=${page}`
+      : `/movie/${kind}?page=${page}&region=KR`;
+  const data = await tmdb<{ results: TmdbMovie[]; total_pages?: number }>(path);
+  if (!data?.results) return { items: [], totalPages: 0 };
+  return {
+    items: mapList(data.results),
+    totalPages: Math.min(data.total_pages ?? 1, 500),
+  };
+}
+
 // TMDb 장르 ID 맵 (검색 필터용)
 export const TMDB_GENRES: { id: number; name: string }[] = [
   { id: 28, name: "액션" },

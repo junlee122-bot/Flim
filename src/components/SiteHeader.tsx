@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 // 주 메뉴(사용자용). 관리자는 별도로 작게 노출.
 const NAV = [
+  { href: "/now", label: "최신" },
   { href: "/pick", label: "뭐 볼까" },
   { href: "/search", label: "검색" },
   { href: "/browse", label: "카탈로그" },
