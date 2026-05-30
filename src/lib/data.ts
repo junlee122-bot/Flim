@@ -290,18 +290,24 @@ export async function getMoviesByGenre(opts: {
   page?: number;
   pageSize?: number;
   minVotes?: number;
+  lang?: string; // 원어 필터 (ja/en ...) — movies 에 original_language 없으니 country 근사
 }): Promise<{ movies: MovieRow[]; total: number }> {
   const sb = await getSupabaseServer();
   if (!sb || opts.genres.length === 0) return { movies: [], total: 0 };
   const page = Math.max(1, opts.page ?? 1);
   const size = opts.pageSize ?? 36;
   const fromIdx = (page - 1) * size;
-  const { data, count } = await sb
+  let q = sb
     .from("movies")
     .select("*", { count: "exact" })
     .overlaps("genres", opts.genres)
     .gte("vote_count", opts.minVotes ?? 100)
-    .not("poster_path", "is", null)
+    .not("poster_path", "is", null);
+  // 언어 근사: 일본=일본 국가, 서양=일본/한국/중국 제외
+  if (opts.lang === "ja") q = q.eq("country", "일본");
+  else if (opts.lang === "en")
+    q = q.not("country", "in", "(일본,대한민국,중국,홍콩,대만)");
+  const { data, count } = await q
     .order("weighted_rating", { ascending: false, nullsFirst: false })
     .range(fromIdx, fromIdx + size - 1);
   return { movies: (data as MovieRow[]) ?? [], total: count ?? 0 };

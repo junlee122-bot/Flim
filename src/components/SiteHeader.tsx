@@ -9,7 +9,7 @@ const NAV = [
   { href: "/search", label: "검색" },
   { href: "/browse", label: "카탈로그" },
   { href: "/curations", label: "큐레이션" },
-  { href: "/animation", label: "애니메이션" },
+  { href: "/genre", label: "장르" },
   { href: "/my", label: "마이" },
 ];
 
