@@ -412,6 +412,34 @@ type TmdbTv = {
   similar?: { results?: TmdbTv[] };
 };
 
+// 인물 검색 (감독/배우) — 검색 결과 페이지에서 영화·시리즈와 함께 노출
+export async function searchPeople(query: string) {
+  if (!query.trim()) return [];
+  const data = await tmdb<{
+    results: {
+      id: number;
+      name: string;
+      known_for_department?: string;
+      profile_path?: string | null;
+      known_for?: { title?: string; name?: string }[];
+    }[];
+  }>(`/search/person?query=${encodeURIComponent(query)}`);
+  return (data?.results ?? [])
+    .filter((p) => p.profile_path || (p.known_for ?? []).length > 0)
+    .slice(0, 8)
+    .map((p) => ({
+      id: p.id,
+      name: p.name,
+      role: p.known_for_department === "Directing" ? "감독" : "배우",
+      profileUrl: p.profile_path ? `${IMG}/w185${p.profile_path}` : null,
+      knownFor: (p.known_for ?? [])
+        .map((k) => k.title || k.name)
+        .filter(Boolean)
+        .slice(0, 3)
+        .join(", "),
+    }));
+}
+
 export async function searchTv(query: string) {
   if (!query.trim()) return [];
   const data = await tmdb<{ results: TmdbTv[] }>(

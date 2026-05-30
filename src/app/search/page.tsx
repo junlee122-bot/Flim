@@ -4,6 +4,7 @@ import MoviePoster from "@/components/MoviePoster";
 import {
   searchMovies,
   searchTv,
+  searchPeople,
   discoverMovies,
   tmdbConfigured,
   TMDB_GENRES,
@@ -21,11 +22,16 @@ export default async function SearchPage({
   const genreId = genre ? Number(genre) : undefined;
   const hasFilter = Boolean(genreId || decade);
 
-  // 텍스트 검색이 있으면 검색 우선, 없고 필터가 있으면 discover
+  // 텍스트 검색이 있으면 영화·시리즈·인물 동시, 없고 필터가 있으면 discover
   let results: Awaited<ReturnType<typeof searchMovies>> = [];
   let tvResults: Awaited<ReturnType<typeof searchTv>> = [];
+  let peopleResults: Awaited<ReturnType<typeof searchPeople>> = [];
   if (q) {
-    [results, tvResults] = await Promise.all([searchMovies(q), searchTv(q)]);
+    [results, tvResults, peopleResults] = await Promise.all([
+      searchMovies(q),
+      searchTv(q),
+      searchPeople(q),
+    ]);
   } else if (hasFilter) {
     results = await discoverMovies({ genre: genreId, decade });
   }
@@ -103,7 +109,42 @@ export default async function SearchPage({
         </p>
       ) : null}
 
+      {/* 인물 결과 (감독·배우) — 이름 검색 시 가장 먼저 */}
+      {q && peopleResults.length > 0 && (
+        <section className="space-y-4">
+          <div className="flex items-baseline gap-3 border-b border-bone/10 pb-2">
+            <h2 className="headline text-xl">인물</h2>
+            <span className="text-sm tabular-nums text-accent">{peopleResults.length}</span>
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {peopleResults.map((p) => (
+              <Link
+                key={p.id}
+                href={`/people/${p.id}`}
+                className="card card-hover group flex items-center gap-3 p-3"
+              >
+                <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full bg-ink-800 ring-1 ring-bone/10">
+                  {p.profileUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={p.profileUrl} alt={p.name} className="h-full w-full object-cover" loading="lazy" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center text-xl text-faint">{p.name.slice(0, 1)}</div>
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <p className="truncate text-sm text-bone group-hover:text-accent-soft">{p.name}</p>
+                  <p className="truncate text-xs text-accent">{p.role}</p>
+                  {p.knownFor && <p className="truncate text-xs text-faint">{p.knownFor}</p>}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {results.length > 0 ? (
+        <>
+        {q && <h2 className="headline border-b border-bone/10 pb-2 text-xl">영화</h2>}
         <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
           {results.map((m) => (
             <MoviePoster
@@ -116,7 +157,8 @@ export default async function SearchPage({
             />
           ))}
         </div>
-      ) : q && results.length === 0 && tvResults.length === 0 && tmdbConfigured() ? (
+        </>
+      ) : q && results.length === 0 && tvResults.length === 0 && peopleResults.length === 0 && tmdbConfigured() ? (
         <div className="rounded-md border border-dashed border-bone/15 bg-ink-900/40 p-12 text-center">
           <p className="headline text-xl text-muted">검색 결과가 없습니다</p>
           <p className="mt-2 text-sm text-faint">
