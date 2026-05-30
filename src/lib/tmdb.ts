@@ -1,4 +1,9 @@
-import type { MovieSummary, MovieDetail, SeriesDetail } from "@/types";
+import type {
+  MovieSummary,
+  MovieDetail,
+  SeriesDetail,
+  WatchProviders,
+} from "@/types";
 
 const BASE = "https://api.themoviedb.org/3";
 const IMG = "https://image.tmdb.org/t/p";
@@ -425,3 +430,27 @@ export async function getSeriesDetail(tmdbId: number): Promise<SeriesDetail | nu
     })),
   };
 }
+
+// ── OTT 시청 가능 (TMDb watch/providers, 한국 KR) ──────────
+type WpEntry = { provider_name: string; logo_path: string | null };
+async function fetchProviders(kind: "movie" | "tv", tmdbId: number): Promise<WatchProviders> {
+  const empty: WatchProviders = { link: null, flatrate: [], rent: [], buy: [] };
+  const data = await tmdb<{ results?: Record<string, {
+    link?: string; flatrate?: WpEntry[]; rent?: WpEntry[]; buy?: WpEntry[];
+  }> }>(`/${kind}/${tmdbId}/watch/providers`);
+  const kr = data?.results?.KR;
+  if (!kr) return empty;
+  const map = (arr?: WpEntry[]): { name: string; logoUrl: string | null }[] =>
+    (arr ?? []).map((p) => ({
+      name: p.provider_name,
+      logoUrl: p.logo_path ? `${IMG}/w92${p.logo_path}` : null,
+    }));
+  return {
+    link: kr.link ?? null,
+    flatrate: map(kr.flatrate),
+    rent: map(kr.rent),
+    buy: map(kr.buy),
+  };
+}
+export const getMovieProviders = (id: number) => fetchProviders("movie", id);
+export const getSeriesProviders = (id: number) => fetchProviders("tv", id);

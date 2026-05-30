@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { findPersonId, getMovieDetail, tmdbConfigured } from "@/lib/tmdb";
+import { findPersonId, getMovieDetail, getMovieProviders, tmdbConfigured } from "@/lib/tmdb";
 import { getExternalRatings } from "@/lib/omdb";
 import {
   getKoficMovieInfo,
@@ -17,6 +17,7 @@ import StarRating from "@/components/StarRating";
 import StarInput from "@/components/StarInput";
 import CriticAutoSearch from "@/components/CriticAutoSearch";
 import MoviePoster from "@/components/MoviePoster";
+import WatchHere from "@/components/WatchHere";
 import type { Award, CriticReview } from "@/types";
 
 export const dynamic = "force-dynamic";
@@ -45,7 +46,7 @@ export default async function MovieDetailPage({
   // 로컬 movie 행 보장(평론/수상 연결) → 없으면 DB 미설정 상태
   const row = await ensureMovieRow(tmdbId, detail);
   const isKorean = isLikelyKoreanFilm(detail.country, detail.originalTitle);
-  const [external, awards, reviews, kofic, inCurations, directorId] =
+  const [external, awards, reviews, kofic, inCurations, directorId, providers] =
     await Promise.all([
       getExternalRatings(detail.imdbId),
       row ? getAwards(row.id) : Promise.resolve<Award[]>([]),
@@ -55,7 +56,10 @@ export default async function MovieDetailPage({
         : Promise.resolve(null),
       row ? getCurationsForMovie(row.id) : Promise.resolve([]),
       detail.director ? findPersonId(detail.director) : Promise.resolve(null),
+      getMovieProviders(tmdbId),
     ]);
+  const hasProviders =
+    providers.flatrate.length + providers.rent.length + providers.buy.length > 0;
 
   return (
     <article className="space-y-16">
@@ -188,6 +192,13 @@ export default async function MovieDetailPage({
           <p className="max-w-prose text-pretty text-lg leading-relaxed text-bone/85">
             {detail.overview}
           </p>
+        </Section>
+      )}
+
+      {/* ── 지금 볼 수 있는 곳 (OTT) ───────────────────────────── */}
+      {hasProviders && (
+        <Section title="지금 볼 수 있는 곳" kicker="Where to Watch">
+          <WatchHere data={providers} />
         </Section>
       )}
 

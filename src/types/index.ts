@@ -1,5 +1,17 @@
 // 도메인 타입 정의
 
+// OTT 시청 가능 정보 (TMDb watch/providers, JustWatch 제공)
+export type WatchProvider = {
+  name: string;
+  logoUrl: string | null;
+};
+export type WatchProviders = {
+  link: string | null; // JustWatch 페이지
+  flatrate: WatchProvider[]; // 구독(정액)
+  rent: WatchProvider[]; // 대여
+  buy: WatchProvider[]; // 구매
+};
+
 export type SeriesRow = {
   id: string;
   tmdb_id: number;

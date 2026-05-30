@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getSeriesDetail, tmdbConfigured } from "@/lib/tmdb";
+import { getSeriesDetail, getSeriesProviders, tmdbConfigured } from "@/lib/tmdb";
+import WatchHere from "@/components/WatchHere";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,9 @@ export default async function SeriesDetailPage({ params }: { params: Promise<{ i
     notFound();
   }
   const period = s.year ? (s.lastYear && s.lastYear !== s.year ? `${s.year}–${s.lastYear}` : `${s.year}`) : null;
+  const providers = await getSeriesProviders(tmdbId);
+  const hasProviders =
+    providers.flatrate.length + providers.rent.length + providers.buy.length > 0;
 
   return (
     <article className="space-y-16">
@@ -75,6 +79,12 @@ export default async function SeriesDetailPage({ params }: { params: Promise<{ i
       {s.overview && (
         <Section title="줄거리" kicker="Synopsis">
           <p className="max-w-prose text-pretty text-lg leading-relaxed text-bone/85">{s.overview}</p>
+        </Section>
+      )}
+
+      {hasProviders && (
+        <Section title="지금 볼 수 있는 곳" kicker="Where to Watch">
+          <WatchHere data={providers} />
         </Section>
       )}
 
