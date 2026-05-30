@@ -199,6 +199,42 @@ export async function getApprovedReviews(
   return (data as CriticReview[]) ?? [];
 }
 
+// 특정 영화제의 수상/후보작 — awards 를 영화 정보와 함께 묶어 반환.
+// keywords: DB festival 값에 부분일치할 키워드들(예: ["칸","Cannes"]).
+export async function getFestivalWinners(keywords: string[]): Promise<
+  {
+    movie: MovieRow;
+    category: string | null;
+    year: number | null;
+    result: string;
+  }[]
+> {
+  const sb = await getSupabaseServer();
+  if (!sb || keywords.length === 0) return [];
+  // festival ilike OR 조건
+  const or = keywords.map((k) => `festival.ilike.*${k}*`).join(",");
+  const { data } = await sb
+    .from("awards")
+    .select("festival, category, year, result, movies(*)")
+    .or(or)
+    .order("year", { ascending: false });
+  const rows =
+    (data as unknown as {
+      category: string | null;
+      year: number | null;
+      result: string;
+      movies: MovieRow | null;
+    }[]) ?? [];
+  return rows
+    .filter((r) => r.movies)
+    .map((r) => ({
+      movie: r.movies as MovieRow,
+      category: r.category,
+      year: r.year,
+      result: r.result,
+    }));
+}
+
 export async function getAwards(movieDbId: string): Promise<Award[]> {
   const sb = await getSupabaseServer();
   if (!sb) return [];

@@ -339,6 +339,12 @@ export default async function MovieDetailPage({
         ) : (
           <Placeholder text="등록된 수상 정보가 없습니다. 관리자 페이지에서 오스카·칸·베니스·베를린 등 수상 정보를 추가할 수 있습니다." />
         )}
+        <Link
+          href="/festivals"
+          className="link-underline mt-4 inline-block text-sm text-muted"
+        >
+          영화제 소개 둘러보기 →
+        </Link>
       </Section>
 
       {/* ── 평론가 코멘트 ───────────────────────────── */}

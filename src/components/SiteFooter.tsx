@@ -30,6 +30,9 @@ export default function SiteFooter() {
             <Link href="/curations" className="block w-fit text-muted link-underline">
               큐레이션
             </Link>
+            <Link href="/festivals" className="block w-fit text-muted link-underline">
+              영화제
+            </Link>
             <Link href="/search" className="block w-fit text-muted link-underline">
               검색
             </Link>
