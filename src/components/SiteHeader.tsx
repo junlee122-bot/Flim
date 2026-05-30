@@ -11,6 +11,7 @@ const NAV = [
   { href: "/curations", label: "큐레이션" },
   { href: "/genre", label: "장르" },
   { href: "/tv", label: "TV" },
+  { href: "/watch", label: "OTT" },
   { href: "/my", label: "마이" },
 ];
 

@@ -454,3 +454,47 @@ async function fetchProviders(kind: "movie" | "tv", tmdbId: number): Promise<Wat
 }
 export const getMovieProviders = (id: number) => fetchProviders("movie", id);
 export const getSeriesProviders = (id: number) => fetchProviders("tv", id);
+
+// ── OTT로 거르기 (discover with_watch_providers, KR) ──────────
+// TMDb provider id (한국 기준 주요 OTT)
+export const OTT_PROVIDERS: { key: string; label: string; id: number }[] = [
+  { key: "netflix", label: "넷플릭스", id: 8 },
+  { key: "disney", label: "디즈니+", id: 337 },
+  { key: "watcha", label: "왓챠", id: 97 },
+  { key: "tving", label: "티빙", id: 1883 },
+  { key: "wavve", label: "웨이브", id: 356 },
+  { key: "prime", label: "프라임 비디오", id: 119 },
+  { key: "appletv", label: "Apple TV", id: 350 },
+];
+
+export async function discoverByProvider(opts: {
+  providerId: number;
+  kind?: "movie" | "tv";
+  genre?: number;
+  page?: number;
+}): Promise<{ items: { tmdbId: number; title: string; year: number | null; posterUrl: string | null }[]; totalPages: number }> {
+  const kind = opts.kind ?? "movie";
+  const params = [
+    `watch_region=KR`,
+    `with_watch_providers=${opts.providerId}`,
+    `sort_by=popularity.desc`,
+    `page=${opts.page ?? 1}`,
+    `vote_count.gte=50`,
+  ];
+  if (opts.genre) params.push(`with_genres=${opts.genre}`);
+  const data = await tmdb<{ results: (TmdbMovie & { name?: string; first_air_date?: string })[]; total_pages?: number }>(
+    `/discover/${kind}?${params.join("&")}`,
+  );
+  if (!data?.results) return { items: [], totalPages: 0 };
+  return {
+    items: data.results
+      .filter((m) => m.poster_path)
+      .map((m) => ({
+        tmdbId: m.id,
+        title: kind === "tv" ? (m.name ?? "") : m.title,
+        year: yearOf(kind === "tv" ? m.first_air_date : m.release_date),
+        posterUrl: posterUrl(m.poster_path),
+      })),
+    totalPages: Math.min(data.total_pages ?? 1, 500),
+  };
+}
