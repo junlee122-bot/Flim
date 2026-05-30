@@ -62,6 +62,14 @@ export default async function FestivalPage({
         <p className="mt-6 max-w-prose text-pretty text-lg leading-relaxed text-bone/85">
           {f.description}
         </p>
+        {f.koreaNote && (
+          <div className="mt-6 max-w-prose rounded-md border border-accent/25 bg-accent/[0.05] p-5">
+            <p className="kicker mb-2">🇰🇷 한국 영화와</p>
+            <p className="text-pretty text-sm leading-relaxed text-bone/80">
+              {f.koreaNote}
+            </p>
+          </div>
+        )}
       </header>
 
       {/* 수상작 */}
