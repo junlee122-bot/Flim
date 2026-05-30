@@ -34,8 +34,8 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        {/* 모바일에서 메뉴가 많아도 가로 스크롤로 안전하게 */}
-        <nav className="flex items-center gap-5 overflow-x-auto whitespace-nowrap text-sm [scrollbar-width:none] sm:gap-7 [&::-webkit-scrollbar]:hidden">
+        {/* 데스크톱: 전체 메뉴 / 모바일: 하단 탭바로 대체(여기선 숨김) */}
+        <nav className="hidden items-center gap-5 overflow-x-auto whitespace-nowrap text-sm [scrollbar-width:none] sm:flex sm:gap-7 [&::-webkit-scrollbar]:hidden">
           {NAV.map((item) => {
             const base = item.href.split("#")[0];
             const active = base !== "/" && pathname.startsWith(base);
@@ -61,6 +61,18 @@ export default function SiteHeader() {
             관리
           </Link>
         </nav>
+
+        {/* 모바일: 검색 바로가기만 (나머지는 하단 탭바) */}
+        <Link
+          href="/search"
+          className="text-muted transition-colors hover:text-bone sm:hidden"
+          aria-label="검색"
+        >
+          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" strokeLinecap="round" />
+          </svg>
+        </Link>
       </div>
     </header>
   );

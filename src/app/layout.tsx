@@ -4,6 +4,8 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import UserDataProvider from "@/components/UserDataProvider";
+import MobileTabBar from "@/components/MobileTabBar";
+import ScrollTop from "@/components/ScrollTop";
 
 // 디스플레이 세리프(라틴) — 잡지 헤드라인 톤
 const display = Fraunces({
@@ -62,6 +64,10 @@ export default function RootLayout({
             {children}
           </main>
           <SiteFooter />
+          {/* 모바일 하단 탭바에 가리지 않도록 여백 */}
+          <div className="h-16 sm:hidden" aria-hidden />
+          <MobileTabBar />
+          <ScrollTop />
         </UserDataProvider>
       </body>
     </html>
