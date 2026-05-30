@@ -18,6 +18,7 @@ import StarInput from "@/components/StarInput";
 import CriticAutoSearch from "@/components/CriticAutoSearch";
 import MoviePoster from "@/components/MoviePoster";
 import WatchHere from "@/components/WatchHere";
+import AwardBadge, { FESTIVAL_LABEL, festivalKeyOf } from "@/components/AwardBadge";
 import type { Award, CriticReview } from "@/types";
 
 export const dynamic = "force-dynamic";
@@ -295,30 +296,45 @@ export default async function MovieDetailPage({
       {/* ── 수상 경력 ───────────────────────────── */}
       <Section title="수상 경력" kicker="Awards" id="awards">
         {awards.length > 0 ? (
-          <ul className="space-y-0">
-            {awards.map((a) => (
-              <li
-                key={a.id}
-                className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-bone/10 py-3 text-sm"
-              >
-                <span className="headline text-base text-accent">
-                  {a.festival}
-                </span>
-                {a.category && <span className="text-bone">{a.category}</span>}
-                {a.year && (
-                  <span className="tabular-nums text-muted">{a.year}</span>
-                )}
-                <span
-                  className={`ml-auto rounded-full px-2 py-0.5 text-xs ${
-                    a.result === "won"
-                      ? "bg-accent/15 text-accent"
-                      : "bg-ink-800 text-muted"
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {awards.map((a) => {
+              const won = a.result === "won";
+              return (
+                <li
+                  key={a.id}
+                  className={`flex items-center gap-4 rounded-md border p-4 ${
+                    won
+                      ? "border-accent/30 bg-accent/[0.06]"
+                      : "border-bone/10 bg-ink-900/40"
                   }`}
                 >
-                  {a.result === "won" ? "수상" : "후보"}
-                </span>
-              </li>
-            ))}
+                  <div className={`shrink-0 ${won ? "" : "opacity-50 grayscale"}`}>
+                    <AwardBadge festival={a.festival} size={48} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="headline text-base text-bone">
+                        {a.festival}
+                      </span>
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[0.65rem] font-medium ${
+                          won ? "bg-accent/20 text-accent" : "bg-ink-800 text-muted"
+                        }`}
+                      >
+                        {won ? "수상" : "후보"}
+                      </span>
+                    </div>
+                    <p className="mt-0.5 truncate text-sm text-bone/85">
+                      {a.category}
+                      {a.year ? <span className="text-muted"> · {a.year}</span> : null}
+                    </p>
+                    <p className="text-[0.65rem] uppercase tracking-wider text-faint">
+                      {FESTIVAL_LABEL[festivalKeyOf(a.festival)]}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <Placeholder text="등록된 수상 정보가 없습니다. 관리자 페이지에서 오스카·칸·베니스·베를린 등 수상 정보를 추가할 수 있습니다." />
