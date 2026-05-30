@@ -490,6 +490,10 @@ export const getSeriesProviders = (id: number) => fetchProviders("tv", id);
 
 // ── OTT로 거르기 (discover with_watch_providers, KR) ──────────
 // TMDb provider id (한국 기준 주요 OTT)
+// NOTE: 쿠팡플레이는 JustWatch(=TMDb 데이터 출처)가 아직 한국 카탈로그를
+//       제공하지 않아 빠져 있다. 추후 JustWatch 가 추가하면 아래에
+//       { key: "coupang", label: "쿠팡플레이", id: <TMDb provider id> } 한 줄만
+//       넣으면 OTT 탭/필터에 자동 노출된다. (크롤링 등 비공식 수집은 하지 않음)
 export const OTT_PROVIDERS: { key: string; label: string; id: number }[] = [
   { key: "netflix", label: "넷플릭스", id: 8 },
   { key: "disney", label: "디즈니+", id: 337 },
