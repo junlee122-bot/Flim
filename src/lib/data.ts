@@ -199,8 +199,91 @@ export async function getApprovedReviews(
   return (data as CriticReview[]) ?? [];
 }
 
+// 평론가 한 명의 평론 전체 (영화 정보 포함) — /critics/[slug] 용
+export async function getCriticReviews(criticName: string): Promise<
+  { review: CriticReview; movie: MovieRow }[]
+> {
+  const sb = await getSupabaseServer();
+  if (!sb) return [];
+  const { data } = await sb
+    .from("critic_reviews")
+    .select("*, movies(*)")
+    .eq("critic_name", criticName)
+    .eq("status", "approved")
+    .order("rating", { ascending: false, nullsFirst: false });
+  const rows =
+    (data as unknown as (CriticReview & { movies: MovieRow | null })[]) ?? [];
+  return rows
+    .filter((r) => r.movies)
+    .map((r) => {
+      const { movies, ...review } = r;
+      return { review: review as CriticReview, movie: movies as MovieRow };
+    });
+}
+
+// 평론가별 통계 (평론 수·평균 별점) — 평론가 인덱스용
+export async function getCriticStats(): Promise<
+  { name: string; count: number; avg: number }[]
+> {
+  const sb = await getSupabaseServer();
+  if (!sb) return [];
+  const { data } = await sb
+    .from("critic_reviews")
+    .select("critic_name, rating")
+    .eq("status", "approved");
+  const rows = (data as { critic_name: string; rating: number | null }[]) ?? [];
+  const map = new Map<string, { sum: number; n: number; rated: number }>();
+  for (const r of rows) {
+    const e = map.get(r.critic_name) ?? { sum: 0, n: 0, rated: 0 };
+    e.n += 1;
+    if (r.rating != null) {
+      e.sum += Number(r.rating);
+      e.rated += 1;
+    }
+    map.set(r.critic_name, e);
+  }
+  return [...map.entries()]
+    .map(([name, e]) => ({
+      name,
+      count: e.n,
+      avg: e.rated ? Math.round((e.sum / e.rated) * 10) / 10 : 0,
+    }))
+    .sort((a, b) => b.count - a.count);
+}
+
+// 전체 수상작 (영화제 통합 허브용) — 영화별로 묶어 수상 내역 집계
+export async function getAllAwards(): Promise<
+  { movie: MovieRow; awards: { festival: string; category: string | null; year: number | null }[] }[]
+> {
+  const sb = await getSupabaseServer();
+  if (!sb) return [];
+  const { data } = await sb
+    .from("awards")
+    .select("festival, category, year, result, movies(*)")
+    .eq("result", "won")
+    .order("year", { ascending: false });
+  const rows =
+    (data as unknown as {
+      festival: string;
+      category: string | null;
+      year: number | null;
+      movies: MovieRow | null;
+    }[]) ?? [];
+  const byMovie = new Map<string, { movie: MovieRow; awards: any[] }>();
+  for (const r of rows) {
+    if (!r.movies) continue;
+    const key = r.movies.id;
+    if (!byMovie.has(key)) byMovie.set(key, { movie: r.movies, awards: [] });
+    byMovie.get(key)!.awards.push({ festival: r.festival, category: r.category, year: r.year });
+  }
+  // 수상 많은 순(그랜드슬램 우선) → 최신순
+  return [...byMovie.values()].sort((a, b) => {
+    if (b.awards.length !== a.awards.length) return b.awards.length - a.awards.length;
+    return (b.awards[0]?.year ?? 0) - (a.awards[0]?.year ?? 0);
+  });
+}
+
 // 특정 영화제의 수상/후보작 — awards 를 영화 정보와 함께 묶어 반환.
-// keywords: DB festival 값에 부분일치할 키워드들(예: ["칸","Cannes"]).
 export async function getFestivalWinners(keywords: string[]): Promise<
   {
     movie: MovieRow;

@@ -33,8 +33,11 @@ export default function SiteFooter() {
             <Link href="/festivals" className="block w-fit text-muted link-underline">
               영화제
             </Link>
-            <Link href="/search" className="block w-fit text-muted link-underline">
-              검색
+            <Link href="/awards" className="block w-fit text-muted link-underline">
+              수상작
+            </Link>
+            <Link href="/critics" className="block w-fit text-muted link-underline">
+              평론가
             </Link>
             <Link href="/my" className="block w-fit text-muted link-underline">
               마이 페이지
