@@ -81,6 +81,11 @@ export default function MyPage() {
           <span className="text-muted">
             봤어요 <span className="tabular-nums text-accent">{watched.length}</span>편
           </span>
+          {rated.length > 0 && (
+            <Link href="/my/top" className="link-underline text-accent">
+              내 인생영화 TOP 10 →
+            </Link>
+          )}
         </div>
       </header>
 

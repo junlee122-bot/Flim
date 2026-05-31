@@ -18,6 +18,7 @@ import StarInput from "@/components/StarInput";
 import CriticAutoSearch from "@/components/CriticAutoSearch";
 import MoviePoster from "@/components/MoviePoster";
 import WatchHere from "@/components/WatchHere";
+import CompareButton from "@/components/CompareButton";
 import AwardBadge, { FESTIVAL_LABEL, festivalKeyOf } from "@/components/AwardBadge";
 import type { Award, CriticReview } from "@/types";
 
@@ -174,14 +175,15 @@ export default async function MovieDetailPage({
               />
             </div>
 
-            {/* 내 별점 */}
-            <div className="pt-1">
+            {/* 내 별점 + 비교 */}
+            <div className="flex flex-wrap items-center gap-4 pt-1">
               <StarInput
                 tmdbId={detail.tmdbId}
                 title={detail.title}
                 posterUrl={detail.posterUrl}
                 year={detail.year}
               />
+              <CompareButton tmdbId={detail.tmdbId} />
             </div>
           </div>
         </div>

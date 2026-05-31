@@ -89,9 +89,12 @@ export default async function HomePage() {
           <Link href="/now" className="link-underline text-muted">
             최신·추천작 →
           </Link>
-          <Link href="/curations" className="link-underline text-muted">
-            큐레이션 →
+          <Link href="/awards" className="link-underline text-muted">
+            수상작 →
           </Link>
+          <a href="/random" className="link-underline text-muted">
+            🎲 랜덤
+          </a>
           <span className="text-xs text-faint">
             영화 {curations.length}개 컬렉션 · TMDb 전체 검색
           </span>
