@@ -4,7 +4,7 @@ export type Festival = {
   slug: string;
   name: string; // 한글 정식 명칭
   origName: string; // 원어/영문
-  badge: "oscar" | "cannes" | "venice" | "berlin";
+  badge: "oscar" | "cannes" | "venice" | "berlin" | "globe" | "bafta";
   topPrize: string; // 최고상 이름
   country: string;
   since: number;
@@ -77,6 +77,39 @@ export const FESTIVALS: Festival[] = [
     koreaNote: "2007년 박찬욱 감독이 〈싸이보그지만 괜찮아〉로 알프레드 바우어상을, 2020·2021·2022년에는 홍상수 감독이 감독상·각본상·심사위원대상을 잇따라 받으며 베를린의 단골 수상자가 되었어요.",
   },
 ];
+
+FESTIVALS.push(
+  {
+    slug: "globe",
+    name: "골든 글로브",
+    origName: "Golden Globe Awards",
+    badge: "globe",
+    topPrize: "작품상 (드라마/뮤지컬·코미디)",
+    country: "미국",
+    since: 1944,
+    month: "매년 1월",
+    blurb: "할리우드 외신기자단이 뽑는, 오스카의 풍향계.",
+    description:
+      "미국에서 활동하는 외신기자단(HFPA)이 영화와 TV를 함께 시상하는 행사예요. 매년 1월에 열려 시상식 시즌의 문을 열고, 결과가 그해 아카데미를 가늠하는 지표로 자주 인용됩니다. 영화 부문은 ‘드라마’와 ‘뮤지컬·코미디’를 나눠 작품상을 시상하는 점이 독특해요. 시상식 분위기가 자유롭기로도 유명합니다.",
+    matchFestivals: ["골든글로브", "골든 글로브", "Golden Globe"],
+    koreaNote: "2021년 정이삭 감독의 〈미나리〉가 외국어영화상을 받았고, 2022년 〈오징어 게임〉의 오영수가 한국 배우 최초로 TV 부문 남우조연상을 수상했어요.",
+  },
+  {
+    slug: "bafta",
+    name: "영국 아카데미 (BAFTA)",
+    origName: "British Academy Film Awards",
+    badge: "bafta",
+    topPrize: "작품상 (Best Film)",
+    country: "영국",
+    since: 1949,
+    month: "매년 2월",
+    blurb: "영국 영화·TV 예술의 최고 권위. ‘영국의 오스카’.",
+    description:
+      "영국 영화텔레비전예술아카데미(BAFTA)가 주관하는 시상식으로, 가면 형태의 트로피로 상징돼요. ‘영국의 오스카’로 불리며, 아카데미 직전에 열려 수상 결과가 오스카와 자주 겹칩니다. 영국 영화에 주는 별도 부문이 있는 것도 특징이에요.",
+    matchFestivals: ["BAFTA", "영국 아카데미"],
+    koreaNote: "2020년 봉준호 감독의 〈기생충〉이 외국어영화상과 각본상을 받았어요.",
+  },
+);
 
 export function getFestival(slug: string): Festival | undefined {
   return FESTIVALS.find((f) => f.slug === slug);

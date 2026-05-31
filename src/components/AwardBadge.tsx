@@ -1,8 +1,12 @@
 // 영화제별 상징 아이콘(골드 SVG). 실제 트로피 사진 대신 저작권 안전한 심볼.
 //   오스카=트로피, 칸=황금종려잎, 베니스=황금사자, 베를린=황금곰, 기타=월계관
 
-function festivalKey(name: string): "oscar" | "cannes" | "venice" | "berlin" | "generic" {
+function festivalKey(
+  name: string,
+): "oscar" | "cannes" | "venice" | "berlin" | "globe" | "bafta" | "generic" {
   const n = name.toLowerCase();
+  if (n.includes("bafta") || n.includes("영국 아카데미")) return "bafta";
+  if (n.includes("골든") || n.includes("globe")) return "globe";
   if (n.includes("아카데미") || n.includes("oscar") || n.includes("academy")) return "oscar";
   if (n.includes("칸") || n.includes("cannes")) return "cannes";
   if (n.includes("베니스") || n.includes("venice")) return "venice";
@@ -15,6 +19,8 @@ export const FESTIVAL_LABEL: Record<string, string> = {
   cannes: "Cannes",
   venice: "Venezia",
   berlin: "Berlinale",
+  globe: "Golden Globes",
+  bafta: "BAFTA",
   generic: "Award",
 };
 
@@ -89,6 +95,33 @@ export default function AwardBadge({
         <circle cx="20" cy="20" r="1.4" fill={deep} />
         <circle cx="28" cy="20" r="1.4" fill={deep} />
         <circle cx="24" cy="25" r="2" fill={deep} />
+      </svg>
+    );
+
+  if (k === "globe")
+    // 골든 글로브 — 받침대 위 지구본
+    return (
+      <svg viewBox="0 0 48 48" style={s} aria-hidden>
+        <rect x="14" y="40" width="20" height="5" rx="1" fill={deep} />
+        <rect x="20" y="36" width="8" height="5" fill={gold} />
+        <circle cx="24" cy="20" r="13" fill={gold} />
+        <g fill="none" stroke={deep} strokeWidth="1.4">
+          <ellipse cx="24" cy="20" rx="5.5" ry="13" />
+          <line x1="11" y1="20" x2="37" y2="20" />
+          <path d="M13 13h22M13 27h22" />
+        </g>
+      </svg>
+    );
+
+  if (k === "bafta")
+    // BAFTA — 가면(mask)
+    return (
+      <svg viewBox="0 0 48 48" style={s} aria-hidden>
+        <rect x="16" y="40" width="16" height="5" rx="1" fill={deep} />
+        <path d="M24 8c-8 0-13 5-13 14 0 7 6 12 13 12s13-5 13-12c0-9-5-14-13-14z" fill={gold} />
+        <ellipse cx="18.5" cy="22" rx="3" ry="2.2" fill={deep} />
+        <ellipse cx="29.5" cy="22" rx="3" ry="2.2" fill={deep} />
+        <path d="M20 29q4 3 8 0" stroke={deep} strokeWidth="1.6" fill="none" strokeLinecap="round" />
       </svg>
     );
 
