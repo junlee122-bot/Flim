@@ -1,6 +1,20 @@
-import { getSupabaseServer } from "./supabase/server";
-import { getSupabaseAdmin } from "./supabase/admin";
-import { getMovieDetail } from "./tmdb";
+import {
+  movies,
+  series,
+  curations as allCurations,
+  curationBySlug,
+  curationById,
+  linksByCuration,
+  curationIdsByMovie,
+  movieById,
+  movieByTmdb,
+  awardsByMovie,
+  allAwards,
+  approvedReviews,
+  approvedReviewsByMovie,
+  dailyPicksList,
+  type MovieFull,
+} from "./store";
 import type {
   Award,
   CriticReview,
@@ -12,48 +26,26 @@ import type {
 } from "@/types";
 
 // =============================================================
-// Supabase 데이터 접근 헬퍼.
-// 모든 함수는 Supabase 미설정 시 빈 값으로 안전하게 폴백한다.
+// 데이터 접근 헬퍼 — 정적 JSON 스냅샷(src/data) 기반.
+// 함수 시그니처는 기존 Supabase 버전과 동일(async)하게 유지한다.
 // =============================================================
+
+const byWeighted = (a: MovieFull, b: MovieFull) =>
+  (b.weighted_rating ?? 0) - (a.weighted_rating ?? 0);
 
 // 큐레이션 목록 (메인/큐레이션 페이지)
 export async function getCurations(): Promise<Curation[]> {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  const { data } = await sb
-    .from("curations")
-    .select("*")
-    .eq("is_published", true)
-    .order("sort_order", { ascending: true });
-  return (data as Curation[]) ?? [];
+  return allCurations
+    .filter((c) => c.is_published !== false)
+    .sort((a, b) => a.sort_order - b.sort_order);
 }
 
 // 큐레이션 목록 + 각 큐레이션의 대표 포스터(최대 4장) + 총 편수.
-// 한 번의 조인 쿼리로 가져온 뒤 메모리에서 묶는다.
 export async function getCurationsWithPosters(): Promise<CurationWithPosters[]> {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  const { data } = await sb
-    .from("curations")
-    .select(
-      "id, slug, title, description, cover_image, sort_order, curation_movies(position, movies(poster_path))",
-    )
-    .eq("is_published", true)
-    .order("sort_order", { ascending: true });
-
-  type Row = Curation & {
-    curation_movies: {
-      position: number | null;
-      movies: { poster_path: string | null } | null;
-    }[];
-  };
-
-  return ((data as unknown as Row[]) ?? []).map((c) => {
-    const links = [...(c.curation_movies ?? [])].sort(
-      (a, b) => (a.position ?? 0) - (b.position ?? 0),
-    );
+  return (await getCurations()).map((c) => {
+    const links = linksByCuration.get(c.id) ?? [];
     const posters = links
-      .map((l) => l.movies?.poster_path)
+      .map((l) => movieById.get(l.movie_id)?.poster_path)
       .filter((p): p is string => Boolean(p))
       .slice(0, 4);
     return {
@@ -64,7 +56,7 @@ export async function getCurationsWithPosters(): Promise<CurationWithPosters[]> 
       cover_image: c.cover_image,
       sort_order: c.sort_order,
       posters,
-      count: c.curation_movies?.length ?? 0,
+      count: links.length,
     };
   });
 }
@@ -72,58 +64,31 @@ export async function getCurationsWithPosters(): Promise<CurationWithPosters[]> 
 export async function getCurationBySlug(
   slug: string,
 ): Promise<{ curation: Curation; movies: MovieRow[] } | null> {
-  const sb = await getSupabaseServer();
-  if (!sb) return null;
-  const { data: curation } = await sb
-    .from("curations")
-    .select("*")
-    .eq("slug", slug)
-    .single();
+  const curation = curationBySlug.get(slug);
   if (!curation) return null;
-  const { data: rows } = await sb
-    .from("curation_movies")
-    .select("position, movies(*)")
-    .eq("curation_id", (curation as Curation).id)
-    .order("position", { ascending: true });
-  const movies = ((rows as unknown as { movies: MovieRow }[]) ?? [])
-    .map((r) => r.movies)
-    .filter(Boolean);
-  return { curation: curation as Curation, movies };
+  const links = linksByCuration.get(curation.id) ?? [];
+  const movieRows = links
+    .map((l) => movieById.get(l.movie_id))
+    .filter((m): m is MovieFull => Boolean(m));
+  return { curation, movies: movieRows };
 }
 
 // 오늘의 추천 영화 — 관리자 지정 > 없으면 null
 export async function getDailyPick(): Promise<MovieRow | null> {
-  const sb = await getSupabaseServer();
-  if (!sb) return null;
   const today = new Date().toISOString().slice(0, 10);
-  const { data } = await sb
-    .from("daily_picks")
-    .select("reason, movies(*)")
-    .eq("pick_date", today)
-    .maybeSingle();
-  const row = data as unknown as { movies: MovieRow } | null;
-  return row?.movies ?? null;
+  const pick = dailyPicksList.find((p) => p.pick_date === today);
+  if (!pick) return null;
+  return movieById.get(pick.movie_id) ?? null;
 }
 
 // 이 영화(로컬 movie 행)가 속한 큐레이션 목록 (상세 페이지 탐색용)
 export async function getCurationsForMovie(
   movieDbId: string,
 ): Promise<Pick<Curation, "slug" | "title">[]> {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  const { data } = await sb
-    .from("curation_movies")
-    .select("curations(slug, title, is_published)")
-    .eq("movie_id", movieDbId);
-  const rows =
-    (data as unknown as {
-      curations: { slug: string; title: string; is_published: boolean } | null;
-    }[]) ?? [];
-  return rows
-    .map((r) => r.curations)
-    .filter((c): c is { slug: string; title: string; is_published: boolean } =>
-      Boolean(c && c.is_published !== false),
-    )
+  const ids = curationIdsByMovie.get(movieDbId) ?? [];
+  return ids
+    .map((id) => curationById.get(id))
+    .filter((c): c is Curation => Boolean(c && c.is_published !== false))
     .map((c) => ({ slug: c.slug, title: c.title }));
 }
 
@@ -141,99 +106,72 @@ export async function pickMovies(
   filter: PickFilter,
   count = 3,
 ): Promise<MovieRow[]> {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  let q = sb
-    .from("movies")
-    .select("*")
-    .gte("vote_count", 200)
-    .not("poster_path", "is", null);
+  const exclude = new Set(filter.excludeTmdbIds ?? []);
+  let pool = movies.filter(
+    (m) => m.vote_count >= 200 && m.poster_path && !exclude.has(m.tmdb_id),
+  );
 
   if (filter.genres && filter.genres.length > 0) {
-    q = q.overlaps("genres", filter.genres);
+    const want = new Set(filter.genres);
+    pool = pool.filter((m) => (m.genres ?? []).some((g) => want.has(g)));
   }
   if (filter.decade) {
-    const dec = parseInt(filter.decade, 10);
-    if (Number.isFinite(dec)) {
-      if (filter.decade === "older") q = q.lte("release_year", 1959);
-      else q = q.gte("release_year", dec).lte("release_year", dec + 9);
+    if (filter.decade === "older") {
+      pool = pool.filter((m) => (m.release_year ?? 9999) <= 1959);
+    } else {
+      const dec = parseInt(filter.decade, 10);
+      if (Number.isFinite(dec)) {
+        pool = pool.filter(
+          (m) =>
+            (m.release_year ?? 0) >= dec && (m.release_year ?? 0) <= dec + 9,
+        );
+      }
     }
   }
-  if (filter.maxRuntime) q = q.lte("runtime", filter.maxRuntime).gt("runtime", 0);
-  if (filter.minRating) q = q.gte("tmdb_rating", filter.minRating);
+  if (filter.maxRuntime)
+    pool = pool.filter((m) => (m.runtime ?? 0) > 0 && (m.runtime ?? 0) <= filter.maxRuntime!);
+  if (filter.minRating)
+    pool = pool.filter((m) => (m.tmdb_rating ?? 0) >= filter.minRating!);
 
-  // 본 영화 제외 (PostgREST not.in)
-  if (filter.excludeTmdbIds && filter.excludeTmdbIds.length > 0) {
-    q = q.not("tmdb_id", "in", `(${filter.excludeTmdbIds.join(",")})`);
-  }
+  const top = [...pool].sort(byWeighted).slice(0, 150);
+  if (top.length === 0) return [];
 
-  // 가중평점 상위 150편을 풀로 가져와 시드 셔플 → count 편
-  const { data } = await q
-    .order("weighted_rating", { ascending: false, nullsFirst: false })
-    .limit(150);
-  const pool = (data as MovieRow[]) ?? [];
-  if (pool.length === 0) return [];
-
-  // 시드 기반 셔플 (같은 시드=같은 결과, 재추첨 시 시드 변경)
+  // 시드 기반 셔플 (같은 시드=같은 결과)
   let s = (filter.seed ?? 1) * 9301 + 49297;
   const rng = () => {
     s = (s * 9301 + 49297) % 233280;
     return s / 233280;
   };
-  const shuffled = [...pool].sort(() => rng() - 0.5);
-  return shuffled.slice(0, count);
+  return [...top].sort(() => rng() - 0.5).slice(0, count);
 }
 
 // 승인된 평론만 (상세 페이지 공개용)
 export async function getApprovedReviews(
   movieDbId: string,
 ): Promise<CriticReview[]> {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  const { data } = await sb
-    .from("critic_reviews")
-    .select("*")
-    .eq("movie_id", movieDbId)
-    .eq("status", "approved")
-    .order("confidence_score", { ascending: false });
-  return (data as CriticReview[]) ?? [];
+  const list = approvedReviewsByMovie.get(movieDbId) ?? [];
+  return [...list].sort(
+    (a, b) => (b.confidence_score ?? 0) - (a.confidence_score ?? 0),
+  );
 }
 
 // 평론가 한 명의 평론 전체 (영화 정보 포함) — /critics/[slug] 용
 export async function getCriticReviews(criticName: string): Promise<
   { review: CriticReview; movie: MovieRow }[]
 > {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  const { data } = await sb
-    .from("critic_reviews")
-    .select("*, movies(*)")
-    .eq("critic_name", criticName)
-    .eq("status", "approved")
-    .order("rating", { ascending: false, nullsFirst: false });
-  const rows =
-    (data as unknown as (CriticReview & { movies: MovieRow | null })[]) ?? [];
-  return rows
-    .filter((r) => r.movies)
-    .map((r) => {
-      const { movies, ...review } = r;
-      return { review: review as CriticReview, movie: movies as MovieRow };
-    });
+  return approvedReviews
+    .filter((r) => r.critic_name === criticName)
+    .map((review) => ({ review, movie: movieById.get(review.movie_id) }))
+    .filter((x): x is { review: CriticReview; movie: MovieFull } => Boolean(x.movie))
+    .sort((a, b) => (b.review.rating ?? 0) - (a.review.rating ?? 0));
 }
 
 // 평론가별 통계 (평론 수·평균 별점) — 평론가 인덱스용
 export async function getCriticStats(): Promise<
   { name: string; count: number; avg: number }[]
 > {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  const { data } = await sb
-    .from("critic_reviews")
-    .select("critic_name, rating")
-    .eq("status", "approved");
-  const rows = (data as { critic_name: string; rating: number | null }[]) ?? [];
   const map = new Map<string, { sum: number; n: number; rated: number }>();
-  for (const r of rows) {
+  for (const r of approvedReviews) {
     const e = map.get(r.critic_name) ?? { sum: 0, n: 0, rated: 0 };
     e.n += 1;
     if (r.rating != null) {
@@ -255,26 +193,22 @@ export async function getCriticStats(): Promise<
 export async function getAllAwards(): Promise<
   { movie: MovieRow; awards: { festival: string; category: string | null; year: number | null }[] }[]
 > {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  const { data } = await sb
-    .from("awards")
-    .select("festival, category, year, result, movies(*)")
-    .eq("result", "won")
-    .order("year", { ascending: false });
-  const rows =
-    (data as unknown as {
-      festival: string;
-      category: string | null;
-      year: number | null;
-      movies: MovieRow | null;
-    }[]) ?? [];
-  const byMovie = new Map<string, { movie: MovieRow; awards: any[] }>();
-  for (const r of rows) {
-    if (!r.movies) continue;
-    const key = r.movies.id;
-    if (!byMovie.has(key)) byMovie.set(key, { movie: r.movies, awards: [] });
-    byMovie.get(key)!.awards.push({ festival: r.festival, category: r.category, year: r.year });
+  const byMovie = new Map<
+    string,
+    { movie: MovieRow; awards: { festival: string; category: string | null; year: number | null }[] }
+  >();
+  for (const a of allAwards) {
+    if (a.result !== "won") continue;
+    const movie = movieById.get(a.movie_id);
+    if (!movie) continue;
+    if (!byMovie.has(a.movie_id)) byMovie.set(a.movie_id, { movie, awards: [] });
+    byMovie
+      .get(a.movie_id)!
+      .awards.push({ festival: a.festival, category: a.category, year: a.year });
+  }
+  // 각 영화의 수상은 최신순
+  for (const v of byMovie.values()) {
+    v.awards.sort((x, y) => (y.year ?? 0) - (x.year ?? 0));
   }
   // 수상 많은 순(그랜드슬램 우선) → 최신순
   return [...byMovie.values()].sort((a, b) => {
@@ -292,82 +226,36 @@ export async function getFestivalWinners(keywords: string[]): Promise<
     result: string;
   }[]
 > {
-  const sb = await getSupabaseServer();
-  if (!sb || keywords.length === 0) return [];
-  // festival ilike OR 조건
-  const or = keywords.map((k) => `festival.ilike.*${k}*`).join(",");
-  const { data } = await sb
-    .from("awards")
-    .select("festival, category, year, result, movies(*)")
-    .or(or)
-    .order("year", { ascending: false });
-  const rows =
-    (data as unknown as {
-      category: string | null;
-      year: number | null;
-      result: string;
-      movies: MovieRow | null;
-    }[]) ?? [];
-  return rows
-    .filter((r) => r.movies)
-    .map((r) => ({
-      movie: r.movies as MovieRow,
-      category: r.category,
-      year: r.year,
-      result: r.result,
-    }));
+  if (keywords.length === 0) return [];
+  const kws = keywords.map((k) => k.toLowerCase());
+  return allAwards
+    .filter((a) => kws.some((k) => a.festival.toLowerCase().includes(k)))
+    .map((a) => ({
+      movie: movieById.get(a.movie_id),
+      category: a.category,
+      year: a.year,
+      result: a.result,
+    }))
+    .filter(
+      (x): x is { movie: MovieFull; category: string | null; year: number | null; result: string } =>
+        Boolean(x.movie),
+    )
+    .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 }
 
 export async function getAwards(movieDbId: string): Promise<Award[]> {
-  const sb = await getSupabaseServer();
-  if (!sb) return [];
-  const { data } = await sb
-    .from("awards")
-    .select("*")
-    .eq("movie_id", movieDbId)
-    .order("year", { ascending: false });
-  return (data as Award[]) ?? [];
+  const list = awardsByMovie.get(movieDbId) ?? [];
+  return [...list].sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 }
 
-// tmdb_id 로 로컬 movie 행을 찾고, 없으면 TMDb 에서 가져와 upsert.
-// 평론/수상을 붙이려면 movies 행이 반드시 필요하므로 이 헬퍼가 보장한다.
+// tmdb_id 로 로컬 movie 행을 찾는다. (정적 스냅샷이라 신규 생성은 없음 — 없으면 null)
+// detail 인자는 기존 호환을 위해 유지하되 사용하지 않는다.
 export async function ensureMovieRow(
   tmdbId: number,
-  detail?: MovieDetail | null,
+  _detail?: MovieDetail | null,
 ): Promise<MovieRow | null> {
-  const admin = getSupabaseAdmin();
-  if (!admin) return null;
-
-  const { data: existing } = await admin
-    .from("movies")
-    .select("*")
-    .eq("tmdb_id", tmdbId)
-    .maybeSingle();
-  if (existing) return existing as MovieRow;
-
-  const d = detail ?? (await getMovieDetail(tmdbId));
-  if (!d) return null;
-
-  const { data: inserted } = await admin
-    .from("movies")
-    .insert({
-      tmdb_id: d.tmdbId,
-      imdb_id: d.imdbId,
-      title: d.title,
-      original_title: d.originalTitle,
-      release_year: d.year,
-      director: d.director,
-      country: d.country,
-      runtime: d.runtime,
-      overview: d.overview,
-      poster_path: d.posterUrl,
-      backdrop_path: d.backdropUrl,
-      genres: d.genres,
-      tmdb_rating: d.tmdbRating,
-    })
-    .select("*")
-    .single();
-  return (inserted as MovieRow) ?? null;
+  void _detail;
+  return movieByTmdb.get(tmdbId) ?? null;
 }
 
 // 전체 카탈로그 둘러보기 — 적재된 movies 를 정렬/페이지네이션.
@@ -378,58 +266,61 @@ export async function browseMovies(opts: {
   pageSize?: number;
   minRating?: number; // tmdb_rating 하한 (별점 기준 필터)
 }): Promise<{ movies: MovieRow[]; total: number }> {
-  const sb = await getSupabaseServer();
-  if (!sb) return { movies: [], total: 0 };
   const page = Math.max(1, opts.page ?? 1);
   const size = opts.pageSize ?? 36;
   const fromIdx = (page - 1) * size;
-  const toIdx = fromIdx + size - 1;
 
-  let query = sb.from("movies").select("*", { count: "exact" });
-  // 별점 기준 필터 (적용 시 신뢰도 위해 투표수 게이트도 함께)
+  let pool = movies;
   if (opts.minRating) {
-    query = query.gte("tmdb_rating", opts.minRating).gte("vote_count", 300);
+    pool = pool.filter(
+      (m) => (m.tmdb_rating ?? 0) >= opts.minRating! && m.vote_count >= 300,
+    );
   }
+
+  let sorted: MovieFull[];
   if (opts.sort === "year") {
-    query = query.order("release_year", { ascending: false, nullsFirst: false });
+    sorted = [...pool].sort(
+      (a, b) => (b.release_year ?? 0) - (a.release_year ?? 0),
+    );
   } else if (opts.sort === "title") {
-    query = query.order("title", { ascending: true });
+    sorted = [...pool].sort((a, b) => a.title.localeCompare(b.title));
   } else if (opts.sort === "popular") {
-    query = query.order("popularity", { ascending: false, nullsFirst: false });
+    sorted = [...pool].sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0));
   } else {
-    // 평점순: 베이지안 가중평점(weighted_rating) 으로 정렬 — 투표가 적을수록
-    // 전체 평균 쪽으로 보정되어, 소수 표로 평점만 높은 마이너작이 위로 오지 않는다.
-    // 최소한의 신뢰도 게이트(투표 100+)도 함께 적용.
-    query = query
-      .gte("vote_count", 100)
-      .order("weighted_rating", { ascending: false, nullsFirst: false })
-      .order("vote_count", { ascending: false });
+    // 평점순: 베이지안 가중평점 + 최소 신뢰도 게이트(투표 100+).
+    sorted = [...pool]
+      .filter((m) => m.vote_count >= 100)
+      .sort((a, b) => byWeighted(a, b) || b.vote_count - a.vote_count);
   }
-  const { data, count } = await query.range(fromIdx, toIdx);
-  return { movies: (data as MovieRow[]) ?? [], total: count ?? 0 };
+
+  return {
+    movies: sorted.slice(fromIdx, fromIdx + size),
+    total: sorted.length,
+  };
 }
 
 // ── TV 시리즈 ──────────────────────────────────────────
-// 적재된 series 목록 (정렬/페이지네이션). 장르 필터 옵션.
 export async function browseSeries(opts: {
   page?: number;
   pageSize?: number;
   genre?: string;
   sort?: "rating" | "popular";
 }): Promise<{ series: SeriesRow[]; total: number }> {
-  const sb = await getSupabaseServer();
-  if (!sb) return { series: [], total: 0 };
   const page = Math.max(1, opts.page ?? 1);
   const size = opts.pageSize ?? 30;
   const fromIdx = (page - 1) * size;
-  let q = sb.from("series").select("*", { count: "exact" }).not("poster_path", "is", null);
-  if (opts.genre) q = q.overlaps("genres", [opts.genre]);
-  q =
+
+  let pool = series.filter((s) => s.poster_path);
+  if (opts.genre) pool = pool.filter((s) => (s.genres ?? []).includes(opts.genre!));
+  const sorted =
     opts.sort === "popular"
-      ? q.order("popularity", { ascending: false, nullsFirst: false })
-      : q.order("weighted_rating", { ascending: false, nullsFirst: false });
-  const { data, count } = await q.range(fromIdx, fromIdx + size - 1);
-  return { series: (data as SeriesRow[]) ?? [], total: count ?? 0 };
+      ? [...pool].sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
+      : [...pool].sort((a, b) => (b.weighted_rating ?? 0) - (a.weighted_rating ?? 0));
+
+  return {
+    series: sorted.slice(fromIdx, fromIdx + size),
+    total: sorted.length,
+  };
 }
 
 // 특정 장르(들) 영화 — 가중평점순, 페이지네이션. (애니메이션 등 장르 허브용)
@@ -438,31 +329,34 @@ export async function getMoviesByGenre(opts: {
   page?: number;
   pageSize?: number;
   minVotes?: number;
-  lang?: string; // 원어 필터 (ja/ko/en) — movies 에 original_language 없으니 country 근사
+  lang?: string; // 원어 근사 (ja/ko/en) — country 로 근사
   extraGenres?: string[]; // 추가로 반드시 겹쳐야 하는 장르 (하위 장르 필터)
 }): Promise<{ movies: MovieRow[]; total: number }> {
-  const sb = await getSupabaseServer();
-  if (!sb || opts.genres.length === 0) return { movies: [], total: 0 };
+  if (opts.genres.length === 0) return { movies: [], total: 0 };
   const page = Math.max(1, opts.page ?? 1);
   const size = opts.pageSize ?? 36;
   const fromIdx = (page - 1) * size;
-  let q = sb
-    .from("movies")
-    .select("*", { count: "exact" })
-    .overlaps("genres", opts.genres)
-    .gte("vote_count", opts.minVotes ?? 100)
-    .not("poster_path", "is", null);
-  if (opts.extraGenres && opts.extraGenres.length > 0)
-    q = q.overlaps("genres", opts.extraGenres);
-  // 언어 근사: 한국/일본=국가 일치, 서양=동아시아 제외
-  if (opts.lang === "ja") q = q.eq("country", "일본");
-  else if (opts.lang === "ko") q = q.eq("country", "대한민국");
-  else if (opts.lang === "en")
-    q = q.not("country", "in", "(일본,대한민국,중국,홍콩,대만)");
-  const { data, count } = await q
-    .order("weighted_rating", { ascending: false, nullsFirst: false })
-    .range(fromIdx, fromIdx + size - 1);
-  return { movies: (data as MovieRow[]) ?? [], total: count ?? 0 };
+  const minVotes = opts.minVotes ?? 100;
+  const want = new Set(opts.genres);
+  const extra = opts.extraGenres ? new Set(opts.extraGenres) : null;
+  const eastAsia = new Set(["일본", "대한민국", "중국", "홍콩", "대만"]);
+
+  const pool = movies.filter((m) => {
+    if (m.vote_count < minVotes || !m.poster_path) return false;
+    const g = m.genres ?? [];
+    if (!g.some((x) => want.has(x))) return false;
+    if (extra && !g.some((x) => extra.has(x))) return false;
+    if (opts.lang === "ja" && m.country !== "일본") return false;
+    if (opts.lang === "ko" && m.country !== "대한민국") return false;
+    if (opts.lang === "en" && m.country && eastAsia.has(m.country)) return false;
+    return true;
+  });
+  const sorted = [...pool].sort(byWeighted);
+
+  return {
+    movies: sorted.slice(fromIdx, fromIdx + size),
+    total: sorted.length,
+  };
 }
 
 // 지정한 slug 들의 큐레이션(+포스터) 만 추려서 반환. (장르 허브의 추천 컬렉션)
@@ -473,19 +367,12 @@ export async function getCurationsBySlugs(
   const order = new Map(slugs.map((s, i) => [s, i]));
   return all
     .filter((c) => order.has(c.slug))
-    .sort((a, b) => (order.get(a.slug)! - order.get(b.slug)!));
+    .sort((a, b) => order.get(a.slug)! - order.get(b.slug)!);
 }
 
 // tmdb_id → 로컬 movie 행 (읽기 전용, 없으면 null)
 export async function getMovieRowByTmdbId(
   tmdbId: number,
 ): Promise<MovieRow | null> {
-  const sb = await getSupabaseServer();
-  if (!sb) return null;
-  const { data } = await sb
-    .from("movies")
-    .select("*")
-    .eq("tmdb_id", tmdbId)
-    .maybeSingle();
-  return (data as MovieRow) ?? null;
+  return movieByTmdb.get(tmdbId) ?? null;
 }

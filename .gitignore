@@ -10,3 +10,6 @@ next-env.d.ts
 .DS_Store
 .vercel
 scripts/.seed-env
+
+# 내장 데이터 스냅샷 내보내기 산출물(중간물)
+/backup/

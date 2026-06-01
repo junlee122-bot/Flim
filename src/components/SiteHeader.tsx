@@ -52,15 +52,6 @@ export default function SiteHeader() {
               </Link>
             );
           })}
-          <Link
-            href="/admin"
-            className={`link-underline shrink-0 text-faint ${
-              pathname.startsWith("/admin") ? "text-bone" : ""
-            }`}
-            aria-label="관리자"
-          >
-            관리
-          </Link>
         </nav>
 
         {/* 모바일: 검색 바로가기만 (나머지는 하단 탭바) */}

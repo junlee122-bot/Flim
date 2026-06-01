@@ -1,28 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import StarRating from "@/components/StarRating";
 import { useUserData } from "@/components/UserDataProvider";
 
 export default function MyPage() {
-  const { ready, user, ratings, watched, unrate, signIn, signOut } = useUserData();
-  const [email, setEmail] = useState("");
-  const [msg, setMsg] = useState<string | null>(null);
-  const [sending, setSending] = useState(false);
+  const { ready, ratings, watched, unrate } = useUserData();
 
   const rated = Object.values(ratings).sort((a, b) => b.at - a.at);
   const avg = rated.length ? rated.reduce((s, m) => s + m.rating, 0) / rated.length : 0;
-
-  async function onSignIn(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setSending(true);
-    setMsg(null);
-    const r = await signIn(email.trim());
-    setSending(false);
-    setMsg(r === "ok" ? "로그인 링크를 이메일로 보냈어요. 메일함을 확인하세요." : r);
-  }
 
   if (!ready) return <div className="py-20 text-center text-muted">불러오는 중…</div>;
 
@@ -32,42 +18,9 @@ export default function MyPage() {
         <p className="kicker">My Page</p>
         <h1 className="headline mt-2 text-4xl leading-tight sm:text-5xl">마이 페이지</h1>
 
-        {/* 계정 상태 */}
-        <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-          {user ? (
-            <>
-              <span className="text-muted">
-                <span className="text-bone">{user.email}</span> 로 로그인됨 ·{" "}
-                <span className="text-accent">기기 간 동기화 켜짐</span>
-              </span>
-              <button onClick={signOut} className="text-faint underline hover:text-bone">
-                로그아웃
-              </button>
-            </>
-          ) : (
-            <span className="text-muted">
-              이 브라우저에만 저장 중 · 로그인하면 기기 간 동기화됩니다.
-            </span>
-          )}
-        </div>
-
-        {/* 로그인 폼 */}
-        {!user && (
-          <form onSubmit={onSignIn} className="mt-4 flex max-w-md flex-wrap gap-2">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="이메일로 로그인 링크 받기"
-              className="field flex-1"
-            />
-            <button className="btn btn-accent" disabled={sending}>
-              {sending ? "전송 중…" : "링크 받기"}
-            </button>
-          </form>
-        )}
-        {msg && <p className="mt-2 text-sm text-accent-soft">{msg}</p>}
+        <p className="mt-5 text-sm text-muted">
+          별점·봤어요는 이 브라우저에 저장됩니다.
+        </p>
 
         <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm">
           <span className="text-muted">

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "f3f3ed71-f673-4af4-92ff-42b9b635f172",
+    "name": "이동진",
+    "slug": "lee-dong-jin",
+    "default_source": "씨네21",
+    "official_url": null,
+    "active": true,
+    "created_at": "2026-05-29T06:10:26.114741+00:00"
+  },
+  {
+    "id": "86a755d6-222c-4ac4-b55d-f58e9368db0d",
+    "name": "박평식",
+    "slug": "park-pyeong-sik",
+    "default_source": "씨네21",
+    "official_url": null,
+    "active": true,
+    "created_at": "2026-05-29T06:10:26.114741+00:00"
+  },
+  {
+    "id": "a3995cc4-ac37-4e51-9e32-61e1b43a5a37",
+    "name": "김혜리",
+    "slug": "kim-hye-ri",
+    "default_source": "씨네21",
+    "official_url": null,
+    "active": true,
+    "created_at": "2026-05-29T06:10:26.114741+00:00"
+  },
+  {
+    "id": "3b19e638-5d0d-4826-a8f5-78160d30c8a0",
+    "name": "정성일",
+    "slug": "jung-sung-il",
+    "default_source": "씨네21",
+    "official_url": null,
+    "active": true,
+    "created_at": "2026-05-29T06:10:26.114741+00:00"
+  }
+]

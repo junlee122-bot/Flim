@@ -6,7 +6,6 @@ import { getCurationsWithPosters } from "@/lib/data";
 import { getRecommendation } from "@/lib/recommend";
 import { getDailyBoxOffice, koficConfigured } from "@/lib/kofic";
 import { tmdbConfigured } from "@/lib/tmdb";
-import { isSupabaseConfigured } from "@/lib/supabase/server";
 import { groupCurations } from "@/lib/categories";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +22,7 @@ export default async function HomePage() {
     getCurationsWithPosters(),
     getDailyBoxOffice(),
   ]);
-  const needsSetup = !tmdbConfigured() || !isSupabaseConfigured();
+  const needsSetup = !tmdbConfigured();
   const grouped = groupCurations(curations);
 
   // 히어로 배경용 포스터 (큐레이션에서 모아 중복 제거)
@@ -265,16 +264,11 @@ function SetupNotice() {
           <p className="font-medium text-accent">설정이 필요합니다</p>
           <p className="mt-2 leading-relaxed text-bone/80">
             <code className="rounded bg-ink-800 px-1.5 py-0.5 text-xs">.env.local</code>{" "}
-            에 TMDb / Supabase 키를 채우면 실제 데이터가 표시됩니다.{" "}
+            에 TMDb API 키를 채우면 검색·상세 정보가 표시됩니다.{" "}
             <code className="rounded bg-ink-800 px-1.5 py-0.5 text-xs">
               .env.local.example
             </code>{" "}
-            와{" "}
-            <code className="rounded bg-ink-800 px-1.5 py-0.5 text-xs">
-              supabase/schema.sql
-            </code>{" "}
-            을 참고하세요. TMDb 설정 시 검색·상세가, Supabase 설정 시
-            추천·큐레이션·평론이 동작합니다.
+            를 참고하세요. 추천·큐레이션·수상·평론은 내장 데이터로 동작합니다.
           </p>
         </div>
       </div>

@@ -1,0 +1,1692 @@
+[
+  {
+    "id": "fc7dc8a1-8296-4c33-8504-36244dd798c0",
+    "slug": "intro-classics",
+    "title": "입문자를 위한 고전 영화",
+    "description": "영화의 역사를 처음 거슬러 오를 때 길잡이가 되는 작품들. 무엇을 먼저 봐야 할지 막막하다면 여기서부터.",
+    "cover_image": null,
+    "sort_order": 1,
+    "is_published": true,
+    "created_at": "2026-05-29T06:25:33.375887+00:00"
+  },
+  {
+    "id": "71aae267-6410-4b7f-a50a-454060073d63",
+    "slug": "cannes-palme-dor",
+    "title": "칸 황금종려상 수상작",
+    "description": "칸 영화제 최고의 영예, 황금종려상이 호명한 작품들.",
+    "cover_image": null,
+    "sort_order": 2,
+    "is_published": true,
+    "created_at": "2026-05-29T06:26:29.641774+00:00"
+  },
+  {
+    "id": "6e5b17ba-c937-4300-ab31-460d49d99a95",
+    "slug": "a24",
+    "title": "A24 영화",
+    "description": "독립 영화의 새로운 감각. A24가 배급하며 만든 동시대 작가주의의 결들.",
+    "cover_image": null,
+    "sort_order": 3,
+    "is_published": true,
+    "created_at": "2026-05-29T06:26:33.641562+00:00"
+  },
+  {
+    "id": "02353769-5700-4157-95fc-81d28c1937d8",
+    "slug": "hk-90s",
+    "title": "90년대 홍콩영화",
+    "description": "느와르와 멜로, 무협이 뒤섞이던 홍콩영화의 황금기. 그 시절의 색과 음악.",
+    "cover_image": null,
+    "sort_order": 4,
+    "is_published": true,
+    "created_at": "2026-05-29T06:26:37.666554+00:00"
+  },
+  {
+    "id": "82de87ea-f417-4527-9720-a40d202b99b1",
+    "slug": "nouvelle-vague",
+    "title": "프랑스 누벨바그",
+    "description": "1950년대 말, 영화의 문법을 다시 쓴 젊은 작가들. 거리로 나간 카메라와 점프컷의 시대.",
+    "cover_image": null,
+    "sort_order": 5,
+    "is_published": true,
+    "created_at": "2026-05-29T06:37:43.751185+00:00"
+  },
+  {
+    "id": "130982bd-fff8-4104-a042-ef00102a8797",
+    "slug": "bong-joon-ho",
+    "title": "봉준호 감독전",
+    "description": "장르를 비틀고 계급을 응시하는 시선. 봉준호의 세계.",
+    "cover_image": null,
+    "sort_order": 6,
+    "is_published": true,
+    "created_at": "2026-05-29T06:39:49.370959+00:00"
+  },
+  {
+    "id": "926d54cd-a929-41c6-abd6-fcd0c6a74535",
+    "slug": "park-chan-wook",
+    "title": "박찬욱 감독전",
+    "description": "복수와 욕망, 그리고 양식미. 박찬욱의 미장센.",
+    "cover_image": null,
+    "sort_order": 7,
+    "is_published": true,
+    "created_at": "2026-05-29T06:39:54.364476+00:00"
+  },
+  {
+    "id": "cb246d86-10fa-462d-b72a-8e4da9c01138",
+    "slug": "kubrick",
+    "title": "스탠리 큐브릭",
+    "description": "완벽주의자의 차가운 기하학. 장르마다 정점을 찍은 거장.",
+    "cover_image": null,
+    "sort_order": 8,
+    "is_published": true,
+    "created_at": "2026-05-29T06:39:59.573916+00:00"
+  },
+  {
+    "id": "6adaf855-bd9a-4c49-8eb3-5480adabe390",
+    "slug": "fellini",
+    "title": "페데리코 펠리니",
+    "description": "환상과 기억, 서커스 같은 삶. 이탈리아 영화의 마술사.",
+    "cover_image": null,
+    "sort_order": 9,
+    "is_published": true,
+    "created_at": "2026-05-29T06:49:46.911882+00:00"
+  },
+  {
+    "id": "c4caec76-6639-4e1f-987c-846759270305",
+    "slug": "godard",
+    "title": "장뤼크 고다르",
+    "description": "영화를 해체하고 다시 조립한 누벨바그의 혁명가.",
+    "cover_image": null,
+    "sort_order": 10,
+    "is_published": true,
+    "created_at": "2026-05-29T06:49:51.612303+00:00"
+  },
+  {
+    "id": "958167ed-ffa3-440a-8e62-4276c7231dee",
+    "slug": "truffaut",
+    "title": "프랑수아 트뤼포",
+    "description": "영화에 대한 사랑을 영화로 만든 시네필의 원형.",
+    "cover_image": null,
+    "sort_order": 11,
+    "is_published": true,
+    "created_at": "2026-05-29T06:49:56.404174+00:00"
+  },
+  {
+    "id": "399c09e2-f07b-4563-98f4-2cf5f5f016de",
+    "slug": "antonioni",
+    "title": "미켈란젤로 안토니오니",
+    "description": "현대인의 권태와 소외를 응시한 모더니즘의 거장.",
+    "cover_image": null,
+    "sort_order": 12,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:01.896838+00:00"
+  },
+  {
+    "id": "0e7d0fd4-8565-49da-975d-a6619eeb12f2",
+    "slug": "bergman",
+    "title": "잉마르 베리만",
+    "description": "신의 침묵과 인간의 얼굴. 영혼을 응시하는 클로즈업.",
+    "cover_image": null,
+    "sort_order": 13,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:06.311412+00:00"
+  },
+  {
+    "id": "bb7734dd-87b9-4832-a4a4-a80ce76526e5",
+    "slug": "kurosawa",
+    "title": "구로사와 아키라",
+    "description": "활극과 휴머니즘. 세계 영화에 가장 큰 그림자를 드리운 거장.",
+    "cover_image": null,
+    "sort_order": 14,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:10.767037+00:00"
+  },
+  {
+    "id": "cc802f9c-f1c4-4611-8a1c-800a29913e40",
+    "slug": "ozu",
+    "title": "오즈 야스지로",
+    "description": "다다미 쇼트와 가족의 시간. 일상의 가장 깊은 곳.",
+    "cover_image": null,
+    "sort_order": 15,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:15.147118+00:00"
+  },
+  {
+    "id": "dbbbbf0c-97d7-4d93-b386-007227d7cc99",
+    "slug": "kore-eda",
+    "title": "고레에다 히로카즈",
+    "description": "가족이라는 이름의 미스터리. 따뜻하고 서늘한 시선.",
+    "cover_image": null,
+    "sort_order": 16,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:19.910344+00:00"
+  },
+  {
+    "id": "36ec2919-134a-4445-b7df-58979f292ca1",
+    "slug": "hou",
+    "title": "허우샤오시엔",
+    "description": "롱테이크로 응시하는 시간과 역사. 대만 영화의 결.",
+    "cover_image": null,
+    "sort_order": 17,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:24.730361+00:00"
+  },
+  {
+    "id": "37ee9f8e-6cb2-40bf-a84f-e7a35888c4ac",
+    "slug": "edward-yang",
+    "title": "에드워드 양",
+    "description": "도시의 불안과 청춘. 대만 뉴웨이브의 또 하나의 정점.",
+    "cover_image": null,
+    "sort_order": 18,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:29.18315+00:00"
+  },
+  {
+    "id": "c8ccda69-2f57-436f-ae9a-fbfe4c29184f",
+    "slug": "wong-kar-wai",
+    "title": "왕가위",
+    "description": "스텝 프린팅과 네온, 엇갈린 사랑의 시간.",
+    "cover_image": null,
+    "sort_order": 19,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:33.626958+00:00"
+  },
+  {
+    "id": "394df626-f0ba-404b-8b83-7aa90c36080a",
+    "slug": "zhang-yimou",
+    "title": "장이머우",
+    "description": "색채의 화폭과 시대의 비극. 중국 5세대의 대표 주자.",
+    "cover_image": null,
+    "sort_order": 20,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:38.023444+00:00"
+  },
+  {
+    "id": "946e17cd-3d50-43af-9488-50d14e036eae",
+    "slug": "hitchcock",
+    "title": "알프레드 히치콕",
+    "description": "서스펜스의 발명가. 관객을 공범으로 만드는 연출.",
+    "cover_image": null,
+    "sort_order": 21,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:42.558334+00:00"
+  },
+  {
+    "id": "2e22836e-6c2c-417c-b16e-79a9f6ceeabe",
+    "slug": "scorsese",
+    "title": "마틴 스코세이지",
+    "description": "죄의식과 폭력, 그리고 구원. 미국 영화의 양심.",
+    "cover_image": null,
+    "sort_order": 22,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:46.977675+00:00"
+  },
+  {
+    "id": "a9553ed3-9b67-4f11-ad17-b5f140c415a7",
+    "slug": "coppola",
+    "title": "프랜시스 포드 코폴라",
+    "description": "오페라적 스케일의 미국 서사시. 뉴 할리우드의 황제.",
+    "cover_image": null,
+    "sort_order": 23,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:51.4335+00:00"
+  },
+  {
+    "id": "321bb752-134d-42d1-b54d-38edef83996c",
+    "slug": "spielberg",
+    "title": "스티븐 스필버그",
+    "description": "경이와 공포를 동시에 다루는 대중 영화의 대가.",
+    "cover_image": null,
+    "sort_order": 24,
+    "is_published": true,
+    "created_at": "2026-05-29T06:50:55.808356+00:00"
+  },
+  {
+    "id": "6f3e8d5c-3586-46d4-ac10-002a124c4df6",
+    "slug": "tarantino",
+    "title": "쿠엔틴 타란티노",
+    "description": "장르의 콜라주와 수다. 영화광이 만든 영화.",
+    "cover_image": null,
+    "sort_order": 25,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:00.383038+00:00"
+  },
+  {
+    "id": "2992cbc3-8adf-45ac-a3c9-f23a0305dc8a",
+    "slug": "pta",
+    "title": "폴 토마스 앤더슨",
+    "description": "야망과 신앙, 미국이라는 신화를 해부하는 작가.",
+    "cover_image": null,
+    "sort_order": 26,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:04.878387+00:00"
+  },
+  {
+    "id": "45024fb2-e907-49c2-8dad-d94e9a549098",
+    "slug": "fincher",
+    "title": "데이비드 핀처",
+    "description": "강박적 정교함과 어둠. 디지털 시대의 장인.",
+    "cover_image": null,
+    "sort_order": 27,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:09.361902+00:00"
+  },
+  {
+    "id": "0788c7e8-2736-4703-baa1-cf8c39dc297b",
+    "slug": "lynch",
+    "title": "데이비드 린치",
+    "description": "꿈과 악몽의 경계. 미국 교외의 무의식.",
+    "cover_image": null,
+    "sort_order": 28,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:13.909388+00:00"
+  },
+  {
+    "id": "a4ea7905-448f-4ae2-8995-e16cca4ae3b1",
+    "slug": "malick",
+    "title": "테런스 맬릭",
+    "description": "속삭이는 내레이션과 자연광. 영화로 쓴 시.",
+    "cover_image": null,
+    "sort_order": 29,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:18.391427+00:00"
+  },
+  {
+    "id": "68ee18fc-1f5c-41a7-8794-815c34745b8a",
+    "slug": "wes-anderson",
+    "title": "웨스 앤더슨",
+    "description": "대칭과 파스텔, 인형의 집 같은 세계.",
+    "cover_image": null,
+    "sort_order": 30,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:22.85565+00:00"
+  },
+  {
+    "id": "43894c6a-d9d4-433e-927e-f9e803544d14",
+    "slug": "nolan",
+    "title": "크리스토퍼 놀란",
+    "description": "시간과 구조의 건축가. 블록버스터의 지성.",
+    "cover_image": null,
+    "sort_order": 31,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:27.286085+00:00"
+  },
+  {
+    "id": "c65ed89a-4931-4a73-be6f-57317d04cd66",
+    "slug": "villeneuve",
+    "title": "드니 빌뇌브",
+    "description": "묵직한 분위기와 스케일. 동시대 SF의 얼굴.",
+    "cover_image": null,
+    "sort_order": 32,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:31.654251+00:00"
+  },
+  {
+    "id": "5e065928-158e-4457-8bcc-6d71fe4b6ec7",
+    "slug": "cuaron",
+    "title": "알폰소 쿠아론",
+    "description": "롱테이크의 마법과 인간적 온기. 멕시코의 거장.",
+    "cover_image": null,
+    "sort_order": 33,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:36.057131+00:00"
+  },
+  {
+    "id": "89ed4918-6c06-4916-9fcb-81aec61002dd",
+    "slug": "del-toro",
+    "title": "기예르모 델 토로",
+    "description": "괴물에 대한 애정. 동화와 호러의 경계.",
+    "cover_image": null,
+    "sort_order": 34,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:40.594235+00:00"
+  },
+  {
+    "id": "8d0e3104-ef2d-468c-8eff-bbd4a9510110",
+    "slug": "almodovar",
+    "title": "페드로 알모도바르",
+    "description": "욕망과 멜로드라마, 강렬한 색채. 스페인의 작가.",
+    "cover_image": null,
+    "sort_order": 35,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:44.985547+00:00"
+  },
+  {
+    "id": "f5558c57-3117-4234-808f-82cb81784348",
+    "slug": "von-trier",
+    "title": "라스 폰 트리에",
+    "description": "도발과 실험. 관객을 시험하는 덴마크의 이단아.",
+    "cover_image": null,
+    "sort_order": 36,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:49.386795+00:00"
+  },
+  {
+    "id": "d40cdc37-d102-48d5-83c5-62faa1910f88",
+    "slug": "haneke",
+    "title": "미카엘 하네케",
+    "description": "폭력과 죄책감을 차갑게 응시하는 윤리적 카메라.",
+    "cover_image": null,
+    "sort_order": 37,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:53.882549+00:00"
+  },
+  {
+    "id": "99c700c8-be93-4ea9-a36a-049361fa0a1e",
+    "slug": "kieslowski",
+    "title": "크쥐시토프 키에슬로프스키",
+    "description": "우연과 운명, 색의 삼부작. 폴란드의 사색가.",
+    "cover_image": null,
+    "sort_order": 38,
+    "is_published": true,
+    "created_at": "2026-05-29T06:51:58.701418+00:00"
+  },
+  {
+    "id": "bafac642-8557-4ef2-8482-1b15da5e5c8d",
+    "slug": "kiarostami",
+    "title": "압바스 키아로스타미",
+    "description": "삶과 영화의 경계를 묻는 이란 영화의 시인.",
+    "cover_image": null,
+    "sort_order": 39,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:03.200622+00:00"
+  },
+  {
+    "id": "cd77b593-47bd-49e0-9867-4f5788862533",
+    "slug": "polanski",
+    "title": "로만 폴란스키",
+    "description": "밀실의 불안과 심리적 공포의 대가.",
+    "cover_image": null,
+    "sort_order": 40,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:07.710993+00:00"
+  },
+  {
+    "id": "2b26f020-4211-4231-9863-03420f9c9284",
+    "slug": "lee-chang-dong",
+    "title": "이창동",
+    "description": "문학에서 길어 올린 삶의 통증. 한국 영화의 깊이.",
+    "cover_image": null,
+    "sort_order": 41,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:12.139548+00:00"
+  },
+  {
+    "id": "b203bae8-0de1-4d33-bb9c-34080c459fdd",
+    "slug": "hong-sang-soo",
+    "title": "홍상수",
+    "description": "반복과 변주, 술자리의 진실. 미니멀리즘의 작가.",
+    "cover_image": null,
+    "sort_order": 42,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:16.623303+00:00"
+  },
+  {
+    "id": "d517211c-3d18-4223-bf81-220c96399e02",
+    "slug": "lanthimos",
+    "title": "요르고스 란티모스",
+    "description": "기괴한 규칙의 세계. 그리스 위어드 웨이브.",
+    "cover_image": null,
+    "sort_order": 43,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:21.028905+00:00"
+  },
+  {
+    "id": "146d7b6b-9bbb-4e6c-a157-7eabe0de658b",
+    "slug": "greta-gerwig",
+    "title": "그레타 거윅",
+    "description": "성장과 여성의 목소리. 동시대 미국 영화의 새 얼굴.",
+    "cover_image": null,
+    "sort_order": 44,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:25.591468+00:00"
+  },
+  {
+    "id": "5c84ec43-34a9-4942-b1af-4bef8db2132d",
+    "slug": "spike-lee",
+    "title": "스파이크 리",
+    "description": "분노와 리듬, 흑인의 삶. 뉴욕의 목소리.",
+    "cover_image": null,
+    "sort_order": 45,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:28.778734+00:00"
+  },
+  {
+    "id": "011f9589-a135-4d1a-8ed1-872a3efb2b94",
+    "slug": "chaplin",
+    "title": "찰리 채플린",
+    "description": "웃음 속의 페이소스. 무성영화가 낳은 불멸의 광대.",
+    "cover_image": null,
+    "sort_order": 46,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:33.389421+00:00"
+  },
+  {
+    "id": "9da610b0-479d-4c75-8913-55eebe6b0949",
+    "slug": "welles",
+    "title": "오슨 웰스",
+    "description": "딥 포커스와 야망. 영화 언어를 재발명한 천재.",
+    "cover_image": null,
+    "sort_order": 47,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:37.95808+00:00"
+  },
+  {
+    "id": "84775827-83a4-43cf-8dd3-e906dc1e5b1a",
+    "slug": "billy-wilder",
+    "title": "빌리 와일더",
+    "description": "냉소와 위트의 각본. 할리우드 황금기의 거장.",
+    "cover_image": null,
+    "sort_order": 48,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:42.432293+00:00"
+  },
+  {
+    "id": "9025739f-1198-4192-9b75-64fe4bc5082d",
+    "slug": "leone",
+    "title": "세르지오 레오네",
+    "description": "황야의 클로즈업과 엔니오 모리코네. 스파게티 웨스턴.",
+    "cover_image": null,
+    "sort_order": 49,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:46.899214+00:00"
+  },
+  {
+    "id": "264adf0d-509d-42fe-91ff-0331944b9721",
+    "slug": "denis",
+    "title": "클레르 드니",
+    "description": "몸과 욕망, 포스트식민의 감각. 프랑스의 작가.",
+    "cover_image": null,
+    "sort_order": 50,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:51.41018+00:00"
+  },
+  {
+    "id": "8aacbb0b-5fed-47c1-830c-261df878bfde",
+    "slug": "varda",
+    "title": "아녜스 바르다",
+    "description": "누벨바그의 어머니. 다큐와 픽션을 넘나든 시선.",
+    "cover_image": null,
+    "sort_order": 51,
+    "is_published": true,
+    "created_at": "2026-05-29T06:52:56.036951+00:00"
+  },
+  {
+    "id": "7cd2ae43-af9f-4220-a560-459c64376e8c",
+    "slug": "jia-zhangke",
+    "title": "지아장커",
+    "description": "변모하는 중국의 풍경. 동시대 중국의 기록자.",
+    "cover_image": null,
+    "sort_order": 52,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:00.923405+00:00"
+  },
+  {
+    "id": "5803fff6-b476-4646-bbbe-e66772d8ddf7",
+    "slug": "kitano",
+    "title": "기타노 다케시",
+    "description": "정적과 폭발, 건조한 폭력의 미학.",
+    "cover_image": null,
+    "sort_order": 53,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:05.435765+00:00"
+  },
+  {
+    "id": "88fe6218-ebe7-4242-8e37-3ad259b83c9a",
+    "slug": "refn",
+    "title": "니콜라스 빈딩 레픈",
+    "description": "네온과 침묵, 양식화된 폭력.",
+    "cover_image": null,
+    "sort_order": 54,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:09.925395+00:00"
+  },
+  {
+    "id": "54a9dcec-a6b5-48e8-b5f7-0504d85c15c1",
+    "slug": "aronofsky",
+    "title": "대런 아로노프스키",
+    "description": "강박과 파멸로 치닫는 심리의 극한.",
+    "cover_image": null,
+    "sort_order": 55,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:14.33758+00:00"
+  },
+  {
+    "id": "641d900d-a37b-48da-9305-4f7dc52b261c",
+    "slug": "genre-thriller",
+    "title": "스릴러 명작선",
+    "description": "긴장의 끈을 놓을 수 없는, 장르의 정점.",
+    "cover_image": null,
+    "sort_order": 56,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:18.648289+00:00"
+  },
+  {
+    "id": "c008db6b-a358-4793-bcbe-d38231a5860e",
+    "slug": "genre-crime",
+    "title": "범죄 영화 명작선",
+    "description": "범죄와 그 그림자를 응시한 작품들.",
+    "cover_image": null,
+    "sort_order": 57,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:22.584593+00:00"
+  },
+  {
+    "id": "ddadf7e0-8761-4989-9d93-1978063cc6f5",
+    "slug": "genre-scifi",
+    "title": "SF 명작선",
+    "description": "미래를 빌려 현재를 묻는 과학소설의 정점.",
+    "cover_image": null,
+    "sort_order": 58,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:26.439167+00:00"
+  },
+  {
+    "id": "58083824-a096-40dc-8bbd-1ffbc1348326",
+    "slug": "genre-horror",
+    "title": "호러 명작선",
+    "description": "공포라는 장르가 도달한 가장 깊은 곳.",
+    "cover_image": null,
+    "sort_order": 59,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:30.595456+00:00"
+  },
+  {
+    "id": "34fbf012-5bb3-4531-9b22-c649c00c86db",
+    "slug": "genre-romance",
+    "title": "로맨스 명작선",
+    "description": "사랑의 모든 결을 담은 작품들.",
+    "cover_image": null,
+    "sort_order": 60,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:34.784955+00:00"
+  },
+  {
+    "id": "95b97932-faf4-470b-8f26-dbd981b88153",
+    "slug": "genre-animation",
+    "title": "애니메이션 명작선",
+    "description": "그림이 도달한 예술의 경지.",
+    "cover_image": null,
+    "sort_order": 61,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:39.091286+00:00"
+  },
+  {
+    "id": "154a4e29-095b-4330-8933-b67db9900d7e",
+    "slug": "genre-comedy",
+    "title": "코미디 명작선",
+    "description": "웃음 뒤에 남는 것. 희극의 명작들.",
+    "cover_image": null,
+    "sort_order": 62,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:43.207345+00:00"
+  },
+  {
+    "id": "8d2514fd-0319-4b56-bd7e-6c4f2e0fdd52",
+    "slug": "genre-war",
+    "title": "전쟁 영화 명작선",
+    "description": "전장의 참혹과 인간. 반전(反戰)의 기록.",
+    "cover_image": null,
+    "sort_order": 63,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:47.279207+00:00"
+  },
+  {
+    "id": "02816251-1739-43ba-8fc8-3f9c039bb22f",
+    "slug": "genre-western",
+    "title": "서부극 명작선",
+    "description": "황야와 총잡이, 미국이라는 신화.",
+    "cover_image": null,
+    "sort_order": 64,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:51.303282+00:00"
+  },
+  {
+    "id": "74c6f554-f141-47c3-b28f-8b9eb8a1b986",
+    "slug": "genre-mystery",
+    "title": "미스터리 명작선",
+    "description": "수수께끼를 푸는 쾌감. 미스터리의 정수.",
+    "cover_image": null,
+    "sort_order": 65,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:55.345494+00:00"
+  },
+  {
+    "id": "a948928d-eb96-42c0-991d-787c0194fecb",
+    "slug": "genre-fantasy",
+    "title": "판타지 명작선",
+    "description": "현실 너머의 세계를 그린 작품들.",
+    "cover_image": null,
+    "sort_order": 66,
+    "is_published": true,
+    "created_at": "2026-05-29T06:53:59.475651+00:00"
+  },
+  {
+    "id": "4aa3e221-f2a7-416e-bf24-dd4feb99e7ae",
+    "slug": "genre-drama",
+    "title": "드라마 명작선",
+    "description": "삶을 가장 진하게 담아내는 장르.",
+    "cover_image": null,
+    "sort_order": 67,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:03.787433+00:00"
+  },
+  {
+    "id": "bf5faee6-f2df-4506-b51f-c2d1ce7eb89e",
+    "slug": "genre-adventure",
+    "title": "모험 영화 명작선",
+    "description": "미지로 떠나는 여정. 모험의 명작들.",
+    "cover_image": null,
+    "sort_order": 68,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:07.657973+00:00"
+  },
+  {
+    "id": "01f61233-0839-44ce-b6c1-fc462fe9580f",
+    "slug": "genre-history",
+    "title": "역사 영화 명작선",
+    "description": "지나간 시대를 스크린에 되살린 작품들.",
+    "cover_image": null,
+    "sort_order": 69,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:11.663443+00:00"
+  },
+  {
+    "id": "252155e3-c7d2-403c-8fb7-6a0542f4746f",
+    "slug": "genre-music",
+    "title": "음악 영화 명작선",
+    "description": "선율이 이야기가 되는 순간.",
+    "cover_image": null,
+    "sort_order": 70,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:15.907371+00:00"
+  },
+  {
+    "id": "6c4d93ea-8e34-4b58-9faa-4bcdb2bf4659",
+    "slug": "genre-family",
+    "title": "가족이 함께 보는 영화",
+    "description": "세대를 넘어 사랑받는 작품들.",
+    "cover_image": null,
+    "sort_order": 71,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:20.527936+00:00"
+  },
+  {
+    "id": "25e119df-d9b1-472c-8a7b-b62883d8270d",
+    "slug": "genre-documentary",
+    "title": "다큐멘터리 명작선",
+    "description": "현실이 가장 강력한 드라마일 때.",
+    "cover_image": null,
+    "sort_order": 72,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:24.798063+00:00"
+  },
+  {
+    "id": "ecb77730-9602-4a38-9258-015d76fd49e5",
+    "slug": "genre-action",
+    "title": "액션 명작선",
+    "description": "순수한 운동 에너지. 액션의 쾌감.",
+    "cover_image": null,
+    "sort_order": 73,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:29.080985+00:00"
+  },
+  {
+    "id": "7940c23c-1407-4ceb-a9dc-125d54e9d7f6",
+    "slug": "cinema-japan",
+    "title": "일본 영화 베스트",
+    "description": "오즈에서 고레에다까지. 일본 영화의 결.",
+    "cover_image": null,
+    "sort_order": 74,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:32.859624+00:00"
+  },
+  {
+    "id": "7f760630-3341-4c6f-afcb-9ca5a8cc8eb6",
+    "slug": "cinema-korea",
+    "title": "한국 영화 베스트",
+    "description": "동시대 세계가 주목하는 한국 영화.",
+    "cover_image": null,
+    "sort_order": 75,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:36.759287+00:00"
+  },
+  {
+    "id": "e10b9d35-1b29-4d2c-b3df-eed5c5472b89",
+    "slug": "cinema-france",
+    "title": "프랑스 영화 베스트",
+    "description": "영화의 발상지가 빚어낸 작품들.",
+    "cover_image": null,
+    "sort_order": 76,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:40.968774+00:00"
+  },
+  {
+    "id": "20a43db4-9338-4229-952b-58ff83a3b2d0",
+    "slug": "cinema-italy",
+    "title": "이탈리아 영화 베스트",
+    "description": "네오리얼리즘에서 펠리니까지.",
+    "cover_image": null,
+    "sort_order": 77,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:45.24663+00:00"
+  },
+  {
+    "id": "1e1cb61a-79f4-4056-a4ab-acb6148cf68a",
+    "slug": "cinema-spain",
+    "title": "스페인어권 영화 베스트",
+    "description": "알모도바르와 라틴 아메리카의 목소리.",
+    "cover_image": null,
+    "sort_order": 78,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:49.258559+00:00"
+  },
+  {
+    "id": "1ab4daf5-8a9d-49ef-ab34-7d205aab462f",
+    "slug": "cinema-germany",
+    "title": "독일 영화 베스트",
+    "description": "표현주의의 후예들.",
+    "cover_image": null,
+    "sort_order": 79,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:53.559412+00:00"
+  },
+  {
+    "id": "32b2f39c-637c-4945-8fa8-3694509db7da",
+    "slug": "cinema-india",
+    "title": "인도 영화 베스트",
+    "description": "노래와 춤, 거대한 감정의 대륙.",
+    "cover_image": null,
+    "sort_order": 80,
+    "is_published": true,
+    "created_at": "2026-05-29T06:54:57.745814+00:00"
+  },
+  {
+    "id": "5fc3b62b-4b0e-4d6d-913b-755525ac0375",
+    "slug": "cinema-china",
+    "title": "중화권 영화 베스트",
+    "description": "대륙과 홍콩, 대만을 아우르는 시선.",
+    "cover_image": null,
+    "sort_order": 81,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:02.075941+00:00"
+  },
+  {
+    "id": "431e7100-070d-43a5-8e02-a37cdc739b60",
+    "slug": "cinema-russia",
+    "title": "러시아 영화 베스트",
+    "description": "타르코프스키의 나라, 깊은 사색.",
+    "cover_image": null,
+    "sort_order": 82,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:06.307903+00:00"
+  },
+  {
+    "id": "35b2a87e-4e48-42c7-af6c-28461076c91e",
+    "slug": "cinema-iran",
+    "title": "이란 영화 베스트",
+    "description": "검열 속에서 피어난 은유의 영화.",
+    "cover_image": null,
+    "sort_order": 83,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:10.717395+00:00"
+  },
+  {
+    "id": "2912c779-d5ed-415a-ab35-7696f4babbbb",
+    "slug": "cinema-sweden",
+    "title": "북유럽 영화 베스트",
+    "description": "베리만의 나라, 서늘한 빛.",
+    "cover_image": null,
+    "sort_order": 84,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:14.829085+00:00"
+  },
+  {
+    "id": "9b3f42a9-00b6-441b-aa65-5495079e2303",
+    "slug": "cinema-brazil",
+    "title": "브라질 영화 베스트",
+    "description": "열기와 빈민가, 강렬한 리듬.",
+    "cover_image": null,
+    "sort_order": 85,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:18.806236+00:00"
+  },
+  {
+    "id": "8b960fcd-3962-443d-819b-1622826cdfc4",
+    "slug": "decade-1950s",
+    "title": "1950년대 명작",
+    "description": "고전 영화의 황금기.",
+    "cover_image": null,
+    "sort_order": 86,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:23.066513+00:00"
+  },
+  {
+    "id": "c7e91a94-e061-49d6-9702-971ee44219ca",
+    "slug": "decade-1960s",
+    "title": "1960년대 명작",
+    "description": "뉴웨이브와 모더니즘의 시대.",
+    "cover_image": null,
+    "sort_order": 87,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:27.019273+00:00"
+  },
+  {
+    "id": "aee1a127-7cb2-447f-9c62-3c3a78097859",
+    "slug": "decade-1970s",
+    "title": "1970년대 명작",
+    "description": "뉴 할리우드와 작가주의의 폭발.",
+    "cover_image": null,
+    "sort_order": 88,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:30.867594+00:00"
+  },
+  {
+    "id": "17e54ed6-0b07-4f73-bec2-22ca2889217f",
+    "slug": "decade-1980s",
+    "title": "1980년대 명작",
+    "description": "블록버스터와 컬트의 시대.",
+    "cover_image": null,
+    "sort_order": 89,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:34.933533+00:00"
+  },
+  {
+    "id": "57284eb0-ff01-4079-ad30-c29db4a9d740",
+    "slug": "decade-1990s",
+    "title": "1990년대 명작",
+    "description": "인디와 장르의 르네상스.",
+    "cover_image": null,
+    "sort_order": 90,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:38.851783+00:00"
+  },
+  {
+    "id": "8ed6e575-fc17-4da4-b186-4f1a4d64d52e",
+    "slug": "decade-2000s",
+    "title": "2000년대 명작",
+    "description": "디지털 전환기의 걸작들.",
+    "cover_image": null,
+    "sort_order": 91,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:42.685236+00:00"
+  },
+  {
+    "id": "d130170a-23e6-4005-8c67-9275bfbc49d1",
+    "slug": "decade-2010s",
+    "title": "2010년대 명작",
+    "description": "스트리밍 시대 직전의 정점.",
+    "cover_image": null,
+    "sort_order": 92,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:46.411713+00:00"
+  },
+  {
+    "id": "0ba72340-e84f-40f2-bb41-3101b1e53bea",
+    "slug": "decade-2020s",
+    "title": "2020년대 화제작",
+    "description": "지금 이 순간의 영화.",
+    "cover_image": null,
+    "sort_order": 93,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:50.174711+00:00"
+  },
+  {
+    "id": "2c68cd60-f59c-495e-a793-b7103c95f116",
+    "slug": "japan-animation",
+    "title": "일본 애니메이션 명작",
+    "description": "세계를 사로잡은 일본 애니의 정수.",
+    "cover_image": null,
+    "sort_order": 94,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:54.432268+00:00"
+  },
+  {
+    "id": "1788fadd-4f1a-40fb-a310-2e333c4e0da8",
+    "slug": "korea-thriller",
+    "title": "한국 스릴러",
+    "description": "장르의 쾌감을 끌어올린 한국 스릴러.",
+    "cover_image": null,
+    "sort_order": 95,
+    "is_published": true,
+    "created_at": "2026-05-29T06:55:58.301749+00:00"
+  },
+  {
+    "id": "6bac9a2e-1a0d-4379-b2f6-d2634fd5b90f",
+    "slug": "korea-crime",
+    "title": "한국 범죄 영화",
+    "description": "느와르와 범죄, 한국적 질감.",
+    "cover_image": null,
+    "sort_order": 96,
+    "is_published": true,
+    "created_at": "2026-05-29T06:56:02.687261+00:00"
+  },
+  {
+    "id": "8a0f89b1-2243-41ae-89bc-9f501d75df2d",
+    "slug": "japan-horror",
+    "title": "일본 호러",
+    "description": "J-호러, 정적 속의 공포.",
+    "cover_image": null,
+    "sort_order": 97,
+    "is_published": true,
+    "created_at": "2026-05-29T06:56:06.93706+00:00"
+  },
+  {
+    "id": "5a95ba03-a918-43d1-8a78-935e84c392ca",
+    "slug": "france-crime",
+    "title": "프랑스 누아르",
+    "description": "쿨한 범죄와 멜랑콜리.",
+    "cover_image": null,
+    "sort_order": 98,
+    "is_published": true,
+    "created_at": "2026-05-29T06:56:11.307915+00:00"
+  },
+  {
+    "id": "d3e0b872-12d0-40e1-b53c-6c194d2cde84",
+    "slug": "india-romance",
+    "title": "인도 로맨스",
+    "description": "노래와 함께 흐르는 사랑.",
+    "cover_image": null,
+    "sort_order": 99,
+    "is_published": true,
+    "created_at": "2026-05-29T06:56:15.465398+00:00"
+  },
+  {
+    "id": "e5059851-79eb-4a55-9b1c-edd403ac0c62",
+    "slug": "italy-drama",
+    "title": "이탈리아 드라마",
+    "description": "삶의 무게를 담은 이탈리아 드라마.",
+    "cover_image": null,
+    "sort_order": 100,
+    "is_published": true,
+    "created_at": "2026-05-29T06:56:19.622377+00:00"
+  },
+  {
+    "id": "b5312fc6-7d7e-43d8-b4ff-a1673b7a9eea",
+    "slug": "miyazaki",
+    "title": "미야자키 하야오",
+    "description": "하늘과 비행, 자연과 아이들. 손으로 그린 경이.",
+    "cover_image": null,
+    "sort_order": 101,
+    "is_published": true,
+    "created_at": "2026-05-29T08:48:15.058535+00:00"
+  },
+  {
+    "id": "35838b4b-b057-4e05-90de-6eb2595f9b3a",
+    "slug": "mizoguchi",
+    "title": "미조구치 겐지",
+    "description": "긴 호흡의 트래킹과 여성의 수난. 일본 고전의 미학.",
+    "cover_image": null,
+    "sort_order": 102,
+    "is_published": true,
+    "created_at": "2026-05-29T08:48:18.84657+00:00"
+  },
+  {
+    "id": "7abf6bfd-637f-4b53-bb59-316e8cad8b01",
+    "slug": "actor-song-kang-ho",
+    "title": "송강호 출연작",
+    "description": "한국 영화의 얼굴. 봉준호·박찬욱이 신뢰한 배우.",
+    "cover_image": null,
+    "sort_order": 103,
+    "is_published": true,
+    "created_at": "2026-05-29T11:40:51.777856+00:00"
+  },
+  {
+    "id": "fe8b6885-914c-4cf8-bb6c-3f3d845b7f0c",
+    "slug": "actor-choi-min-sik",
+    "title": "최민식 출연작",
+    "description": "압도적 존재감. 올드보이의 그 얼굴.",
+    "cover_image": null,
+    "sort_order": 104,
+    "is_published": true,
+    "created_at": "2026-05-29T11:40:58.688802+00:00"
+  },
+  {
+    "id": "457d31c7-e51c-477f-b8eb-7b9b6ae7e1a4",
+    "slug": "actor-jeon-do-yeon",
+    "title": "전도연 출연작",
+    "description": "칸이 인정한 배우. 감정의 깊이.",
+    "cover_image": null,
+    "sort_order": 105,
+    "is_published": true,
+    "created_at": "2026-05-29T11:41:05.611661+00:00"
+  },
+  {
+    "id": "f67c9e69-389d-4af2-a658-4d773adcbc1c",
+    "slug": "actor-toni-servillo",
+    "title": "토니 세르빌로 출연작",
+    "description": "이탈리아 현대 영화의 중심. 소렌티노의 페르소나.",
+    "cover_image": null,
+    "sort_order": 106,
+    "is_published": true,
+    "created_at": "2026-05-29T11:41:12.585419+00:00"
+  },
+  {
+    "id": "00e0e424-e3b0-4d43-9ec0-a932d25a6c31",
+    "slug": "actor-denzel",
+    "title": "덴절 워싱턴 출연작",
+    "description": "강렬한 카리스마. 미국 영화의 거목.",
+    "cover_image": null,
+    "sort_order": 107,
+    "is_published": true,
+    "created_at": "2026-05-29T11:41:19.732737+00:00"
+  },
+  {
+    "id": "71b54d14-17d7-402c-baa0-a438df9dd255",
+    "slug": "actor-meryl-streep",
+    "title": "메릴 스트립 출연작",
+    "description": "변신의 화신. 연기의 교과서.",
+    "cover_image": null,
+    "sort_order": 108,
+    "is_published": true,
+    "created_at": "2026-05-29T11:41:26.761103+00:00"
+  },
+  {
+    "id": "a61f8a52-b5fc-45a1-b58d-44d4455ea264",
+    "slug": "actor-daniel-day-lewis",
+    "title": "다니엘 데이 루이스 출연작",
+    "description": "메소드의 극한. 세 번의 아카데미.",
+    "cover_image": null,
+    "sort_order": 109,
+    "is_published": true,
+    "created_at": "2026-05-29T11:41:33.817587+00:00"
+  },
+  {
+    "id": "453c8230-aaf8-41f5-94ba-2eeae0bf9c93",
+    "slug": "actor-joaquin",
+    "title": "호아킨 피닉스 출연작",
+    "description": "위태롭고 강렬한. 동시대 최고의 배우.",
+    "cover_image": null,
+    "sort_order": 110,
+    "is_published": true,
+    "created_at": "2026-05-29T11:41:40.834927+00:00"
+  },
+  {
+    "id": "48ad2e4d-48c9-4911-89f7-2df26bf34260",
+    "slug": "actor-cate-blanchett",
+    "title": "케이트 블란쳇 출연작",
+    "description": "우아함과 광기를 오가는 카멜레온.",
+    "cover_image": null,
+    "sort_order": 111,
+    "is_published": true,
+    "created_at": "2026-05-29T11:41:47.760238+00:00"
+  },
+  {
+    "id": "eb786e03-e5c0-4958-9735-600f1f4b7152",
+    "slug": "actor-tom-hanks",
+    "title": "톰 행크스 출연작",
+    "description": "미국의 양심. 가장 사랑받는 배우.",
+    "cover_image": null,
+    "sort_order": 112,
+    "is_published": true,
+    "created_at": "2026-05-29T11:41:54.680896+00:00"
+  },
+  {
+    "id": "83571ccb-f402-422f-b6ef-1d5edcb7b2c8",
+    "slug": "actor-leonardo",
+    "title": "레오나르도 디카프리오 출연작",
+    "description": "스코세이지의 뮤즈. 시대의 아이콘.",
+    "cover_image": null,
+    "sort_order": 113,
+    "is_published": true,
+    "created_at": "2026-05-29T11:42:01.758391+00:00"
+  },
+  {
+    "id": "46c21a9a-6d9a-4216-95d3-e73a0e5b5e38",
+    "slug": "actor-frances",
+    "title": "프란시스 맥도먼드 출연작",
+    "description": "꾸밈없는 진실의 연기. 코엔의 페르소나.",
+    "cover_image": null,
+    "sort_order": 114,
+    "is_published": true,
+    "created_at": "2026-05-29T11:42:08.920339+00:00"
+  },
+  {
+    "id": "1387c8a2-d31e-4132-947b-1c889a129946",
+    "slug": "actor-mads",
+    "title": "매즈 미켈센 출연작",
+    "description": "북유럽의 강렬한 얼굴. 깊이 있는 악역과 주인공.",
+    "cover_image": null,
+    "sort_order": 115,
+    "is_published": true,
+    "created_at": "2026-05-29T11:42:15.909419+00:00"
+  },
+  {
+    "id": "599012c8-cd39-41fe-a8fc-98969a05da78",
+    "slug": "actor-tilda",
+    "title": "틸다 스윈튼 출연작",
+    "description": "경계를 넘나드는 예술가. 독보적 존재.",
+    "cover_image": null,
+    "sort_order": 116,
+    "is_published": true,
+    "created_at": "2026-05-29T11:42:22.978716+00:00"
+  },
+  {
+    "id": "583ff554-db17-4c88-996c-b761666711bd",
+    "slug": "actor-maggie-cheung",
+    "title": "장만옥 출연작",
+    "description": "화양연화의 그 우아함. 홍콩 영화의 뮤즈.",
+    "cover_image": null,
+    "sort_order": 117,
+    "is_published": true,
+    "created_at": "2026-05-29T11:42:30.07355+00:00"
+  },
+  {
+    "id": "7a7a2d70-4a66-4b47-9a81-8732641593b7",
+    "slug": "actor-tony-leung",
+    "title": "양조위 출연작",
+    "description": "눈빛만으로 말하는 배우. 왕가위의 페르소나.",
+    "cover_image": null,
+    "sort_order": 118,
+    "is_published": true,
+    "created_at": "2026-05-29T11:42:37.203163+00:00"
+  },
+  {
+    "id": "1ceb7709-1542-4f69-986f-84d80d3c5cc9",
+    "slug": "dop-deakins",
+    "title": "로저 디킨스 촬영작",
+    "description": "빛의 시인. 코엔·빌뇌브의 화면을 만든 촬영감독.",
+    "cover_image": null,
+    "sort_order": 119,
+    "is_published": true,
+    "created_at": "2026-05-29T11:47:10.199626+00:00"
+  },
+  {
+    "id": "656c1608-97e8-4265-b15f-fb7df8845e42",
+    "slug": "dop-lubezki",
+    "title": "에마누엘 루베스키 촬영작",
+    "description": "자연광과 롱테이크의 마법. 세 번의 아카데미 촬영상.",
+    "cover_image": null,
+    "sort_order": 120,
+    "is_published": true,
+    "created_at": "2026-05-29T11:47:17.687445+00:00"
+  },
+  {
+    "id": "b6cb683d-6192-4341-ae84-adba3fbd9bfc",
+    "slug": "dop-storaro",
+    "title": "비토리오 스토라로 촬영작",
+    "description": "색채의 화가. 코폴라·베르톨루치의 빛.",
+    "cover_image": null,
+    "sort_order": 121,
+    "is_published": true,
+    "created_at": "2026-05-29T11:47:25.352576+00:00"
+  },
+  {
+    "id": "bd5516a4-0c38-4ae3-b608-d331121f7e61",
+    "slug": "dop-chung",
+    "title": "정정훈 촬영작",
+    "description": "박찬욱의 화면. 헐리우드까지 진출한 촬영감독.",
+    "cover_image": null,
+    "sort_order": 122,
+    "is_published": true,
+    "created_at": "2026-05-29T11:47:32.560831+00:00"
+  },
+  {
+    "id": "ad8febab-1add-4ce1-a0f5-95fd8873b589",
+    "slug": "composer-morricone",
+    "title": "엔니오 모리코네 음악작",
+    "description": "세르지오 레오네의 선율. 영화음악의 거장.",
+    "cover_image": null,
+    "sort_order": 123,
+    "is_published": true,
+    "created_at": "2026-05-29T11:47:39.88834+00:00"
+  },
+  {
+    "id": "aa51ada9-0f20-4679-8897-0fd06b97cc05",
+    "slug": "composer-zimmer",
+    "title": "한스 짐머 음악작",
+    "description": "놀란의 굉음. 동시대 블록버스터의 소리.",
+    "cover_image": null,
+    "sort_order": 124,
+    "is_published": true,
+    "created_at": "2026-05-29T11:47:46.914603+00:00"
+  },
+  {
+    "id": "653c9545-1d8b-4973-9625-04d6bcf7373b",
+    "slug": "composer-shore",
+    "title": "하워드 쇼어 음악작",
+    "description": "반지의 제왕의 장대한 세계. 크로넨버그의 동반자.",
+    "cover_image": null,
+    "sort_order": 125,
+    "is_published": true,
+    "created_at": "2026-05-29T11:47:54.081165+00:00"
+  },
+  {
+    "id": "26f219ba-cbdf-4ae8-bf18-9d2e5e4e53e9",
+    "slug": "composer-desplat",
+    "title": "알렉상드르 데스플라 음악작",
+    "description": "섬세한 선율. 웨스 앤더슨의 음악.",
+    "cover_image": null,
+    "sort_order": 126,
+    "is_published": true,
+    "created_at": "2026-05-29T11:48:01.497801+00:00"
+  },
+  {
+    "id": "e2fbc26d-210f-465a-8cfa-ffcdcccd61e1",
+    "slug": "composer-greenwood",
+    "title": "조니 그린우드 음악작",
+    "description": "라디오헤드를 넘어. PTA의 불안한 음악.",
+    "cover_image": null,
+    "sort_order": 127,
+    "is_published": true,
+    "created_at": "2026-05-29T11:48:08.766418+00:00"
+  },
+  {
+    "id": "a680df30-76fe-429b-825d-182c6150396e",
+    "slug": "dop-doyle",
+    "title": "크리스토퍼 도일 촬영작",
+    "description": "왕가위의 색과 흔들림. 홍콩 영화의 질감.",
+    "cover_image": null,
+    "sort_order": 128,
+    "is_published": true,
+    "created_at": "2026-05-29T11:49:02.306246+00:00"
+  },
+  {
+    "id": "54163f25-a0b5-4537-a932-9e70d0baa6e1",
+    "slug": "composer-williams",
+    "title": "존 윌리엄스 음악작",
+    "description": "스필버그의 동반자. 가장 사랑받는 영화음악.",
+    "cover_image": null,
+    "sort_order": 129,
+    "is_published": true,
+    "created_at": "2026-05-29T11:49:09.542405+00:00"
+  },
+  {
+    "id": "b14dbd29-88e8-4891-9927-985169911325",
+    "slug": "yeon-sang-ho",
+    "title": "연상호 감독전",
+    "description": "애니메이션에서 실사까지. 한국 장르영화의 확장.",
+    "cover_image": null,
+    "sort_order": 130,
+    "is_published": true,
+    "created_at": "2026-05-29T12:07:56.083885+00:00"
+  },
+  {
+    "id": "7d2665f4-d624-4df3-afb8-789c1886757b",
+    "slug": "na-hong-jin",
+    "title": "나홍진 감독전",
+    "description": "추격과 광기. 강렬한 한국 스릴러의 한 정점.",
+    "cover_image": null,
+    "sort_order": 131,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:03.085082+00:00"
+  },
+  {
+    "id": "efef9a8f-11d4-4e99-9c15-f2f8da456b36",
+    "slug": "kim-jee-woon",
+    "title": "김지운 감독전",
+    "description": "장르를 자유자재로 다루는 스타일리스트.",
+    "cover_image": null,
+    "sort_order": 132,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:05.84009+00:00"
+  },
+  {
+    "id": "4664057a-10d7-496a-9273-ace3e75ffaac",
+    "slug": "ryu-seung-wan",
+    "title": "류승완 감독전",
+    "description": "충무로의 액션 장인.",
+    "cover_image": null,
+    "sort_order": 133,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:13.552369+00:00"
+  },
+  {
+    "id": "358422ee-c91b-42fd-add6-5c657c940f43",
+    "slug": "miyazaki-isao",
+    "title": "다카하타 이사오 감독전",
+    "description": "지브리의 또 다른 축. 일상과 비극의 애니메이션.",
+    "cover_image": null,
+    "sort_order": 134,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:21.149796+00:00"
+  },
+  {
+    "id": "051e9042-348c-467d-94e2-7a1f23a96d75",
+    "slug": "shinkai",
+    "title": "신카이 마코토 감독전",
+    "description": "빛과 거리(距離)의 애니메이션. 너의 이름은.",
+    "cover_image": null,
+    "sort_order": 135,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:28.7293+00:00"
+  },
+  {
+    "id": "a5d31176-dc0c-47a9-97a8-4264b9af7250",
+    "slug": "hosoda",
+    "title": "호소다 마모루 감독전",
+    "description": "가족과 시간을 그리는 애니메이션 작가.",
+    "cover_image": null,
+    "sort_order": 136,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:36.313723+00:00"
+  },
+  {
+    "id": "f2986f3b-138b-454d-9f79-dd16f3c50c43",
+    "slug": "kon",
+    "title": "곤 사토시 감독전",
+    "description": "현실과 환상의 경계. 퍼펙트 블루의 천재.",
+    "cover_image": null,
+    "sort_order": 137,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:44.262447+00:00"
+  },
+  {
+    "id": "a56d2021-b2e5-4d55-b257-c83062a9863f",
+    "slug": "fincher2",
+    "title": "조던 필 감독전",
+    "description": "사회적 호러의 새 얼굴.",
+    "cover_image": null,
+    "sort_order": 138,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:48.427507+00:00"
+  },
+  {
+    "id": "e6bfe48d-4c77-408f-8e4e-e6610c73cdd3",
+    "slug": "chazelle",
+    "title": "데이미언 셔젤 감독전",
+    "description": "재즈와 야망의 리듬. 라라랜드·위플래쉬.",
+    "cover_image": null,
+    "sort_order": 139,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:51.225353+00:00"
+  },
+  {
+    "id": "7c01db42-b0a1-42e6-ba32-2ebf53cb903c",
+    "slug": "iñárritu",
+    "title": "알레한드로 곤살레스 이냐리투 감독전",
+    "description": "강렬한 롱테이크와 인간 군상.",
+    "cover_image": null,
+    "sort_order": 140,
+    "is_published": true,
+    "created_at": "2026-05-29T12:08:56.063766+00:00"
+  },
+  {
+    "id": "ae1ef2f6-675e-4d27-ab3d-a4e94d05d75c",
+    "slug": "baumbach",
+    "title": "노아 바움백 감독전",
+    "description": "가족과 결혼, 뉴욕 지식인의 초상.",
+    "cover_image": null,
+    "sort_order": 141,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:03.864673+00:00"
+  },
+  {
+    "id": "a3da5743-0774-4d30-84bf-559acb044c16",
+    "slug": "jenkins",
+    "title": "배리 젱킨스 감독전",
+    "description": "흑인의 삶을 시적으로. 문라이트.",
+    "cover_image": null,
+    "sort_order": 142,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:11.430514+00:00"
+  },
+  {
+    "id": "5493b6b3-ba71-4890-85ee-1815d94b5111",
+    "slug": "ari-aster",
+    "title": "아리 애스터 감독전",
+    "description": "불안과 가족 트라우마의 호러.",
+    "cover_image": null,
+    "sort_order": 143,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:15.554104+00:00"
+  },
+  {
+    "id": "b37b7f98-b447-4aa4-b592-4749170bb3bf",
+    "slug": "villeneuve2",
+    "title": "조지 밀러 감독전",
+    "description": "매드맥스의 창조자. 광기의 액션.",
+    "cover_image": null,
+    "sort_order": 144,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:21.207975+00:00"
+  },
+  {
+    "id": "b7921b00-027b-4d6b-bdb4-c9c9f0312041",
+    "slug": "ridley-scott",
+    "title": "리들리 스콧 감독전",
+    "description": "에일리언과 블레이드 러너. SF 비주얼의 거장.",
+    "cover_image": null,
+    "sort_order": 145,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:28.820873+00:00"
+  },
+  {
+    "id": "d1239822-b263-4817-8b9f-2c100b153151",
+    "slug": "james-cameron",
+    "title": "제임스 카메론 감독전",
+    "description": "기술과 스펙터클의 최전선.",
+    "cover_image": null,
+    "sort_order": 146,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:36.296858+00:00"
+  },
+  {
+    "id": "add7710d-3979-4fe9-ab58-a5ef082ab8fa",
+    "slug": "tarr",
+    "title": "벨라 타르 감독전",
+    "description": "흑백의 롱테이크. 헝가리의 묵시록.",
+    "cover_image": null,
+    "sort_order": 147,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:44.272051+00:00"
+  },
+  {
+    "id": "02fe063f-0f09-4d84-8a15-9e2a449b977d",
+    "slug": "roy-andersson",
+    "title": "로이 안데르손 감독전",
+    "description": "부조리한 타블로. 스웨덴의 유머.",
+    "cover_image": null,
+    "sort_order": 148,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:51.8841+00:00"
+  },
+  {
+    "id": "4cb8bc82-e3a4-49b2-b47f-b3800560db40",
+    "slug": "actor-ryu-jun-yeol",
+    "title": "류준열 출연작",
+    "description": "류준열의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 149,
+    "is_published": true,
+    "created_at": "2026-05-29T12:09:58.151225+00:00"
+  },
+  {
+    "id": "2e74a6d7-46f6-47ef-b125-582c2291bf13",
+    "slug": "actor-kim-min-hee",
+    "title": "김민희 출연작",
+    "description": "김민희의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 150,
+    "is_published": true,
+    "created_at": "2026-05-29T12:10:05.571084+00:00"
+  },
+  {
+    "id": "1c2580c8-7085-4103-95d6-b8eb49d65aba",
+    "slug": "actor-yoo-ah-in",
+    "title": "유아인 출연작",
+    "description": "유아인의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 151,
+    "is_published": true,
+    "created_at": "2026-05-29T12:10:12.853036+00:00"
+  },
+  {
+    "id": "3653b192-dd3a-4a1c-9a16-eaec74270695",
+    "slug": "actor-isabelle-huppert",
+    "title": "이자벨 위페르 출연작",
+    "description": "이자벨 위페르의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 152,
+    "is_published": true,
+    "created_at": "2026-05-29T12:10:20.288419+00:00"
+  },
+  {
+    "id": "a8bd99ee-4a6a-4ee2-aad3-f925e26b2e4c",
+    "slug": "actor-marion-cotillard",
+    "title": "마리옹 코티야르 출연작",
+    "description": "마리옹 코티야르의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 153,
+    "is_published": true,
+    "created_at": "2026-05-29T12:10:27.838386+00:00"
+  },
+  {
+    "id": "30c50987-3014-4bd8-bf9d-496074fcf869",
+    "slug": "actor-christian-bale",
+    "title": "크리스찬 베일 출연작",
+    "description": "크리스찬 베일의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 154,
+    "is_published": true,
+    "created_at": "2026-05-29T12:10:35.163074+00:00"
+  },
+  {
+    "id": "cf093628-3122-41b9-85ea-8ae4d0080d80",
+    "slug": "actor-gary-oldman",
+    "title": "게리 올드만 출연작",
+    "description": "게리 올드만의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 155,
+    "is_published": true,
+    "created_at": "2026-05-29T12:10:42.573879+00:00"
+  },
+  {
+    "id": "50c17044-1963-4a28-8b8c-e4b92f54074b",
+    "slug": "actor-philip-seymour",
+    "title": "필립 시모어 호프먼 출연작",
+    "description": "필립 시모어 호프먼의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 156,
+    "is_published": true,
+    "created_at": "2026-05-29T12:10:50.085596+00:00"
+  },
+  {
+    "id": "d08e78cf-c705-41de-adb0-1eaafc326eb0",
+    "slug": "actor-amy-adams",
+    "title": "에이미 아담스 출연작",
+    "description": "에이미 아담스의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 157,
+    "is_published": true,
+    "created_at": "2026-05-29T12:10:57.541886+00:00"
+  },
+  {
+    "id": "636a6c4a-10d6-41de-9a76-a7b8c81ada74",
+    "slug": "actor-saoirse",
+    "title": "시얼샤 로넌 출연작",
+    "description": "시얼샤 로넌의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 158,
+    "is_published": true,
+    "created_at": "2026-05-29T12:11:04.996515+00:00"
+  },
+  {
+    "id": "867ff9b7-63f5-40ba-a93d-d30d01168c2e",
+    "slug": "actor-oscar-isaac",
+    "title": "오스카 아이작 출연작",
+    "description": "오스카 아이작의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 159,
+    "is_published": true,
+    "created_at": "2026-05-29T12:11:12.282236+00:00"
+  },
+  {
+    "id": "3a269af5-703c-40ed-bc24-fd7242e432a1",
+    "slug": "actor-adam-driver",
+    "title": "애덤 드라이버 출연작",
+    "description": "애덤 드라이버의 대표 출연작.",
+    "cover_image": null,
+    "sort_order": 160,
+    "is_published": true,
+    "created_at": "2026-05-29T12:11:19.533977+00:00"
+  },
+  {
+    "id": "bb4542ff-fe67-41bb-9ce9-5da1c7030d25",
+    "slug": "heist",
+    "title": "케이퍼·하이스트 무비",
+    "description": "완벽한 한탕을 위한 설계. 케이퍼 무비의 쾌감.",
+    "cover_image": null,
+    "sort_order": 161,
+    "is_published": true,
+    "created_at": "2026-05-29T12:11:27.599137+00:00"
+  },
+  {
+    "id": "8f264765-8111-4c29-ae70-090efbb42f4e",
+    "slug": "coming-of-age",
+    "title": "성장영화",
+    "description": "어른이 되어가는 통과의례. 청춘의 한 시절.",
+    "cover_image": null,
+    "sort_order": 162,
+    "is_published": true,
+    "created_at": "2026-05-29T12:11:37.16335+00:00"
+  },
+  {
+    "id": "ce78be17-c657-41a3-9a39-a80dbb47244e",
+    "slug": "one-location",
+    "title": "한 공간의 영화",
+    "description": "제한된 공간이 만드는 긴장. 미니멀 스릴러.",
+    "cover_image": null,
+    "sort_order": 163,
+    "is_published": true,
+    "created_at": "2026-05-29T12:11:45.021164+00:00"
+  },
+  {
+    "id": "f18a65bb-ba39-451a-becc-5b9b31e718b6",
+    "slug": "road-movie",
+    "title": "로드무비",
+    "description": "길 위에서 발견하는 자신. 떠남의 영화.",
+    "cover_image": null,
+    "sort_order": 164,
+    "is_published": true,
+    "created_at": "2026-05-29T12:11:52.913948+00:00"
+  },
+  {
+    "id": "e7c6f6d0-2bee-4355-9d5e-3119973e1295",
+    "slug": "time-loop",
+    "title": "시간 루프·타임루프",
+    "description": "반복되는 하루. 시간을 비트는 영화.",
+    "cover_image": null,
+    "sort_order": 165,
+    "is_published": true,
+    "created_at": "2026-05-29T12:12:01.446554+00:00"
+  },
+  {
+    "id": "89b4d001-2838-4b72-904e-614533519a35",
+    "slug": "courtroom",
+    "title": "법정 영화",
+    "description": "진실을 다투는 공방. 법정 드라마의 긴장.",
+    "cover_image": null,
+    "sort_order": 166,
+    "is_published": true,
+    "created_at": "2026-05-29T12:12:09.801647+00:00"
+  },
+  {
+    "id": "5f622ca6-7d5f-4ca5-9ef1-bde2df1f0535",
+    "slug": "near-perfect",
+    "title": "★ 거장의 만점작",
+    "description": "가중 평점 최상위. 시대를 넘어 검증된, 별점에 가장 가까운 걸작들.",
+    "cover_image": null,
+    "sort_order": 167,
+    "is_published": true,
+    "created_at": "2026-05-30T04:31:39.216624+00:00"
+  },
+  {
+    "id": "d37a3def-6efe-4724-abdb-544e73661a39",
+    "slug": "lee-dong-jin-perfect",
+    "title": "이동진 ★5 만점작",
+    "description": "이동진 평론가가 만점(별 다섯)을 준 영화들.",
+    "cover_image": null,
+    "sort_order": 168,
+    "is_published": true,
+    "created_at": "2026-05-30T04:31:40.256416+00:00"
+  },
+  {
+    "id": "4a7c4a37-3785-421c-9c48-237e9f3f6a65",
+    "slug": "critics-perfect",
+    "title": "평론가 만점작",
+    "description": "주요 평론가들이 만점을 헌정한 작품. 별 다섯의 영예.",
+    "cover_image": null,
+    "sort_order": 169,
+    "is_published": true,
+    "created_at": "2026-05-30T04:31:41.271352+00:00"
+  }
+]

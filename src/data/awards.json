@@ -1,0 +1,1442 @@
+[
+  {
+    "id": "7844ba1f-35d7-413e-bdfe-e182c7da057e",
+    "movie_id": "8723a654-e009-47f2-9a25-8ee7dbe2f7e0",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2019,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-29T06:26:41.940358+00:00"
+  },
+  {
+    "id": "96c628aa-2036-4442-a725-afa6f93dc3d9",
+    "movie_id": "8723a654-e009-47f2-9a25-8ee7dbe2f7e0",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-29T06:26:42.218622+00:00"
+  },
+  {
+    "id": "fbc03936-4c35-4e25-bb37-98859ee7edd1",
+    "movie_id": "8723a654-e009-47f2-9a25-8ee7dbe2f7e0",
+    "festival": "아카데미",
+    "category": "감독상",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-29T06:26:42.473171+00:00"
+  },
+  {
+    "id": "07293e0b-51d6-42c8-b899-65ce64ba0188",
+    "movie_id": "3e688a98-4796-4d6d-9abe-9af5cc6555e4",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:36.37502+00:00"
+  },
+  {
+    "id": "0a4d330a-7b88-4bbb-a59f-6f825ce787b1",
+    "movie_id": "ab1e17c5-58fc-438e-91f2-562f8a82f8d8",
+    "festival": "아카데미",
+    "category": "시각효과상",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:38.248589+00:00"
+  },
+  {
+    "id": "09a11c5b-b018-45fd-8fcb-d19736809712",
+    "movie_id": "cd3836f8-41c7-4cd7-89aa-48c61aee5117",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2004,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:40.603397+00:00"
+  },
+  {
+    "id": "8cfd07b4-9a65-47dd-862f-47989976384a",
+    "movie_id": "fe1e0948-5fa0-4b57-8ef6-e5a88a7d8921",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1994,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:41.393589+00:00"
+  },
+  {
+    "id": "467aca1b-267e-421c-a916-88ab020b3bdb",
+    "movie_id": "ce0a984c-83a7-487c-aee4-652ceaa67f88",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1973,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:42.17474+00:00"
+  },
+  {
+    "id": "305a0d00-a231-4d8a-995e-b1c08c0ee383",
+    "movie_id": "e428ce2c-0f08-4d8f-bb29-5d923f0bf26e",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1975,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:42.958415+00:00"
+  },
+  {
+    "id": "c48e2320-3f4a-46a0-8237-bbfded2a7012",
+    "movie_id": "98710786-cc3c-4d65-9744-fa68fa3b287c",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2012,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:44.261704+00:00"
+  },
+  {
+    "id": "93f2d60a-19bb-450c-b65d-050e09ccd1d3",
+    "movie_id": "92fe7fa9-044d-4d9f-bb02-9508392b1a68",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2007,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:45.049485+00:00"
+  },
+  {
+    "id": "95a55d19-5c68-4ddd-9e78-d1a6d3205564",
+    "movie_id": "c9733dc7-a910-4eda-87e7-3cd01b446dae",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 1994,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T22:43:45.832389+00:00"
+  },
+  {
+    "id": "51f4d716-3c5a-4144-8427-4fd06eff4cff",
+    "movie_id": "4fb9768e-dd68-4756-a13d-094bfabaaf56",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2018,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:07.142778+00:00"
+  },
+  {
+    "id": "777e426d-a15e-4e39-a674-d42ec42482cc",
+    "movie_id": "c9136631-1ddc-48ae-a631-b0486c52917a",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:08.300751+00:00"
+  },
+  {
+    "id": "e262191d-3188-4429-a838-febe563a09a5",
+    "movie_id": "c524772f-a300-476f-ad82-063036a12294",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2016,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:09.747024+00:00"
+  },
+  {
+    "id": "f4092413-6011-4771-8173-5c58f73c2270",
+    "movie_id": "b4813c1d-25d9-4b16-832a-bddf4fd539b1",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:11.237604+00:00"
+  },
+  {
+    "id": "a23f528b-e99d-4f93-814e-c19ace6c804d",
+    "movie_id": "4b7b42eb-2927-4d71-a705-92428abe4d6b",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2014,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:12.710046+00:00"
+  },
+  {
+    "id": "509dff54-a991-46f5-83bc-a2135d7c5da6",
+    "movie_id": "9670b179-83d8-4034-9f70-73ed91b74245",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2013,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:14.194213+00:00"
+  },
+  {
+    "id": "a2f07a6c-c5bc-4297-a8ec-fcfde80533a7",
+    "movie_id": "99e832c6-f837-415d-8d06-5bde37bd922d",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2011,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:16.08476+00:00"
+  },
+  {
+    "id": "595b75f4-dae5-438e-8179-19cf19642585",
+    "movie_id": "4c1f4ba7-06b6-4cdf-a2f4-9a437c79ca1c",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2010,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:17.591895+00:00"
+  },
+  {
+    "id": "ff340da0-143a-4ed2-936a-a3d09f5636e7",
+    "movie_id": "6a3b74e9-fa10-4937-a168-f38ca8531922",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2009,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:18.648131+00:00"
+  },
+  {
+    "id": "3785a59b-d4b6-4a36-89d8-7e96966571d3",
+    "movie_id": "a61ea2d8-a31e-4e87-845e-a621217d3970",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2006,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:22.293643+00:00"
+  },
+  {
+    "id": "3e07a85a-7339-4928-ad8d-38cc56d5363d",
+    "movie_id": "c432e233-afb0-4d84-8fef-d586441f02c4",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2003,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:23.730626+00:00"
+  },
+  {
+    "id": "f4dd9612-2856-4ded-a047-1cf172f4e440",
+    "movie_id": "08fde84b-c49f-427e-a697-52057ff8be15",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2002,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:24.790516+00:00"
+  },
+  {
+    "id": "876b5318-b133-4e59-bfe9-5059033f6138",
+    "movie_id": "50e46d33-03a6-492b-a13b-01208a686350",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 1993,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:27.077759+00:00"
+  },
+  {
+    "id": "eb7e2669-c910-48b8-b5a5-6c5823cd5faf",
+    "movie_id": "0122eec0-dffd-4307-84ba-5f8ec8a9cfa7",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 1976,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:28.144552+00:00"
+  },
+  {
+    "id": "2803090d-5c75-4e31-8532-cef326d4de20",
+    "movie_id": "622d2582-2dba-47b7-b1ed-4e2ca5234b9d",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 1979,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:29.200968+00:00"
+  },
+  {
+    "id": "d30f78fe-ce46-4c3c-8c75-7a534c6ef80b",
+    "movie_id": "aba97eae-805c-439f-96ba-693681ab1487",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2018,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:31.278267+00:00"
+  },
+  {
+    "id": "fec298ba-64b5-4758-a66f-8dcd1cb78a83",
+    "movie_id": "f4c7247c-cc81-4165-88b3-b577012efedc",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:32.343853+00:00"
+  },
+  {
+    "id": "6f46d881-dcb8-432d-9ca4-301f266655c6",
+    "movie_id": "74ea95f4-b3d7-4609-8402-ff7f17406f10",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:34.463925+00:00"
+  },
+  {
+    "id": "91696e5c-c520-4e05-840f-bef4cdd8bd19",
+    "movie_id": "4977506a-2cb6-403b-8709-a56f69a36278",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2014,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:35.523842+00:00"
+  },
+  {
+    "id": "57bf8b88-4bc5-4900-b9ce-ea2128b9090c",
+    "movie_id": "74558f14-2cbd-4e0c-b164-3570485a40f8",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2013,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:36.598641+00:00"
+  },
+  {
+    "id": "7a258546-18db-428f-85f3-dc0b2eca918e",
+    "movie_id": "c91b3c3e-1cc1-4349-89a6-58395a285e06",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2012,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:38.195305+00:00"
+  },
+  {
+    "id": "452f97e5-3c44-45d5-b5a5-3c9305c2cbd1",
+    "movie_id": "468ef118-4d41-442d-b9c2-4d4722009c2e",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2011,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:39.664877+00:00"
+  },
+  {
+    "id": "696c456e-8f3d-4a8a-aea9-46cc74753641",
+    "movie_id": "b8891280-84ee-43d0-819f-a1ea261a62e5",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2010,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:40.732171+00:00"
+  },
+  {
+    "id": "74523b2d-cdf9-439c-8da0-732f1e169f46",
+    "movie_id": "c339226f-8ea7-4dc6-b320-26832fd7ff83",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2008,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:42.187791+00:00"
+  },
+  {
+    "id": "cd1f1051-e5a7-4d0d-b0aa-f4966f13b944",
+    "movie_id": "47cd85de-6210-4d75-a66f-47f9349baed4",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2008,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:43.606251+00:00"
+  },
+  {
+    "id": "0fddd77a-847b-405a-8575-6c6e4531e8e9",
+    "movie_id": "ab840afd-a731-4701-9a01-5e071ad1beef",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2007,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:44.731836+00:00"
+  },
+  {
+    "id": "7f4f62b8-80e6-475d-9762-0902ca3099bf",
+    "movie_id": "dda28d73-ad5e-4483-b615-f655928e0d2d",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2006,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:45.849823+00:00"
+  },
+  {
+    "id": "4f5e3a7d-18c8-4e25-84af-9bf2057a2177",
+    "movie_id": "f2056d40-59c5-407e-b556-98a78651672f",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2004,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:46.914259+00:00"
+  },
+  {
+    "id": "14a7d18d-9445-4686-b1c4-05c8e5009ff0",
+    "movie_id": "67ab84e6-f0a7-46f0-ab03-18f27a323ad3",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2002,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:49.495309+00:00"
+  },
+  {
+    "id": "0c37bab1-451e-4781-b814-ab1d74698aa4",
+    "movie_id": "54459194-9f06-45b8-bae8-f282f771c78e",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2001,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:50.579641+00:00"
+  },
+  {
+    "id": "0c7725ae-8a9c-4c59-a0aa-219bf948230c",
+    "movie_id": "5992c794-ddb3-4b22-bf0b-4519909b7f8e",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 2000,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:51.636528+00:00"
+  },
+  {
+    "id": "89dc0647-99b3-4ca4-bed3-0529eb488e11",
+    "movie_id": "5b5e37fb-aba0-4498-aae2-280d493dc3e7",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1999,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:52.706572+00:00"
+  },
+  {
+    "id": "2d8990c9-7eef-4961-ade2-e174c56136f8",
+    "movie_id": "57cc4b3c-3c54-4b23-b71f-bf69a24352b4",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1997,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:53.760971+00:00"
+  },
+  {
+    "id": "721638ad-72dd-4e7a-bf98-5eaf1a980740",
+    "movie_id": "458b6b2c-a538-41e7-ab45-dc62d4086d92",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1995,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:54.810288+00:00"
+  },
+  {
+    "id": "aed48c89-bfee-4d4e-b7b7-fa9228e39e60",
+    "movie_id": "ff572317-055b-48b1-93a3-c9bfaa8fbebf",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1994,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:55.874775+00:00"
+  },
+  {
+    "id": "0fdb5443-50e3-40d8-b2f9-df84bc8861ae",
+    "movie_id": "c517a13f-4f06-472f-b06a-94cad3279147",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1991,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:57.995579+00:00"
+  },
+  {
+    "id": "beed58a5-b183-4df7-a395-859e30a95dc8",
+    "movie_id": "1ba0b256-c1e2-4f1b-bceb-c3572ccabf92",
+    "festival": "아카데미",
+    "category": "작품상",
+    "year": 1990,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:02:59.050478+00:00"
+  },
+  {
+    "id": "29732439-f5c7-446b-a095-a79f56bcf624",
+    "movie_id": "3d7b9f73-0cc7-416a-82a4-17c87575f87e",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:02.234244+00:00"
+  },
+  {
+    "id": "d5be000d-d0da-4bea-b0c1-7bd5a3c2131b",
+    "movie_id": "4a538930-2e8c-41f1-93d2-7f021aef9394",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:03.779414+00:00"
+  },
+  {
+    "id": "7dbb2aec-afa7-49e4-a6cc-891a8db3beab",
+    "movie_id": "061c88bb-2c2b-458b-aa58-ae604dcc1d82",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:06.465362+00:00"
+  },
+  {
+    "id": "8a0d6f39-b9ac-4fd4-9522-014852823d35",
+    "movie_id": "994ff245-d6dc-4a99-9b9b-c6d86fd9beda",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2019,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:07.527674+00:00"
+  },
+  {
+    "id": "9341b2ea-c302-44c6-9a10-a1c71910a774",
+    "movie_id": "21daffe8-7f40-4866-a7bc-4390f0d6f11c",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2018,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:08.593566+00:00"
+  },
+  {
+    "id": "e4c13940-1e67-4dcc-92dd-7b058997a524",
+    "movie_id": "f4c7247c-cc81-4165-88b3-b577012efedc",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:09.606603+00:00"
+  },
+  {
+    "id": "b2976acd-7747-4287-bfcf-b24e16e5ba27",
+    "movie_id": "bb03760b-a179-4d0b-a9f7-5e9b1bcabde6",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:11.199884+00:00"
+  },
+  {
+    "id": "509db8de-fec3-496a-ab6e-229b4b84b655",
+    "movie_id": "a6877aa3-4629-414b-878c-23c028d05f10",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2013,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:12.742466+00:00"
+  },
+  {
+    "id": "1a0ef3de-1175-4d63-986c-2514a05fbf22",
+    "movie_id": "57784904-9f8a-4df8-a7a7-e1c40bfbc075",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2012,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:14.167128+00:00"
+  },
+  {
+    "id": "4323b168-0510-47e7-b2e6-36d5cb798295",
+    "movie_id": "ba672200-c63e-4176-a75c-1cc4cbe4f76c",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2011,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:15.653255+00:00"
+  },
+  {
+    "id": "0ae55dda-7039-4c6d-bcb2-a219589a7d3b",
+    "movie_id": "cfd98821-2296-4eca-9d49-18f826abae78",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2010,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:17.081233+00:00"
+  },
+  {
+    "id": "be10cb56-aa42-4032-9ff0-6f0973eacf5b",
+    "movie_id": "f80745fe-ba66-45ec-b86b-557400b2cc13",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2009,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:18.53142+00:00"
+  },
+  {
+    "id": "bebf1b4b-55e7-46f7-940a-917fe0c1305c",
+    "movie_id": "eeab84b4-8e24-47d3-8800-00bb31d88f7f",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2005,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:19.584307+00:00"
+  },
+  {
+    "id": "f6d1ee40-8ec4-409a-8769-707be7be325d",
+    "movie_id": "f200e34b-8954-4084-9037-0997ca341270",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2024,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:21.430264+00:00"
+  },
+  {
+    "id": "f04aa245-cfb7-46d1-8a18-84317b160312",
+    "movie_id": "ac1814dd-b5b0-4ed3-b4c8-a00f935bad8e",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:22.975243+00:00"
+  },
+  {
+    "id": "5079e140-017b-4431-a5f8-003fe820e8ad",
+    "movie_id": "50b3abaf-9420-43a3-9cac-360143ddf65e",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:24.470108+00:00"
+  },
+  {
+    "id": "19cf3331-7e39-40f3-bbc4-f711386063ca",
+    "movie_id": "0934949b-ec60-4025-8d09-6cbb968a5278",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2021,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:25.897312+00:00"
+  },
+  {
+    "id": "d4115d5b-abac-4213-8aa8-859972664392",
+    "movie_id": "f031726a-8279-44bf-9dd0-7892dbb4b8c0",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:26.954248+00:00"
+  },
+  {
+    "id": "810812d1-21e6-4ce5-aefd-2f4029204da2",
+    "movie_id": "dcc1ae5e-12c8-4a29-9f03-064732e01036",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2019,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:28.483086+00:00"
+  },
+  {
+    "id": "94bde6a0-29a2-48a0-bb82-35bb8087a241",
+    "movie_id": "a81c0654-b402-447f-a89c-d61e51177536",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2018,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:29.952129+00:00"
+  },
+  {
+    "id": "376fee2e-9f85-45dd-9487-68e6a8e82a21",
+    "movie_id": "7f5658bb-dc4c-440f-943e-f53d4c43fc4d",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:31.538107+00:00"
+  },
+  {
+    "id": "4f635d37-5508-4646-bb84-e9c704afca73",
+    "movie_id": "2b6b678f-d82f-45ed-952d-37152a879603",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2016,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:32.984824+00:00"
+  },
+  {
+    "id": "8a719394-e4bb-4a23-896c-b9ba475855a5",
+    "movie_id": "7148b3ad-7ac1-41d9-baa4-9633b49efc93",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:34.052658+00:00"
+  },
+  {
+    "id": "b954d110-0831-4f9d-b4e9-e8a0d7f9b9c2",
+    "movie_id": "fa571265-3a6e-436a-a962-91fe458f866a",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2013,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:36.999537+00:00"
+  },
+  {
+    "id": "9931f21a-5dfa-40ad-b353-e1bdfb315b79",
+    "movie_id": "9bf0dcb8-fd9b-498d-a36d-867ae590fb85",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2012,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:38.435883+00:00"
+  },
+  {
+    "id": "5ed1563a-968b-41f5-a777-ff61adf0fe61",
+    "movie_id": "cc1dda2d-7c13-4aa0-b955-bf79a4db37dc",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2011,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:03:39.548331+00:00"
+  },
+  {
+    "id": "3ff514cc-11a9-46ff-9a91-644b971dce49",
+    "movie_id": "8e9574fe-2425-4353-94e9-3e346d23ba84",
+    "festival": "베니스 영화제",
+    "category": "황금사자상",
+    "year": 2021,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:05:57.294275+00:00"
+  },
+  {
+    "id": "438d0717-8731-4a9a-8c78-b014aa297f86",
+    "movie_id": "f9c1e978-cafe-414c-9c43-02ff4899fc31",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 2008,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:05:58.672016+00:00"
+  },
+  {
+    "id": "182dd884-6f18-4bc1-9df4-c9840a117b1c",
+    "movie_id": "6b6b7eae-8fd5-4df7-a9de-a07c623b14a3",
+    "festival": "베를린 영화제",
+    "category": "황금곰상",
+    "year": 2014,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:06:00.041986+00:00"
+  },
+  {
+    "id": "0a1963f5-38df-419e-8cdb-c3a53ef38059",
+    "movie_id": "361cfa58-553d-40f5-a410-b5df4ed1c283",
+    "festival": "아카데미",
+    "category": "감독상 · 크리스토퍼 놀란",
+    "year": 2024,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:08.213717+00:00"
+  },
+  {
+    "id": "cdefc7b7-71ff-4b4a-975b-b6f3bd390d72",
+    "movie_id": "5c59536b-aaf7-47db-8273-9e6db4516127",
+    "festival": "아카데미",
+    "category": "감독상 · 제인 캠피온",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:09.331585+00:00"
+  },
+  {
+    "id": "b4e6d2ee-bd06-460b-89e4-3a53f899f387",
+    "movie_id": "061c88bb-2c2b-458b-aa58-ae604dcc1d82",
+    "festival": "아카데미",
+    "category": "감독상 · 클로이 자오",
+    "year": 2021,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:10.40932+00:00"
+  },
+  {
+    "id": "538bb807-305e-4f4f-a4a3-db293b12a582",
+    "movie_id": "8723a654-e009-47f2-9a25-8ee7dbe2f7e0",
+    "festival": "아카데미",
+    "category": "감독상 · 봉준호",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:11.394121+00:00"
+  },
+  {
+    "id": "fb81c1b6-379b-40e8-9528-0bee5651dd60",
+    "movie_id": "21daffe8-7f40-4866-a7bc-4390f0d6f11c",
+    "festival": "아카데미",
+    "category": "감독상 · 알폰소 쿠아론",
+    "year": 2019,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:12.427738+00:00"
+  },
+  {
+    "id": "bf379042-cc96-4fda-b259-49aba5ac21f4",
+    "movie_id": "a479a920-de1e-403b-9add-767bc31222ec",
+    "festival": "아카데미",
+    "category": "감독상 · 이냐리투",
+    "year": 2016,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:13.519539+00:00"
+  },
+  {
+    "id": "8641d2a1-f0e5-4c98-bf86-7cc994c7edc1",
+    "movie_id": "4977506a-2cb6-403b-8709-a56f69a36278",
+    "festival": "아카데미",
+    "category": "감독상 · 이냐리투",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:14.550162+00:00"
+  },
+  {
+    "id": "6be65762-b8e2-4e6e-9675-456a833f53d9",
+    "movie_id": "18b58972-f14f-49a7-86db-9687073bd165",
+    "festival": "아카데미",
+    "category": "감독상 · 알폰소 쿠아론",
+    "year": 2014,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:15.614045+00:00"
+  },
+  {
+    "id": "8f14d5d3-f5e4-4d28-926d-6668ea5adfe5",
+    "movie_id": "587ae3a6-564b-4750-bac1-8b3d74216e8b",
+    "festival": "아카데미",
+    "category": "감독상 · 이안",
+    "year": 2013,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:17.035766+00:00"
+  },
+  {
+    "id": "08fd7439-a3af-43cd-8489-3f6ba66b8f81",
+    "movie_id": "cb7c157c-7f10-4d82-8424-6b15a3f318d0",
+    "festival": "아카데미",
+    "category": "감독상 · 데이미언 셔젤",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:18.296376+00:00"
+  },
+  {
+    "id": "999411c5-e2ef-4f41-80ad-61fa0f9b658a",
+    "movie_id": "361cfa58-553d-40f5-a410-b5df4ed1c283",
+    "festival": "아카데미",
+    "category": "남우주연상 · 킬리언 머피",
+    "year": 2024,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:19.282336+00:00"
+  },
+  {
+    "id": "be98c53d-f304-44f0-b960-c6c73f4959a9",
+    "movie_id": "a83bae93-fb7a-4cb2-9746-091b157e2d88",
+    "festival": "아카데미",
+    "category": "남우주연상 · 브렌든 프레이저",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:20.376839+00:00"
+  },
+  {
+    "id": "539a5328-5c7c-4a7d-bafe-64ad738281e1",
+    "movie_id": "28634a5e-f138-4316-aecb-e8ddb44116bb",
+    "festival": "아카데미",
+    "category": "남우주연상 · 윌 스미스",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:21.435055+00:00"
+  },
+  {
+    "id": "e0f25415-61a4-40ee-93b6-18aa812e2445",
+    "movie_id": "994ff245-d6dc-4a99-9b9b-c6d86fd9beda",
+    "festival": "아카데미",
+    "category": "남우주연상 · 호아킨 피닉스",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:22.412692+00:00"
+  },
+  {
+    "id": "72aa5b93-54e1-4aa9-a60b-1ae0b086a465",
+    "movie_id": "9e019e99-4378-4661-9626-016e82f509b4",
+    "festival": "아카데미",
+    "category": "남우주연상 · 라미 말렉",
+    "year": 2019,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:23.47292+00:00"
+  },
+  {
+    "id": "5f54519d-1d41-4c3e-9c6d-7ba0526c2023",
+    "movie_id": "4c7f9803-ffea-439f-a633-795395eb5216",
+    "festival": "아카데미",
+    "category": "남우주연상 · 게리 올드만",
+    "year": 2018,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:24.926671+00:00"
+  },
+  {
+    "id": "1039a716-7119-4a22-bb0f-d4659327a816",
+    "movie_id": "5bfcb4be-a02f-4f8f-a573-eaa7d303bee6",
+    "festival": "아카데미",
+    "category": "남우주연상 · 다니엘 데이 루이스",
+    "year": 2008,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:27.431601+00:00"
+  },
+  {
+    "id": "e364e4c2-3abe-4681-b8ac-7cd5c9af8cf6",
+    "movie_id": "3d7b9f73-0cc7-416a-82a4-17c87575f87e",
+    "festival": "아카데미",
+    "category": "여우주연상 · 엠마 스톤",
+    "year": 2024,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:28.420166+00:00"
+  },
+  {
+    "id": "ec778fa7-ff5f-42aa-b632-d3c870adb338",
+    "movie_id": "ecd06e51-cc1e-45cc-984d-86a0bd10b3a5",
+    "festival": "아카데미",
+    "category": "여우주연상 · 양자경",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:29.484154+00:00"
+  },
+  {
+    "id": "25efa965-78eb-4e3c-aee4-ee13d21ac633",
+    "movie_id": "cb7c157c-7f10-4d82-8424-6b15a3f318d0",
+    "festival": "아카데미",
+    "category": "여우주연상 · 엠마 스톤",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:30.464115+00:00"
+  },
+  {
+    "id": "064a6d91-5b4e-45b4-8533-2bc60258d6a1",
+    "movie_id": "101c1f6a-bce7-40b1-bdce-08b583b8ed26",
+    "festival": "아카데미",
+    "category": "여우주연상 · 케이트 블란쳇",
+    "year": 2014,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:31.918306+00:00"
+  },
+  {
+    "id": "93cee86c-3910-45d4-bd12-2f30bbb768dd",
+    "movie_id": "34f2dad7-0995-40b8-b97f-d0e6be024d2f",
+    "festival": "아카데미",
+    "category": "여우주연상 · 메릴 스트립",
+    "year": 2012,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:33.388853+00:00"
+  },
+  {
+    "id": "fd7bbb73-b33f-4b81-a2ec-e6f083a2cd1a",
+    "movie_id": "1596896e-f254-41b0-9762-cc21f4b8ddd2",
+    "festival": "아카데미",
+    "category": "여우주연상 · 나탈리 포트만",
+    "year": 2011,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:34.47158+00:00"
+  },
+  {
+    "id": "008b67cf-de75-4ce6-8209-46aebeb0662b",
+    "movie_id": "ecd06e51-cc1e-45cc-984d-86a0bd10b3a5",
+    "festival": "아카데미",
+    "category": "남우조연상 · 키 호이 콴",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:35.461565+00:00"
+  },
+  {
+    "id": "3fd2f78c-4f48-4807-99f8-e91d4e27ab0f",
+    "movie_id": "f373c239-b127-48f0-a446-e0697625a1db",
+    "festival": "아카데미",
+    "category": "여우조연상 · 윤여정",
+    "year": 2021,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:36.924251+00:00"
+  },
+  {
+    "id": "8fe9f469-6eae-4275-8b73-08f8af7416eb",
+    "movie_id": "d2602076-535a-41be-affa-93eecc6e7f85",
+    "festival": "아카데미",
+    "category": "남우조연상 · 히스 레저",
+    "year": 2009,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:37.981648+00:00"
+  },
+  {
+    "id": "7fc85113-65df-4e90-8451-41649fd2e884",
+    "movie_id": "3e688a98-4796-4d6d-9abe-9af5cc6555e4",
+    "festival": "아카데미",
+    "category": "남우조연상 · 마허샬라 알리",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:38.961877+00:00"
+  },
+  {
+    "id": "c46c40b8-0999-4630-acb4-d019bee2c226",
+    "movie_id": "c3fa6410-c4a5-4628-b6f3-c85a6175221d",
+    "festival": "칸 영화제",
+    "category": "심사위원대상",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:40.41578+00:00"
+  },
+  {
+    "id": "d3f86c0a-0b60-4d3f-9abd-8cecc3e9f304",
+    "movie_id": "ab0174f6-1ef1-4bec-99fc-f3bc60a69ba9",
+    "festival": "칸 영화제",
+    "category": "심사위원대상",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:41.482277+00:00"
+  },
+  {
+    "id": "b2038203-05b0-44b8-8a9b-0b48fcd00593",
+    "movie_id": "b48f2a96-bb40-443f-9359-2c0a3d63aeb4",
+    "festival": "칸 영화제",
+    "category": "심사위원대상",
+    "year": 2004,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:18:43.615251+00:00"
+  },
+  {
+    "id": "7be391c9-36f2-4d30-8a40-d1093319136f",
+    "movie_id": "8fd8ed68-1078-460d-9bfe-5c66440d0e7b",
+    "festival": "아카데미",
+    "category": "남우주연상 · 에디 레드메인",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-30T23:19:40.61463+00:00"
+  },
+  {
+    "id": "ccc5a413-37ad-40fe-a393-6fc39a0aad94",
+    "movie_id": "52c9183d-ddbe-44aa-9976-9fd284df38c6",
+    "festival": "칸 영화제",
+    "category": "감독상 · 박찬욱",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:30.510325+00:00"
+  },
+  {
+    "id": "2ba78299-abe5-4977-a78c-91dd0f6721af",
+    "movie_id": "7e631b13-5bd1-4d6a-b348-83083be30452",
+    "festival": "칸 영화제",
+    "category": "감독상 · 레오 카락스",
+    "year": 2021,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:31.973992+00:00"
+  },
+  {
+    "id": "480a4fd7-4c56-4996-b836-e545e1fbf1a4",
+    "movie_id": "af246e0d-cc1c-404c-93e7-b6aefee88782",
+    "festival": "칸 영화제",
+    "category": "황금종려상",
+    "year": 1998,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:33.352399+00:00"
+  },
+  {
+    "id": "b2529fa7-39f1-4a9d-94a8-65f001d981af",
+    "movie_id": "361cfa58-553d-40f5-a410-b5df4ed1c283",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2024,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:34.307854+00:00"
+  },
+  {
+    "id": "f23deed3-0e93-4ad9-ba97-3d255c75e1ce",
+    "movie_id": "980972c8-f3d4-4f11-acca-57fea4ee9f1e",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:35.781934+00:00"
+  },
+  {
+    "id": "f0232758-b11f-4dcb-a779-9f0c2c9ae10d",
+    "movie_id": "5c59536b-aaf7-47db-8273-9e6db4516127",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:36.72885+00:00"
+  },
+  {
+    "id": "729654ac-f3ac-41bd-be74-9cb5254023ef",
+    "movie_id": "061c88bb-2c2b-458b-aa58-ae604dcc1d82",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2021,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:37.669812+00:00"
+  },
+  {
+    "id": "bada9725-556f-4a30-a6f6-aacc6fa900f1",
+    "movie_id": "2b942630-865f-4ab4-acf3-cf0306faf7fd",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:38.674522+00:00"
+  },
+  {
+    "id": "0740ccea-67ef-4c77-94ab-98140b6895f1",
+    "movie_id": "9e019e99-4378-4661-9626-016e82f509b4",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2019,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:39.622468+00:00"
+  },
+  {
+    "id": "bcdca996-6466-449f-a580-97cbe6aee426",
+    "movie_id": "0cd28dd6-1734-4788-bbcc-f2d0c2dd78ac",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2018,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:40.63556+00:00"
+  },
+  {
+    "id": "ceb2fda7-442d-4af9-a96d-dd9809a961fd",
+    "movie_id": "3e688a98-4796-4d6d-9abe-9af5cc6555e4",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:41.58278+00:00"
+  },
+  {
+    "id": "02efef66-90a8-48a3-8fd3-e1adfa8c2b91",
+    "movie_id": "a479a920-de1e-403b-9add-767bc31222ec",
+    "festival": "골든글로브",
+    "category": "작품상(드라마)",
+    "year": 2016,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:42.534936+00:00"
+  },
+  {
+    "id": "d67901f9-814b-42f5-adfa-9e107b0a8d63",
+    "movie_id": "3d7b9f73-0cc7-416a-82a4-17c87575f87e",
+    "festival": "골든글로브",
+    "category": "작품상(뮤지컬/코미디)",
+    "year": 2024,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:43.479095+00:00"
+  },
+  {
+    "id": "f232d902-e1a1-4bbe-9dd0-b4b2490ad89c",
+    "movie_id": "ecd06e51-cc1e-45cc-984d-86a0bd10b3a5",
+    "festival": "골든글로브",
+    "category": "작품상(뮤지컬/코미디)",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:44.421906+00:00"
+  },
+  {
+    "id": "53332b42-b8df-47cf-981b-6095a30bffb8",
+    "movie_id": "4cc534d6-e73c-40c0-88cb-e7fc249604eb",
+    "festival": "골든글로브",
+    "category": "작품상(뮤지컬/코미디)",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:45.855099+00:00"
+  },
+  {
+    "id": "e8fe2ea0-1e84-4c0e-b685-974532d715de",
+    "movie_id": "cb7c157c-7f10-4d82-8424-6b15a3f318d0",
+    "festival": "골든글로브",
+    "category": "작품상(뮤지컬/코미디)",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:46.833031+00:00"
+  },
+  {
+    "id": "8766fa5a-e331-4565-8f21-5ea6aa65f2ef",
+    "movie_id": "89a80df2-0f11-40e9-8ac8-6bf421d62d45",
+    "festival": "골든글로브",
+    "category": "작품상(뮤지컬/코미디)",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:47.863513+00:00"
+  },
+  {
+    "id": "8906b7ac-9b1b-4285-94f6-025929b1254a",
+    "movie_id": "361cfa58-553d-40f5-a410-b5df4ed1c283",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2024,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:48.782569+00:00"
+  },
+  {
+    "id": "ce594015-c147-44d5-8538-f60b896831c2",
+    "movie_id": "9f4b8a9a-7347-45cb-9c4c-1d4641c1831d",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:49.809536+00:00"
+  },
+  {
+    "id": "d3fc9f12-16b0-4bef-906c-95881363e76d",
+    "movie_id": "5c59536b-aaf7-47db-8273-9e6db4516127",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:50.730948+00:00"
+  },
+  {
+    "id": "ebf828ca-f849-4194-bed7-12dfcc94e3cd",
+    "movie_id": "061c88bb-2c2b-458b-aa58-ae604dcc1d82",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2021,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:51.654313+00:00"
+  },
+  {
+    "id": "aba5a189-fa5d-46df-bb6f-4ee443436963",
+    "movie_id": "2b942630-865f-4ab4-acf3-cf0306faf7fd",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:52.595483+00:00"
+  },
+  {
+    "id": "4026e467-6001-430f-88dc-39c0e328d6bf",
+    "movie_id": "21daffe8-7f40-4866-a7bc-4390f0d6f11c",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2019,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:53.540329+00:00"
+  },
+  {
+    "id": "22463fce-29b6-4501-b043-b4babc0d27a7",
+    "movie_id": "0cd28dd6-1734-4788-bbcc-f2d0c2dd78ac",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2018,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:54.485535+00:00"
+  },
+  {
+    "id": "7ca5ecdf-30e0-4766-9217-0d7972b9aff1",
+    "movie_id": "cb7c157c-7f10-4d82-8424-6b15a3f318d0",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:55.408479+00:00"
+  },
+  {
+    "id": "de7c3b23-122b-4cb4-ade0-ea3844c9e39d",
+    "movie_id": "592dee81-cf9d-49f0-8936-d9d67ad346c9",
+    "festival": "BAFTA",
+    "category": "작품상",
+    "year": 2015,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:26:56.418292+00:00"
+  },
+  {
+    "id": "8b5ccb14-7d60-4fb6-883b-2ebdeee0fa38",
+    "movie_id": "361cfa58-553d-40f5-a410-b5df4ed1c283",
+    "festival": "골든글로브",
+    "category": "감독상 · 크리스토퍼 놀란",
+    "year": 2024,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:31.121459+00:00"
+  },
+  {
+    "id": "654effe5-1c2c-4a5b-9ca3-26333c4bab0e",
+    "movie_id": "980972c8-f3d4-4f11-acca-57fea4ee9f1e",
+    "festival": "골든글로브",
+    "category": "감독상 · 스티븐 스필버그",
+    "year": 2023,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:32.167254+00:00"
+  },
+  {
+    "id": "3d039f91-ac4e-4d4b-b71e-1dcf68423391",
+    "movie_id": "5c59536b-aaf7-47db-8273-9e6db4516127",
+    "festival": "골든글로브",
+    "category": "감독상 · 제인 캠피온",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:33.242141+00:00"
+  },
+  {
+    "id": "83c6817f-8337-46aa-9e82-ec33a258d8ae",
+    "movie_id": "061c88bb-2c2b-458b-aa58-ae604dcc1d82",
+    "festival": "골든글로브",
+    "category": "감독상 · 클로이 자오",
+    "year": 2021,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:34.293676+00:00"
+  },
+  {
+    "id": "3aad548f-ce6a-40c0-b7f8-9c27591ac74a",
+    "movie_id": "2b942630-865f-4ab4-acf3-cf0306faf7fd",
+    "festival": "골든글로브",
+    "category": "감독상 · 샘 멘데스",
+    "year": 2020,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:35.247491+00:00"
+  },
+  {
+    "id": "ea53f2cc-da1f-484b-bb4a-091cf077cae0",
+    "movie_id": "21daffe8-7f40-4866-a7bc-4390f0d6f11c",
+    "festival": "골든글로브",
+    "category": "감독상 · 알폰소 쿠아론",
+    "year": 2019,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:36.2891+00:00"
+  },
+  {
+    "id": "da73be49-2a09-4eb7-91a0-8786e46b1601",
+    "movie_id": "cb7c157c-7f10-4d82-8424-6b15a3f318d0",
+    "festival": "골든글로브",
+    "category": "감독상 · 데이미언 셔젤",
+    "year": 2017,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:37.305503+00:00"
+  },
+  {
+    "id": "069d77cf-5e8e-4201-84b4-ad694543045f",
+    "movie_id": "a479a920-de1e-403b-9add-767bc31222ec",
+    "festival": "골든글로브",
+    "category": "감독상 · 이냐리투",
+    "year": 2016,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:38.340142+00:00"
+  },
+  {
+    "id": "bdd89683-bba8-4875-aacd-0f7f2b4b561d",
+    "movie_id": "e060eda0-e957-4c22-a280-7f21925672d4",
+    "festival": "베니스 영화제",
+    "category": "볼피컵 남우주연 · 콜린 패럴",
+    "year": 2022,
+    "result": "won",
+    "note": null,
+    "created_at": "2026-05-31T03:40:39.82759+00:00"
+  }
+]

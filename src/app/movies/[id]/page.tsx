@@ -15,7 +15,6 @@ import {
 } from "@/lib/data";
 import StarRating from "@/components/StarRating";
 import StarInput from "@/components/StarInput";
-import CriticAutoSearch from "@/components/CriticAutoSearch";
 import MoviePoster from "@/components/MoviePoster";
 import WatchHere from "@/components/WatchHere";
 import CompareButton from "@/components/CompareButton";
@@ -394,11 +393,6 @@ export default async function MovieDetailPage({
         ) : (
           <Placeholder text="아직 등록된 평론가 코멘트가 없습니다. 저작권·이용약관 준수를 위해 짧은 인용/요약 + 원문 링크 형태로만 제공합니다." />
         )}
-
-        {/* 자동 검색 (검토 대기 저장 → 관리자 승인 후 공개) */}
-        <div className="mt-8">
-          <CriticAutoSearch tmdbId={tmdbId} title={detail.title} />
-        </div>
       </Section>
 
       {/* ── 비슷한 영화 ───────────────────────────── */}
